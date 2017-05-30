@@ -8,7 +8,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:Einkaufslisten_Template10.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:vm="using:Einkaufslisten_Template10.ViewModels" x:Name="ThisPage"
+      xmlns:vm="using:Einkaufslisten_Template10.ViewModels" 
       mc:Ignorable="d">
 
     <Page.DataContext>
@@ -56,12 +56,22 @@
 
                     <TextBlock x:Uid="ListeName" Grid.Column="0" Grid.Row="0" Text="Name" VerticalAlignment="Center" HorizontalAlignment="Left" Height="20" Width="40"/>
                     <TextBlock x:Uid="ZuletztGenutzt" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                    <TextBlock x:Uid="TempL1" Grid.Column="0"  Grid.Row="1" Text="Liste1"/>
+                    <!--<TextBlock x:Uid="TempL1" Grid.Column="0"  Grid.Row="1" Text="Liste1"/>
                     <TextBlock x:Uid="TempL2" Grid.Column="0" Grid.Row="2" Text="Liste2"/>
-                    <TextBlock x:Uid="TempL3" Grid.Column="0" Grid.Row="3" Text="Liste3"/>
-                    <TextBlock Grid.Column="1"  Grid.Row="1" Text="04.04.2017"/>
+                    <TextBlock x:Uid="TempL3" Grid.Column="0" Grid.Row="3" Text="Liste3"/>-->
+                    <ListView Name="Output" Grid.ColumnSpan="2" Grid.RowSpan="3" Grid.Row="1" >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <!--<TextBlock Grid.Column="1"  Grid.Row="1" Text="04.04.2017"/>
                     <TextBlock Grid.Column="1" Grid.Row="2" Text="25.01.2017"/>
-                    <TextBlock Grid.Column="1" Grid.Row="3" Text="20.01.2017"/>
+                    <TextBlock Grid.Column="1" Grid.Row="3" Text="20.01.2017"/>-->
+
+                    
+
                 </Grid>
                 <Button x:Name="NeueListe" x:Uid="NeueListe" Grid.Row="2" Grid.ColumnSpan="2" Content="Neue Liste" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="30"/>
             </Grid>

@@ -8,6 +8,9 @@ using System;
 using System.Linq;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Controls;
+using Microsoft.Data.Sqlite;
+using Microsoft.Data.Sqlite.Internal;
+using System.IO;
 
 namespace Einkaufslisten_Template10
 {
@@ -31,6 +34,24 @@ namespace Einkaufslisten_Template10
             ShowShellBackButton = settings.UseShellBackButton;
 
             #endregion
+
+            #region database
+            SqliteEngine.UseWinSqlite3();
+            using (SqliteConnection db = new SqliteConnection("Filename=sqliteSample.db"))
+            {
+                db.Open();
+                String tableCommand = File.ReadAllText("einkaufslisteDeleteAndCreate.sql");
+                SqliteCommand createTable = new SqliteCommand(tableCommand, db);
+                try
+                {
+                    createTable.ExecuteReader();
+                }
+                catch (SqliteException e)
+                {
+                    //Do nothing
+                }
+            }
+            #endregion database
         }
 
         public override UIElement CreateRootElement(IActivatedEventArgs e)
