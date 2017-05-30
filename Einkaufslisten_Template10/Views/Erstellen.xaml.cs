@@ -21,7 +21,8 @@ namespace Einkaufslisten_App
     {
         public Erstellen()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+            //cached ? 
         }
     }
 }
