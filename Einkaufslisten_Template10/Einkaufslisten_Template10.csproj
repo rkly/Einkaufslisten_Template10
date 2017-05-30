@@ -106,6 +106,15 @@
     <Compile Include="Views\DetailPage.xaml.cs">
       <DependentUpon>DetailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Einkaufsbereich.xaml.cs">
+      <DependentUpon>Einkaufsbereich.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Einkaufslisten.xaml.cs">
+      <DependentUpon>Einkaufslisten.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Erstellen.xaml.cs">
+      <DependentUpon>Erstellen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
@@ -153,6 +162,18 @@
     <Page Include="Views\DetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Einkaufsbereich.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Einkaufslisten.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Erstellen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
