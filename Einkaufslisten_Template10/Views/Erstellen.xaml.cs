@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace Einkaufslisten_App
+namespace Einkaufslisten_Template10.Views
 {
     public sealed partial class Erstellen : Page
     {
