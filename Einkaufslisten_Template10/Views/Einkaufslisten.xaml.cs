@@ -12,16 +12,18 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Einkaufslisten_Template10.ViewModels;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace Einkaufslisten_App
+namespace Einkaufslisten_Template10.Views
 {
     public sealed partial class Einkaufslisten : Page
     {
         public Einkaufslisten()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+            // cached todo
         }
     }
 }
