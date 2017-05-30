@@ -15,39 +15,56 @@
         <vm:DetailPageViewModel x:Name="ViewModel" />
     </Page.DataContext>
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="30"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="220"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <TextBlock x:Name="Einkaufslisten_Title" x:Uid="Einkaufslisten_Title" Grid.Row="0" Grid.Column="0" Text="Einkaufsliten" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        <Button x:Name="Sortierung" Grid.Row="0" Grid.Column="1" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Height="30" Width="30" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-        <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="5,5,5,5">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="220"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-        <TextBlock x:Uid="ListeName" Grid.Column="0" Grid.Row="0" Text="Name" VerticalAlignment="Center" HorizontalAlignment="Left" Height="20" Width="40"/>
-        <TextBlock x:Uid="ZuletztGenutzt" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-        <TextBlock x:Uid="TempL1" Grid.Column="0"  Grid.Row="1" Text="Liste1"/>
-        <TextBlock x:Uid="TempL2" Grid.Column="0" Grid.Row="2" Text="Liste2"/>
-        <TextBlock x:Uid="TempL3" Grid.Column="0" Grid.Row="3" Text="Liste3"/>
-        <TextBlock Grid.Column="1"  Grid.Row="1" Text="04.04.2017"/>
-        <TextBlock Grid.Column="1" Grid.Row="2" Text="25.01.2017"/>
-        <TextBlock Grid.Column="1" Grid.Row="3" Text="20.01.2017"/>
-        </Grid>
-        <Button x:Name="NeueListe" x:Uid="NeueListe" Grid.Row="2" Grid.ColumnSpan="2" Content="Neue Liste" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="30"/>
-    </Grid>
+        <!--  header  -->
+    <controls:PageHeader x:Name="pageHeader" Frame="{x:Bind Frame}"
+                             RelativePanel.AlignLeftWithPanel="True"
+                             RelativePanel.AlignRightWithPanel="True"
+                             RelativePanel.AlignTopWithPanel="True" Text="Einkaufslisten" />
+
+    <!--  content  -->
+        <ScrollViewer Padding="12,8,0,0" RelativePanel.AlignBottomWithPanel="True"
+                    RelativePanel.AlignLeftWithPanel="True"
+                    RelativePanel.AlignRightWithPanel="True"
+                    RelativePanel.Below="pageHeader"
+                    VerticalScrollBarVisibility="Auto">
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="30"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="220"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock x:Name="Einkaufslisten_Title" x:Uid="Einkaufslisten_Title" Grid.Row="0" Grid.Column="0" Text="Einkaufsliten" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <Button x:Name="Sortierung" Grid.Row="0" Grid.Column="1" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Height="30" Width="30" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="5,5,5,5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock x:Uid="ListeName" Grid.Column="0" Grid.Row="0" Text="Name" VerticalAlignment="Center" HorizontalAlignment="Left" Height="20" Width="40"/>
+                    <TextBlock x:Uid="ZuletztGenutzt" Grid.Column="1" Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <TextBlock x:Uid="TempL1" Grid.Column="0"  Grid.Row="1" Text="Liste1"/>
+                    <TextBlock x:Uid="TempL2" Grid.Column="0" Grid.Row="2" Text="Liste2"/>
+                    <TextBlock x:Uid="TempL3" Grid.Column="0" Grid.Row="3" Text="Liste3"/>
+                    <TextBlock Grid.Column="1"  Grid.Row="1" Text="04.04.2017"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" Text="25.01.2017"/>
+                    <TextBlock Grid.Column="1" Grid.Row="3" Text="20.01.2017"/>
+                </Grid>
+                <Button x:Name="NeueListe" x:Uid="NeueListe" Grid.Row="2" Grid.ColumnSpan="2" Content="Neue Liste" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="30"/>
+            </Grid>
+        </ScrollViewer>
+    </RelativePanel>
 </Page>
