@@ -132,6 +132,20 @@
                                 RelativePanel.AlignBottomWith="BusyTextTextBox"
                                 RelativePanel.RightOf="BusyTextTextBox" />
 
+                        <Button x:Name="Sprache"
+                                x:Uid="Sprache"
+                                Content="Sprache"
+                                Margin="0,12,0,0"                               
+                                RelativePanel.Below="BusyTextTextBox">
+                            <Button.Flyout>
+                                <MenuFlyout>
+                                    <MenuFlyoutItem x:Uid="Deutsch" Tag="de-de"/>
+                                    <MenuFlyoutItem x:Uid="Ukrainisch" Tag="uk-ua"/>
+                                    <MenuFlyoutItem x:Uid="Englisch" Tag="en-us"/>
+                                </MenuFlyout>
+                            </Button.Flyout>
+                        </Button>
+
                     </RelativePanel>
 
                 </ScrollViewer>
