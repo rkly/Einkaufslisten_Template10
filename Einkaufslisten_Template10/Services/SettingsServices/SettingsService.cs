@@ -2,6 +2,8 @@
 using Template10.Common;
 using Template10.Utils;
 using Windows.UI.Xaml;
+using System.Globalization;
+using Windows.UI.Popups; //TEST !
 
 namespace Einkaufslisten_Template10.Services.SettingsServices
 {
@@ -71,6 +73,32 @@ namespace Einkaufslisten_Template10.Services.SettingsServices
             {
                 _helper.Write(nameof(IsFullScreen), value);
                 Views.Shell.HamburgerMenu.IsFullScreen = value;
+            }
+        }
+
+        public CultureInfo Culture
+        {
+            get { return _helper.Read<CultureInfo>(nameof(Culture), CultureInfo.CurrentCulture); }
+            set
+            {
+                _helper.Write(nameof(Culture), value);
+                //Frame.Navigate(this.GetType());
+                /*
+                 * var culture = new CultureInfo("fr-FR");
+    Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = culture.Name;
+    CultureInfo.DefaultThreadCurrentCulture = culture;
+    CultureInfo.DefaultThreadCurrentUICulture = culture;*/
+            }
+        }
+        public string test
+        {
+            get { return _helper.Read<String>(nameof(test), CultureInfo.CurrentCulture.ToString()); }
+            set
+            {
+                _helper.Write(nameof(test), value);
+                CultureInfo.CurrentCulture = new CultureInfo(value);
+                //Template10.Common.BootStrapper.Current.NavigationService.Navigate(typeof(Views.SettingsPage));
+                //Template10.Common.BootStrapper.Current.NavigationService.Navigate(typeof(Views.Einkaufsbereich));
             }
         }
     }

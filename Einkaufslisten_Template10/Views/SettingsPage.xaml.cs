@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using System.Globalization; // TEST!
 
 namespace Einkaufslisten_Template10.Views
 {
@@ -19,6 +20,13 @@ namespace Einkaufslisten_Template10.Views
         {
             var index = int.Parse(_SerializationService.Deserialize(e.Parameter?.ToString()).ToString());
             MyPivot.SelectedIndex = index;
+        }
+
+        private void MenuFlyoutItem_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            var sprache = (sender as MenuFlyoutItem).Tag.ToString();
+            ViewModel.SettingsPartViewModel.test = sprache;
+            //var test = CultureInfo.CurrentCulture; setter funktioniert
         }
     }
 }

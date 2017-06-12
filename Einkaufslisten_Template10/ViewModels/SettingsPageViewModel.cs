@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Template10.Mvvm;
 using Template10.Services.SettingsService;
 using Windows.UI.Xaml;
+using Windows.UI.Popups; //TEST !
+using System.Globalization;
 
 namespace Einkaufslisten_Template10.ViewModels
 {
@@ -74,6 +76,18 @@ namespace Einkaufslisten_Template10.ViewModels
                 Set(ref _BusyText, value);
                 _ShowBusyCommand.RaiseCanExecuteChanged();
             }
+        }
+
+        public CultureInfo Culture
+        {
+            get { return _settings.Culture; }
+            set { _settings.Culture = value; base.RaisePropertyChanged(); }
+        }
+
+        public string test
+        {
+            get { return _settings.test; }
+            set { _settings.test = value; base.RaisePropertyChanged(); }
         }
 
         DelegateCommand _ShowBusyCommand;

@@ -134,14 +134,14 @@
 
                         <Button x:Name="Sprache"
                                 x:Uid="Sprache"
-                                Content="Sprache"
+                                Content="Sprache: {x:Bind ViewModel.SettingsPartViewModel.test}"
                                 Margin="0,12,0,0"                               
                                 RelativePanel.Below="BusyTextTextBox">
                             <Button.Flyout>
-                                <MenuFlyout>
-                                    <MenuFlyoutItem x:Uid="Deutsch" Tag="de-de"/>
-                                    <MenuFlyoutItem x:Uid="Ukrainisch" Tag="uk-ua"/>
-                                    <MenuFlyoutItem x:Uid="Englisch" Tag="en-us"/>
+                                <MenuFlyout Placement="Bottom">
+                                    <MenuFlyoutItem x:Uid="Deutsch" Tag="de-de" Click="MenuFlyoutItem_Click"/>
+                                    <MenuFlyoutItem x:Uid="Ukrainisch" Tag="uk-ua" Click="MenuFlyoutItem_Click"/>
+                                    <MenuFlyoutItem x:Uid="Englisch" Tag="en-us" Click="MenuFlyoutItem_Click"/>
                                 </MenuFlyout>
                             </Button.Flyout>
                         </Button>
