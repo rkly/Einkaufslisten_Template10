@@ -3,7 +3,7 @@ using Template10.Common;
 using Template10.Utils;
 using Windows.UI.Xaml;
 using System.Globalization;
-using Windows.UI.Popups; //TEST !
+using System.Threading;
 
 namespace Einkaufslisten_Template10.Services.SettingsServices
 {
@@ -75,30 +75,23 @@ namespace Einkaufslisten_Template10.Services.SettingsServices
                 Views.Shell.HamburgerMenu.IsFullScreen = value;
             }
         }
-
-        public CultureInfo Culture
+        /// <summary>
+        /// Sprache setzen und speicehrn, https://github.com/Windows-XAML/Template10/issues/261
+        /// </summary>
+        public string Sprache
         {
-            get { return _helper.Read<CultureInfo>(nameof(Culture), CultureInfo.CurrentCulture); }
+            get { return _helper.Read<String>(nameof(Sprache), CultureInfo.CurrentCulture.ToString()); }
             set
             {
-                _helper.Write(nameof(Culture), value);
-                //Frame.Navigate(this.GetType());
-                /*
-                 * var culture = new CultureInfo("fr-FR");
-    Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = culture.Name;
-    CultureInfo.DefaultThreadCurrentCulture = culture;
-    CultureInfo.DefaultThreadCurrentUICulture = culture;*/
-            }
-        }
-        public string test
-        {
-            get { return _helper.Read<String>(nameof(test), CultureInfo.CurrentCulture.ToString()); }
-            set
-            {
-                _helper.Write(nameof(test), value);
-                CultureInfo.CurrentCulture = new CultureInfo(value);
-                //Template10.Common.BootStrapper.Current.NavigationService.Navigate(typeof(Views.SettingsPage));
-                //Template10.Common.BootStrapper.Current.NavigationService.Navigate(typeof(Views.Einkaufsbereich));
+                _helper.Write(nameof(Sprache), value);
+                /*CultureInfo.CurrentCulture = new CultureInfo(value);
+                CultureInfo.CurrentUICulture = new CultureInfo(value);
+                CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(value);
+                CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(value);*/             
+                CultureInfo culture = CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(value);
+                Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = culture.Name;          
+                //BootStrapper.Current.NavigationService.Refresh();
+                //BootStrapper.Current.NavigationService.Navigate(typeof(Views.SettingsPage), 0);
             }
         }
     }

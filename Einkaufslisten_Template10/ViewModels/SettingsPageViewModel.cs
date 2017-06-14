@@ -78,16 +78,10 @@ namespace Einkaufslisten_Template10.ViewModels
             }
         }
 
-        public CultureInfo Culture
+        public string Sprache
         {
-            get { return _settings.Culture; }
-            set { _settings.Culture = value; base.RaisePropertyChanged(); }
-        }
-
-        public string test
-        {
-            get { return _settings.test; }
-            set { _settings.test = value; base.RaisePropertyChanged(); }
+            get { return _settings.Sprache; }
+            set { _settings.Sprache = value; base.RaisePropertyChanged(Sprache); }
         }
 
         DelegateCommand _ShowBusyCommand;
