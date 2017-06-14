@@ -21,6 +21,6 @@ namespace Einkaufslisten_Template10.Views
         {
             var p = Template10.Services.SerializationService.SerializationService.Json.Deserialize<int>(e.Parameter?.ToString());
             base.OnNavigatedTo(e);
-        }
+        }   
     }
 }
