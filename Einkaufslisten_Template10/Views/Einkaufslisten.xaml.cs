@@ -22,7 +22,7 @@ namespace Einkaufslisten_Template10.Views
 {
     public sealed partial class Einkaufslisten : Page
     {
-        private List<String> Grab_Entries()
+       /* private List<String> Grab_Entries()
         {
             List<String> entries = new List<string>();
             using (SqliteConnection db = new SqliteConnection("Filename=sqliteSample.db"))
@@ -47,11 +47,11 @@ namespace Einkaufslisten_Template10.Views
             }
             return entries;
         }
-
+        */
         public Einkaufslisten()
         {
             InitializeComponent();
-            // cached todo
+        /*    // cached todo
             using (SqliteConnection db = new SqliteConnection("Filename=sqliteSample.db"))
             {
                 db.Open();
@@ -76,6 +76,7 @@ namespace Einkaufslisten_Template10.Views
             }
             Output.ItemsSource = Grab_Entries();
             //Console.WriteLine(Grab_Entries());
+            */
         }
     }
 }
