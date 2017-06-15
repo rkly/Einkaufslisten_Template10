@@ -2,6 +2,8 @@
 using Template10.Common;
 using Template10.Utils;
 using Windows.UI.Xaml;
+using System.Globalization;
+using System.Threading;
 
 namespace Einkaufslisten_Template10.Services.SettingsServices
 {
@@ -71,6 +73,25 @@ namespace Einkaufslisten_Template10.Services.SettingsServices
             {
                 _helper.Write(nameof(IsFullScreen), value);
                 Views.Shell.HamburgerMenu.IsFullScreen = value;
+            }
+        }
+        /// <summary>
+        /// Sprache setzen und speicehrn, https://github.com/Windows-XAML/Template10/issues/261
+        /// </summary>
+        public string Sprache
+        {
+            get { return _helper.Read<String>(nameof(Sprache), CultureInfo.CurrentCulture.ToString()); }
+            set
+            {
+                _helper.Write(nameof(Sprache), value);
+                /*CultureInfo.CurrentCulture = new CultureInfo(value);
+                CultureInfo.CurrentUICulture = new CultureInfo(value);
+                CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(value);
+                CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(value);*/             
+                CultureInfo culture = CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(value);
+                Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = culture.Name;          
+                //BootStrapper.Current.NavigationService.Refresh();
+                //BootStrapper.Current.NavigationService.Navigate(typeof(Views.SettingsPage), 0);
             }
         }
     }

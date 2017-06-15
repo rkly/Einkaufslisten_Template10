@@ -20,7 +20,7 @@ namespace Einkaufslisten_Template10.Views
 {
     public sealed partial class Einkaufslisten : Page
     {
-<<<<<<< .merge_file_a06844
+<<<<<<< HEAD
        /* private List<String> Grab_Entries()
         {
             List<String> entries = new List<string>();
@@ -82,7 +82,7 @@ namespace Einkaufslisten_Template10.Views
         {
             InitializeComponent();
             // cached todo          
->>>>>>> .merge_file_a06080
+>>>>>>> 6b5835c2fd6b7e394b0b3a6bffde1e88aa6fe0db
         }
     }
 }

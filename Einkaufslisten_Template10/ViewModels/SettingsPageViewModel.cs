@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Template10.Mvvm;
 using Template10.Services.SettingsService;
 using Windows.UI.Xaml;
+using Windows.UI.Popups; //TEST !
+using System.Globalization;
 
 namespace Einkaufslisten_Template10.ViewModels
 {
@@ -74,6 +76,12 @@ namespace Einkaufslisten_Template10.ViewModels
                 Set(ref _BusyText, value);
                 _ShowBusyCommand.RaiseCanExecuteChanged();
             }
+        }
+
+        public string Sprache
+        {
+            get { return _settings.Sprache; }
+            set { _settings.Sprache = value; base.RaisePropertyChanged(Sprache); }
         }
 
         DelegateCommand _ShowBusyCommand;

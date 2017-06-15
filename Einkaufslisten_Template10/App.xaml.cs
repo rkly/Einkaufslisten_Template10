@@ -8,9 +8,9 @@ using System;
 using System.Linq;
 using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Controls;
-using Microsoft.Data.Sqlite;
-using Microsoft.Data.Sqlite.Internal;
 using System.IO;
+using Template10.Utils;
+using Microsoft.WindowsAzure.MobileServices;
 
 namespace Einkaufslisten_Template10
 {
@@ -20,6 +20,10 @@ namespace Einkaufslisten_Template10
     [Bindable]
     sealed partial class App : BootStrapper
     {
+        /// <summary>
+        /// Azure Backend
+        /// </summary>
+        public static MobileServiceClient MobileService = new MobileServiceClient("https://einkaufslisten.azurewebsites.net");
         public App()
         {
             InitializeComponent();
@@ -31,29 +35,12 @@ namespace Einkaufslisten_Template10
             var settings = SettingsService.Instance;
             RequestedTheme = settings.AppTheme;
             CacheMaxDuration = settings.CacheMaxDuration;
-            ShowShellBackButton = settings.UseShellBackButton;
-
+            ShowShellBackButton = settings.UseShellBackButton;    
+            
             #endregion
 
-            #region database
-            SqliteEngine.UseWinSqlite3();
-            using (SqliteConnection db = new SqliteConnection("Filename=sqliteSample.db"))
-            {
-                db.Open();
-                String tableCommand = File.ReadAllText("einkaufslisteDeleteAndCreate.sql");
-                SqliteCommand createTable = new SqliteCommand(tableCommand, db);
-                try
-                {
-                    createTable.ExecuteReader();
-                }
-                catch (SqliteException e)
-                {
-                    //Do nothing
-                }
-            }
-            #endregion database
         }
-
+        
         public override UIElement CreateRootElement(IActivatedEventArgs e)
         {
             var service = NavigationServiceFactory(BackButton.Attach, ExistingContent.Exclude);
@@ -69,6 +56,24 @@ namespace Einkaufslisten_Template10
         {
             // TODO: add your long-running task here
             await NavigationService.NavigateAsync(typeof(Views.MainPage));
+            
+            //Azure test
+            /*TodoItem item = new TodoItem
+            {
+                Text = "Awesome item",
+                Complete = false
+            };
+            await App.MobileService.GetTable<TodoItem>().InsertAsync(item);*/
+            
         }
+    }
+
+
+    //Azure test
+    public class TodoItem
+    {
+        public string Id { get; set; }
+        public string Text { get; set; }
+        public bool Complete { get; set; }
     }
 }

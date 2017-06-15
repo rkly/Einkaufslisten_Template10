@@ -13,6 +13,8 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Einkaufslisten_Template10.ViewModels;
+using Microsoft.Data.Sqlite;
+using Microsoft.Data.Sqlite.Internal;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
@@ -20,8 +22,7 @@ namespace Einkaufslisten_Template10.Views
 {
     public sealed partial class Einkaufslisten : Page
     {
-<<<<<<< .merge_file_a06844
-       /* private List<String> Grab_Entries()
+        private List<String> Grab_Entries()
         {
             List<String> entries = new List<string>();
             using (SqliteConnection db = new SqliteConnection("Filename=sqliteSample.db"))
@@ -46,11 +47,11 @@ namespace Einkaufslisten_Template10.Views
             }
             return entries;
         }
-        */
+
         public Einkaufslisten()
         {
             InitializeComponent();
-        /*    // cached todo
+            // cached todo
             using (SqliteConnection db = new SqliteConnection("Filename=sqliteSample.db"))
             {
                 db.Open();
@@ -75,14 +76,6 @@ namespace Einkaufslisten_Template10.Views
             }
             Output.ItemsSource = Grab_Entries();
             //Console.WriteLine(Grab_Entries());
-            */
-=======
-        
-        public Einkaufslisten()
-        {
-            InitializeComponent();
-            // cached todo          
->>>>>>> .merge_file_a06080
         }
     }
 }
