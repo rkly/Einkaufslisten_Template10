@@ -55,11 +55,11 @@ namespace Einkaufslisten_Template10.Models.Source
         {
             if (!produkte.Contains(produkt)) { 
             int id = produkte.Count;
-            produkt.Id = id;
+            produkt.id_item = id;
             produkte.Add(produkt);
             } else
             {
-                return produkte.FirstOrDefault(x => x.Id == produkt.Id && x.Name.Equals(produkt.Name));
+                return produkte.FirstOrDefault(x => x.id_item == produkt.id_item && x.name.Equals(produkt.name));
             }
             return produkt;
 
@@ -82,7 +82,7 @@ namespace Einkaufslisten_Template10.Models.Source
         {
             if (produkte.Contains(produkt))
             {
-                Produkt oldProdukt = produkte.FirstOrDefault(x => x.Id == produkt.Id);
+                Produkt oldProdukt = produkte.FirstOrDefault(x => x.id_item == produkt.id_item);
                 produkte.Remove(oldProdukt);
                 produkte.Add(produkt);
             } else

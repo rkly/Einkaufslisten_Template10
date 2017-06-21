@@ -24,14 +24,14 @@ namespace Einkaufslisten_Template10.Models.Source
         {
             IReadOnlyList<StorageFile> files = await folder.GetFilesAsync();
             int id = files.Count;
-            await folder.CreateFileAsync(id + "_" + obj.Name);
-            obj.Id = id;
+            await folder.CreateFileAsync(id + "_" + obj.name);
+            obj.id_item = id;
             return obj;
         }
 
         public async void Delete(Einkaufsliste einkaufsliste)
         {
-            StorageFile f = await folder.GetFileAsync(einkaufsliste.Id + "_" + einkaufsliste.Name);
+            StorageFile f = await folder.GetFileAsync(einkaufsliste.id_item + "_" + einkaufsliste.name);
             await f.DeleteAsync();
         }
 
@@ -61,9 +61,9 @@ namespace Einkaufslisten_Template10.Models.Source
                 string fileName = file.Name;
                 string[] splittedNames = fileName.Split('_');
                 int id = Int32.Parse(splittedNames[0]);
-                if (id == einkaufsliste.Id)
+                if (id == einkaufsliste.id_item)
                 {
-                    await file.MoveAsync(folder, id + "_" + einkaufsliste.Name);
+                    await file.MoveAsync(folder, id + "_" + einkaufsliste.name);
                 }
             }
         }

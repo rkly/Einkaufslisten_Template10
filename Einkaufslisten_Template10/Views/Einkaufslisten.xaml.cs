@@ -20,7 +20,7 @@ namespace Einkaufslisten_Template10.Views
 {
     public sealed partial class Einkaufslisten : Page
     {
-<<<<<<< .merge_file_a06844
+//<<<<<<< .merge_file_a06844
        /* private List<String> Grab_Entries()
         {
             List<String> entries = new List<string>();
@@ -76,13 +76,13 @@ namespace Einkaufslisten_Template10.Views
             Output.ItemsSource = Grab_Entries();
             //Console.WriteLine(Grab_Entries());
             */
-=======
+//=======
         
-        public Einkaufslisten()
+       /* public Einkaufslisten()
         {
             InitializeComponent();
             // cached todo          
->>>>>>> .merge_file_a06080
+//>>>>>>> .merge_file_a06080*/
         }
     }
 }

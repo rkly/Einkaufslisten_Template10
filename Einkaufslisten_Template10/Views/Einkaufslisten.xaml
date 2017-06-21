@@ -17,14 +17,12 @@
     </Page.DataContext>
 
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
         <!--  header  -->
-    <controls:PageHeader x:Name="pageHeader" Frame="{x:Bind Frame}"
-                             RelativePanel.AlignLeftWithPanel="True"
-                             RelativePanel.AlignRightWithPanel="True"
-                             RelativePanel.AlignTopWithPanel="True" Text="Einkaufslisten" />
-
-    <!--  content  -->
+        <controls:PageHeader x:Name="pageHeader" Frame="{x:Bind Frame}"
+                    RelativePanel.AlignLeftWithPanel="True"
+                    RelativePanel.AlignRightWithPanel="True"
+                    RelativePanel.AlignTopWithPanel="True" Text="Einkaufslisten" />
+        <!--  content  -->
         <ScrollViewer Padding="12,8,0,0" RelativePanel.AlignBottomWithPanel="True"
                     RelativePanel.AlignLeftWithPanel="True"
                     RelativePanel.AlignRightWithPanel="True"
@@ -64,7 +62,7 @@
                         <ListView ItemsSource="{x:Bind ViewModel.EinkaufsListe}">
                             <ListView.ItemTemplate>
                                 <DataTemplate x:DataType="model:Einkaufsliste">
-                                    <TextBlock Text="{x:Bind Name}"/>
+                                    <TextBlock Text="{x:Bind name}"/>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
 
@@ -72,10 +70,7 @@
                     </ListView>
                     <!--<TextBlock Grid.Column="1"  Grid.Row="1" Text="04.04.2017"/>
                     <TextBlock Grid.Column="1" Grid.Row="2" Text="25.01.2017"/>
-                    <TextBlock Grid.Column="1" Grid.Row="3" Text="20.01.2017"/>-->
-
-                    
-
+                    <TextBlock Grid.Column="1" Grid.Row="3" Text="20.01.2017"/>-->                    
                 </Grid>
                 <Button x:Name="NeueListe" x:Uid="NeueListe" Grid.Row="2" Grid.ColumnSpan="2" Content="Neue Liste" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="30"/>
             </Grid>
