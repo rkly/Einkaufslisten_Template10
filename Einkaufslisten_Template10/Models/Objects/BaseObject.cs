@@ -36,5 +36,6 @@ namespace Einkaufslisten_Template10.Models.Objects
             return "Id = " + _id + " Name = " + _name;
         }
         public string id { get; set; }
+        public DateTime updatedAt { get; set; }
     }
 }
