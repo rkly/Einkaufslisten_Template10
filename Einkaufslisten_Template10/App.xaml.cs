@@ -12,7 +12,7 @@ using System.IO;
 using Template10.Utils;
 using Microsoft.WindowsAzure.MobileServices;
 using Einkaufslisten_Template10.Models.Objects;
-
+using Windows.UI.Popups;
 namespace Einkaufslisten_Template10
 {
     /// Documentation on APIs used in this page:
@@ -21,23 +21,12 @@ namespace Einkaufslisten_Template10
     [Bindable]
     sealed partial class App : BootStrapper
     {
-        /// <summary>
-        /// MobileServiceClient für Azure Backend
-        /// </summary>
-        private static MobileServiceClient MobileService = new MobileServiceClient(
-            "https://einkaufslisten.azurewebsites.net"
-        );
-        /// <summary>
-        /// Tabellen in Azure (Easy Tables), Modellen sind in Models.Objects
-        /// </summary>
-        private IMobileServiceTable<Produkt> Produkt = App.MobileService.GetTable<Produkt>();
-        private IMobileServiceTable<Einkaufsliste> Einkaufsliste = App.MobileService.GetTable<Einkaufsliste>();
         public App()
         {
             InitializeComponent();
             SplashFactory = (e) => new Views.Splash(e);
 
-            #region app settings
+#region app settings
 
             // some settings must be set in app.constructor
             var settings = SettingsService.Instance;
@@ -45,7 +34,7 @@ namespace Einkaufslisten_Template10
             CacheMaxDuration = settings.CacheMaxDuration;
             ShowShellBackButton = settings.UseShellBackButton;    
             
-            #endregion
+#endregion
         }
         
         public override UIElement CreateRootElement(IActivatedEventArgs e)
@@ -63,19 +52,6 @@ namespace Einkaufslisten_Template10
         {
             // TODO: add your long-running task here
             await NavigationService.NavigateAsync(typeof(Views.MainPage));
-            
-            // Datensätze eintragen (test)
-            Produkt ProduktTest = new Produkt(15,"ok")
-            {
-                anzahl = 5,
-                mengenbezeichnung = "Liter"
-            };
-            Produkt ProduktTest2 = new Produkt(111, "gut", 9, "Gramm");
-            Einkaufsliste EinkauflisteTest = new Einkaufsliste(1, "list1", DateTime.Now);
-            await Produkt.InsertAsync(ProduktTest);
-            await Produkt.InsertAsync(ProduktTest2);
-            await Einkaufsliste.InsertAsync(EinkauflisteTest);
-            
         }
     }
 }

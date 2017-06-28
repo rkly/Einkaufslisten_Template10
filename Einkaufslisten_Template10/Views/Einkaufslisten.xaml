@@ -58,21 +58,32 @@
                     <!--<TextBlock x:Uid="TempL1" Grid.Column="0"  Grid.Row="1" Text="Liste1"/>
                     <TextBlock x:Uid="TempL2" Grid.Column="0" Grid.Row="2" Text="Liste2"/>
                     <TextBlock x:Uid="TempL3" Grid.Column="0" Grid.Row="3" Text="Liste3"/>-->
-                    <ListView Name="Output" Grid.Row="1">
+                    <!--<ListView Name="Output" Grid.Row="1">
                         <ListView ItemsSource="{x:Bind ViewModel.EinkaufsListe}">
                             <ListView.ItemTemplate>
                                 <DataTemplate x:DataType="model:Einkaufsliste">
                                     <TextBlock Text="{x:Bind name}"/>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
-
                         </ListView>
+                    </ListView>-->
+                    <ListView x:Name="Einkaufslisten_View" ItemsSource="{x:Bind ViewModel.Einkaufslisten_Collection}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate x:DataType="model:Einkaufsliste">
+                                <CheckBox x:Name="CheckBoxComplete" 
+                                          IsChecked="{Binding deleted, Mode=TwoWay}"                                         
+                                          MaxWidth="550"
+                                          VerticalAlignment="Center">
+                                    <TextBlock Name="ItemText" Text="{x:Bind name}" MaxWidth="550" HorizontalAlignment="Left" TextWrapping="WrapWholeWords"/>
+                                </CheckBox>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
                     </ListView>
                     <!--<TextBlock Grid.Column="1"  Grid.Row="1" Text="04.04.2017"/>
                     <TextBlock Grid.Column="1" Grid.Row="2" Text="25.01.2017"/>
                     <TextBlock Grid.Column="1" Grid.Row="3" Text="20.01.2017"/>-->                    
                 </Grid>
-                <Button x:Name="NeueListe" x:Uid="NeueListe" Grid.Row="2" Grid.ColumnSpan="2" Content="Neue Liste" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="30"/>
+                <Button x:Name="NeueListe" x:Uid="NeueListe" Grid.Row="2" Grid.ColumnSpan="2" Click="NeueListe_Click" Content="Refresh (test)" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="30"/>
             </Grid>
         </ScrollViewer>
     </RelativePanel>

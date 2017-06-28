@@ -39,7 +39,7 @@ namespace Einkaufslisten_Template10.ViewModels
             await Task.CompletedTask;
         }
 
-        public override async Task OnNavigatingFromAsync(NavigatingEventArgs args)
+        public async Task OnNavigatingToAsync(NavigatingEventArgs args)
         {
             args.Cancel = false;
             await Task.CompletedTask;

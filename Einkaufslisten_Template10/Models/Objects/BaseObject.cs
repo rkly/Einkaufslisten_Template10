@@ -11,6 +11,9 @@ namespace Einkaufslisten_Template10.Models.Objects
     {
         protected int _id;
         protected string _name;
+        public BaseObject() //leer Klasse für JSON Deserializer in RefreshEinkaufslisten()
+        {
+        }
         public BaseObject(int id_item, string name)
         {
             _id = id_item;

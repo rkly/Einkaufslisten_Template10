@@ -10,6 +10,9 @@ namespace Einkaufslisten_Template10.Models.Objects
     public class Einkaufsliste:BaseObject
     {
         private DateTime _aenderungsdatum;
+        public Einkaufsliste() : base() //leere Klasse für JSON Deserializer in RefreshEinkaufslisten()
+        {
+        }
         public Einkaufsliste(int id_item, string name) : base(id_item, name)
         {
         }

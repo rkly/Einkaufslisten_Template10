@@ -20,69 +20,14 @@ namespace Einkaufslisten_Template10.Views
 {
     public sealed partial class Einkaufslisten : Page
     {
-//<<<<<<< .merge_file_a06844
-       /* private List<String> Grab_Entries()
-        {
-            List<String> entries = new List<string>();
-            using (SqliteConnection db = new SqliteConnection("Filename=sqliteSample.db"))
-            {
-                db.Open();
-                SqliteCommand selectCommand = new SqliteCommand("SELECT name from einkaufsliste", db);
-                SqliteDataReader query;
-                try
-                {
-                    query = selectCommand.ExecuteReader();
-                }
-                catch (SqliteException error)
-                {
-                    //Handle error
-                    return entries;
-                }
-                while (query.Read())
-                {
-                    entries.Add(query.GetString(0));
-                }
-                db.Close();
-            }
-            return entries;
-        }
-        */
         public Einkaufslisten()
         {
             InitializeComponent();
-        /*    // cached todo
-            using (SqliteConnection db = new SqliteConnection("Filename=sqliteSample.db"))
-            {
-                db.Open();
+        }
 
-                SqliteCommand insertCommand = new SqliteCommand();
-                insertCommand.Connection = db;
-
-                //Use parameterized query to prevent SQL injection attacks
-                insertCommand.CommandText = "INSERT INTO einkaufsliste (user_id, name) VALUES (1, 'Liste 1');INSERT INTO einkaufsliste (user_id, name) VALUES (1, 'Liste 2');INSERT INTO einkaufsliste (user_id, name) VALUES (1, 'Liste 3');";
-                //insertCommand.Parameters.AddWithValue("@Entry", Input_Box.Text);
-
-                try
-                {
-                    insertCommand.ExecuteReader();
-                }
-                catch (SqliteException error)
-                {
-                    //Handle error
-                    return;
-                }
-                db.Close();
-            }
-            Output.ItemsSource = Grab_Entries();
-            //Console.WriteLine(Grab_Entries());
-            */
-//=======
-        
-       /* public Einkaufslisten()
+        private async void NeueListe_Click(object sender, RoutedEventArgs e)
         {
-            InitializeComponent();
-            // cached todo          
-//>>>>>>> .merge_file_a06080*/
+           //await EinkaufslistenViewModel.RefreshEinkaufslisten();
         }
     }
 }
