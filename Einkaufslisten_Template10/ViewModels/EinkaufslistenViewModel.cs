@@ -94,6 +94,12 @@ namespace Einkaufslisten_Template10.ViewModels
                 store.DefineTable<Einkaufsliste>();
                 await SyncService.MobileService.SyncContext.InitializeAsync(store);
             }
+        }
+        public void createButtonClicked()
+        {
+            Einkaufsliste e = new Einkaufsliste(-1, "");
+            GoEinkaufsbereich(e);
+        }
 
             await SyncAsync();
         }
@@ -155,6 +161,11 @@ namespace Einkaufslisten_Template10.ViewModels
                 //Views.Einkaufslisten.Einkaufslisten_View.ItemsSource = Einkaufslisten;
                 //this.ButtonSave.IsEnabled = true;
             }
+        }
+        public void GoEinkaufsbereich(Einkaufsliste e)
+        {
+            SessionState.Add("einkaufsliste", e);
+            NavigationService.Navigate(typeof(Views.Einkaufsbereich), "einkaufsliste");
         }
 
     }
