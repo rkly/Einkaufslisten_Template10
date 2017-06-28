@@ -61,7 +61,7 @@
                     <TextBlock x:Uid="TempL2" Grid.Column="0" Grid.Row="2" Text="Liste2"/>
                     <TextBlock x:Uid="TempL3" Grid.Column="0" Grid.Row="3" Text="Liste3"/>
                     <<<<<<< HEAD !-->
-                    <GridView Name="Output" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{x:Bind ViewModel.EinkaufsListe}">
+                    <GridView Name="Output" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{x:Bind ViewModel.Einkaufslisten_Collection}">
 
                         <GridViewHeaderItem>
                             <TextBlock Grid.Column="0" Text="Name"/>

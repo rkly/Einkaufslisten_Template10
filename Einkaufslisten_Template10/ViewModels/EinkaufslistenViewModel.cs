@@ -162,6 +162,11 @@ namespace Einkaufslisten_Template10.ViewModels
                 //this.ButtonSave.IsEnabled = true;
             }
         }
+        public void createButtonClicked()
+        {
+            Einkaufsliste e = new Einkaufsliste(-1,"");
+            GoEinkaufsbereich(e);
+        }
         public void GoEinkaufsbereich(Einkaufsliste e)
         {
             SessionState.Add("einkaufsliste", e);
