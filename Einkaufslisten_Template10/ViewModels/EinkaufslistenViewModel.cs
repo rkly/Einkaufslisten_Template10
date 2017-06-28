@@ -54,7 +54,17 @@ namespace Einkaufslisten_Template10.ViewModels
             args.Cancel = false;
             await Task.CompletedTask;
         }
+        public void createButtonClicked()
+        {
+            Einkaufsliste e = new Einkaufsliste(-1, "");
+            GoEinkaufsbereich(e);
+        }
 
+        public void GoEinkaufsbereich(Einkaufsliste e)
+        {
+            SessionState.Add("einkaufsliste", e);
+            NavigationService.Navigate(typeof(Views.Einkaufsbereich), "einkaufsliste");
+        }
 
     }
 }

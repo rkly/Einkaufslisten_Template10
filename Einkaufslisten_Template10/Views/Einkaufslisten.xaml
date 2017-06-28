@@ -15,7 +15,11 @@
     <Page.DataContext>
         <vm:EinkaufslistenViewModel x:Name="ViewModel" />
     </Page.DataContext>
-
+    <Page.BottomAppBar>
+        <CommandBar>
+            <AppBarButton x:Name="AddItemBtn" Label="Add Item" Icon="Add" Click="{x:Bind ViewModel.createButtonClicked}" />
+        </CommandBar>
+    </Page.BottomAppBar>
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
         <!--  header  -->
@@ -33,9 +37,9 @@
 
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="220"/>
@@ -43,12 +47,10 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock x:Name="Einkaufslisten_Title" x:Uid="Einkaufslisten_Title" Grid.Row="0" Grid.Column="0" Text="Einkaufsliten" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <Button x:Name="Sortierung" Grid.Row="0" Grid.Column="1" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Height="30" Width="30" HorizontalAlignment="Right" VerticalAlignment="Center"/>
-                <Grid Grid.Row="1" Grid.ColumnSpan="2" Margin="5,5,5,5">
+                <Grid Grid.Row="1" Grid.ColumnSpan="2" >
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="220"/>
@@ -60,25 +62,45 @@
                     <!--<TextBlock x:Uid="TempL1" Grid.Column="0"  Grid.Row="1" Text="Liste1"/>
                     <TextBlock x:Uid="TempL2" Grid.Column="0" Grid.Row="2" Text="Liste2"/>
                     <TextBlock x:Uid="TempL3" Grid.Column="0" Grid.Row="3" Text="Liste3"/>-->
-                    <ListView Name="Output" Grid.Row="1">
-                        <ListView ItemsSource="{x:Bind ViewModel.EinkaufsListe}">
-                            <ListView.ItemTemplate>
-                                <DataTemplate x:DataType="model:Einkaufsliste">
-                                    <TextBlock Text="{x:Bind Name}"/>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
+                    <GridView Name="Output" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{x:Bind ViewModel.EinkaufsListe}">
 
-                        </ListView>
-                    </ListView>
+                        <GridViewHeaderItem>
+                            <TextBlock Grid.Column="0" Text="Name"/>
+                        </GridViewHeaderItem>
+                        <GridViewItem>
+                            <TextBlock Grid.Column="1" Text="zuletzt genutzt"/>
+                        </GridViewItem>
+                       
+                        <GridView.ItemTemplate >
+                            
+                                <DataTemplate x:DataType="model:Einkaufsliste" >
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="220"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <TextBlock Grid.Column="0"  Text="{x:Bind Name}"/>
+                                    <TextBlock Grid.Column="1"  Text="zuletzt genutzt"/>
+
+                                </Grid>
+                            </DataTemplate>
+                            
+                        </GridView.ItemTemplate>
+                     
+
+                    </GridView>
+                    
                     <!--<TextBlock Grid.Column="1"  Grid.Row="1" Text="04.04.2017"/>
                     <TextBlock Grid.Column="1" Grid.Row="2" Text="25.01.2017"/>
                     <TextBlock Grid.Column="1" Grid.Row="3" Text="20.01.2017"/>-->
 
-                    
+
 
                 </Grid>
-                <Button x:Name="NeueListe" x:Uid="NeueListe" Grid.Row="2" Grid.ColumnSpan="2" Content="Neue Liste" VerticalAlignment="Center" HorizontalAlignment="Stretch" Height="30"/>
             </Grid>
+            
         </ScrollViewer>
     </RelativePanel>
 </Page>
