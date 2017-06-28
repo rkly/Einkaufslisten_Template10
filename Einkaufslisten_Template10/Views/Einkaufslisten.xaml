@@ -59,20 +59,20 @@
                     <TextBlock x:Uid="ZuletztGeaendert" Grid.Column="1" Grid.Row="0" Text="zuletzt geändert" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                     <!--<TextBlock x:Uid="TempL1" Grid.Column="0"  Grid.Row="1" Text="Liste1"/>
                     <TextBlock x:Uid="TempL2" Grid.Column="0" Grid.Row="2" Text="Liste2"/>
-                    <TextBlock x:Uid="TempL3" Grid.Column="0" Grid.Row="3" Text="Liste3"/>-->
-<<<<<<< HEAD
+                    <TextBlock x:Uid="TempL3" Grid.Column="0" Grid.Row="3" Text="Liste3"/>
+                    <<<<<<< HEAD !-->
                     <GridView Name="Output" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{x:Bind ViewModel.EinkaufsListe}">
 
                         <GridViewHeaderItem>
                             <TextBlock Grid.Column="0" Text="Name"/>
                         </GridViewHeaderItem>
-                        <GridViewItem>
+                        <GridViewHeaderItem>
                             <TextBlock Grid.Column="1" Text="zuletzt genutzt"/>
-                        </GridViewItem>
-                       
+                        </GridViewHeaderItem>
+
                         <GridView.ItemTemplate >
-                            
-                                <DataTemplate x:DataType="model:Einkaufsliste" >
+
+                            <DataTemplate x:DataType="model:Einkaufsliste" >
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="220"/>
@@ -80,39 +80,44 @@
                                     </Grid.ColumnDefinitions>
 
 
-                                    <TextBlock Grid.Column="0"  Text="{x:Bind Name}"/>
+                                    <TextBlock Grid.Column="0"  Text="{x:Bind name}"/>
                                     <TextBlock Grid.Column="1"  Text="zuletzt genutzt"/>
-=======
-                    <ListView Name="Output" Grid.Row="1">
-                        <ListView ItemsSource="{x:Bind ViewModel.EinkaufsListe}">
-                            <ListView.ItemTemplate>
-                                <DataTemplate x:DataType="model:Einkaufsliste">
-                                    <TextBlock Text="{x:Bind name}"/>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
->>>>>>> ed3ce16d0057d3786faaebce4169f6a7f156c773
-
-                                </Grid>
-                            </DataTemplate>
-                            
-                        </GridView.ItemTemplate>
-                     
-
-                    </GridView>
-                    
-                    <!--<TextBlock Grid.Column="1"  Grid.Row="1" Text="04.04.2017"/>
+                                    <!-- ======= !-->
+                                  <!--  <GridView Name="Output" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{x:Bind aenderungsdatum}">
+                                        <GridViewHeaderItem>
+                                            <TextBlock Grid.Column="0" Text="Name"/>
+                                        </GridViewHeaderItem>
+                                        <GridViewItem>
+                                            <TextBlock Grid.Column="1" Text="zuletzt genutzt"/>
+                                        </GridViewItem>
+                                        <GridView.ItemTemplate >
+                                            <DataTemplate x:DataType="model:Einkaufsliste" >
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="220"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Grid.Column="0"  Text="{x:Bind name}"/>
+                                                    <TextBlock Grid.Column="1"  Text="zuletzt genutzt"/>
+                                                </Grid>
+                                            </DataTemplate>
+                                        </GridView.ItemTemplate>
+                                    </GridView> !-->
+                                    <!-->>>>>>> ed3ce16d0057d3786faaebce4169f6a7f156c773 !-->
+                                    <!--<TextBlock Grid.Column="1"  Grid.Row="1" Text="04.04.2017"/>
                     <TextBlock Grid.Column="1" Grid.Row="2" Text="25.01.2017"/>
-<<<<<<< HEAD
+<<<<<<< HEAD 
                     <TextBlock Grid.Column="1" Grid.Row="3" Text="20.01.2017"/>-->
 
-
-
-=======
-                    <TextBlock Grid.Column="1" Grid.Row="3" Text="20.01.2017"/>-->                    
->>>>>>> ed3ce16d0057d3786faaebce4169f6a7f156c773
+                                    <!--=======!-->
+                                    <!--<TextBlock Grid.Column="1" Grid.Row="3" Text="20.01.2017"/> !-->
+                                    <!-->>>>>>> ed3ce16d0057d3786faaebce4169f6a7f156c773 !-->
+                                </Grid>
+                            </DataTemplate>
+                        </GridView.ItemTemplate>
+                    </GridView>
                 </Grid>
             </Grid>
-            
         </ScrollViewer>
     </RelativePanel>
 </Page>
