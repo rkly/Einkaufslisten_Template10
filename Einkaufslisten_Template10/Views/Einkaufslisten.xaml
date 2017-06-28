@@ -21,14 +21,12 @@
         </CommandBar>
     </Page.BottomAppBar>
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
         <!--  header  -->
-    <controls:PageHeader x:Name="pageHeader" Frame="{x:Bind Frame}"
-                             RelativePanel.AlignLeftWithPanel="True"
-                             RelativePanel.AlignRightWithPanel="True"
-                             RelativePanel.AlignTopWithPanel="True" Text="Einkaufslisten" />
-
-    <!--  content  -->
+        <controls:PageHeader x:Name="pageHeader" Frame="{x:Bind Frame}"
+                    RelativePanel.AlignLeftWithPanel="True"
+                    RelativePanel.AlignRightWithPanel="True"
+                    RelativePanel.AlignTopWithPanel="True" Text="Einkaufslisten" />
+        <!--  content  -->
         <ScrollViewer Padding="12,8,0,0" RelativePanel.AlignBottomWithPanel="True"
                     RelativePanel.AlignLeftWithPanel="True"
                     RelativePanel.AlignRightWithPanel="True"
@@ -62,6 +60,7 @@
                     <!--<TextBlock x:Uid="TempL1" Grid.Column="0"  Grid.Row="1" Text="Liste1"/>
                     <TextBlock x:Uid="TempL2" Grid.Column="0" Grid.Row="2" Text="Liste2"/>
                     <TextBlock x:Uid="TempL3" Grid.Column="0" Grid.Row="3" Text="Liste3"/>-->
+<<<<<<< HEAD
                     <GridView Name="Output" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{x:Bind ViewModel.EinkaufsListe}">
 
                         <GridViewHeaderItem>
@@ -83,6 +82,15 @@
 
                                     <TextBlock Grid.Column="0"  Text="{x:Bind Name}"/>
                                     <TextBlock Grid.Column="1"  Text="zuletzt genutzt"/>
+=======
+                    <ListView Name="Output" Grid.Row="1">
+                        <ListView ItemsSource="{x:Bind ViewModel.EinkaufsListe}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate x:DataType="model:Einkaufsliste">
+                                    <TextBlock Text="{x:Bind name}"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+>>>>>>> ed3ce16d0057d3786faaebce4169f6a7f156c773
 
                                 </Grid>
                             </DataTemplate>
@@ -94,10 +102,14 @@
                     
                     <!--<TextBlock Grid.Column="1"  Grid.Row="1" Text="04.04.2017"/>
                     <TextBlock Grid.Column="1" Grid.Row="2" Text="25.01.2017"/>
+<<<<<<< HEAD
                     <TextBlock Grid.Column="1" Grid.Row="3" Text="20.01.2017"/>-->
 
 
 
+=======
+                    <TextBlock Grid.Column="1" Grid.Row="3" Text="20.01.2017"/>-->                    
+>>>>>>> ed3ce16d0057d3786faaebce4169f6a7f156c773
                 </Grid>
             </Grid>
             

@@ -3,32 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Einkaufslisten_Template10.Models.Objects
 {
     public abstract class BaseObject
     {
-        protected int id;
-        protected string name;
-
-        public BaseObject(int id, string name)
+        protected int _id;
+        protected string _name;
+        public BaseObject(int id_item, string name)
         {
-            this.id = id;
-            this.name = name;
+            _id = id_item;
+            _name = name;
         }
-        public int Id
+        [JsonProperty(PropertyName = "id_item")]
+        public int id_item
         {
-            get => id;
-            set => id = value;
+            get => _id;
+            set => _id = value;
         }
-        public string Name
+        [JsonProperty(PropertyName = "name")]
+        public string name
         {
-            get => name;
-            set => name = value;
+            get => _name;
+            set => _name = value;
         }
         public override string ToString()
         {
-            return "Id = " + id + " Name = " + name;
+            return "Id = " + _id + " Name = " + _name;
         }
+        public string id { get; set; }
     }
 }

@@ -3,36 +3,37 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace Einkaufslisten_Template10.Models.Objects
 {
     public class Produkt:BaseObject
-    {
-        private int anzahl;
-        private string mengenBezeichnung;
-                       
-        public Produkt(int id, string name) : base(id, name)
+    {   
+        private int _anzahl;
+        private string _mengenBezeichnung;                      
+        public Produkt(int id_item, string name) : base(id_item, name)
         {
         }
-        public Produkt(int id, string name, int anzahl, string mengenBezeichnung) : this(id, name)
+        public Produkt(int id_item, string name, int anzahl, string mengenBezeichnung) : this(id_item, name)
         {
-            this.anzahl = anzahl;
-            this.mengenBezeichnung = mengenBezeichnung;
+            _anzahl = anzahl;
+            _mengenBezeichnung = mengenBezeichnung;
         }
-
-        public int Anzahl
+        [JsonProperty(PropertyName = "anzahl")]
+        public int anzahl
         {
-            get => anzahl; 
-            set => anzahl = value; 
+            get => _anzahl; 
+            set => _anzahl = value; 
         }
-        public string MengenBezeichnung
+        [JsonProperty(PropertyName = "mengenbezeichnung")]
+        public string mengenbezeichnung
         {
-            get => mengenBezeichnung; 
-            set => mengenBezeichnung = value;
+            get => _mengenBezeichnung; 
+            set => _mengenBezeichnung = value;
         }
         public override string ToString()
         {
-            return base.ToString() + " Anzahl = " + anzahl + " Mengenbezeichnung = " + mengenBezeichnung;
+            return base.ToString() + " Anzahl = " + _anzahl + " Mengenbezeichnung = " + _mengenBezeichnung;
         }
     }
 }

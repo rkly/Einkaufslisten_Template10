@@ -11,6 +11,7 @@ using Windows.UI.Xaml.Controls;
 using System.IO;
 using Template10.Utils;
 using Microsoft.WindowsAzure.MobileServices;
+using Einkaufslisten_Template10.Models.Objects;
 
 namespace Einkaufslisten_Template10
 {
@@ -21,9 +22,16 @@ namespace Einkaufslisten_Template10
     sealed partial class App : BootStrapper
     {
         /// <summary>
-        /// Azure Backend
+        /// MobileServiceClient für Azure Backend
         /// </summary>
-        public static MobileServiceClient MobileService = new MobileServiceClient("https://einkaufslisten.azurewebsites.net");
+        private static MobileServiceClient MobileService = new MobileServiceClient(
+            "https://einkaufslisten.azurewebsites.net"
+        );
+        /// <summary>
+        /// Tabellen in Azure (Easy Tables), Modellen sind in Models.Objects
+        /// </summary>
+        private IMobileServiceTable<Produkt> Produkt = App.MobileService.GetTable<Produkt>();
+        private IMobileServiceTable<Einkaufsliste> Einkaufsliste = App.MobileService.GetTable<Einkaufsliste>();
         public App()
         {
             InitializeComponent();
@@ -38,7 +46,6 @@ namespace Einkaufslisten_Template10
             ShowShellBackButton = settings.UseShellBackButton;    
             
             #endregion
-
         }
         
         public override UIElement CreateRootElement(IActivatedEventArgs e)
@@ -57,23 +64,18 @@ namespace Einkaufslisten_Template10
             // TODO: add your long-running task here
             await NavigationService.NavigateAsync(typeof(Views.MainPage));
             
-            //Azure test
-            /*TodoItem item = new TodoItem
+            // Datensätze eintragen (test)
+            Produkt ProduktTest = new Produkt(15,"ok")
             {
-                Text = "Awesome item",
-                Complete = false
+                anzahl = 5,
+                mengenbezeichnung = "Liter"
             };
-            await App.MobileService.GetTable<TodoItem>().InsertAsync(item);*/
+            Produkt ProduktTest2 = new Produkt(111, "gut", 9, "Gramm");
+            Einkaufsliste EinkauflisteTest = new Einkaufsliste(1, "list1", DateTime.Now);
+            await Produkt.InsertAsync(ProduktTest);
+            await Produkt.InsertAsync(ProduktTest2);
+            await Einkaufsliste.InsertAsync(EinkauflisteTest);
             
         }
-    }
-
-
-    //Azure test
-    public class TodoItem
-    {
-        public string Id { get; set; }
-        public string Text { get; set; }
-        public bool Complete { get; set; }
     }
 }
