@@ -1,6 +1,4 @@
-﻿#define OFFLINE_SYNC_ENABLED
-
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using System.Threading.Tasks;
 using Einkaufslisten_Template10.Services.SettingsServices;
 using Windows.ApplicationModel.Activation;
