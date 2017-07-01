@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MobileServices;
 using Einkaufslisten_Template10.Services.AzureServices;
 using Windows.UI.Popups;
+using System.Diagnostics;
 
 namespace Einkaufslisten_Template10.Services.AzureServices
 {
@@ -27,24 +28,31 @@ namespace Einkaufslisten_Template10.Services.AzureServices
         /// </summary>
         public static async Task<bool> AuthenticateAsync()
         {
-            string message;
             bool success = false;
-            try
+            if (_user != null)
             {
-                var provider = MobileServiceAuthenticationProvider.Facebook;
-                bool singleSignOn = true;
-                _user = await SyncService.MobileService.LoginAsync(provider, singleSignOn);
-                message = string.Format("Sie sind eingeloggt - {0}", _user.UserId);
                 success = true;
             }
-            catch (InvalidOperationException)
+            else
             {
-                message = "You must log in. Login Required";
+                string message;              
+                try
+                {
+                    var provider = MobileServiceAuthenticationProvider.Facebook;
+                    //bool singleSignOn = true;
+                    string uriScheme = "einkaufslisten-scheme";
+                    _user = await SyncService.MobileService.LoginAsync(provider, uriScheme);
+                    message = string.Format("Sie sind eingeloggt - {0}", _user.UserId);
+                    success = true;
+                }
+                catch (InvalidOperationException)
+                {
+                    message = "You must log in. Login Required";
+                }
+                var dialog = new MessageDialog(message);
+                dialog.Commands.Add(new UICommand("OK"));
+                await dialog.ShowAsync();
             }
-
-            var dialog = new MessageDialog(message);
-            dialog.Commands.Add(new UICommand("OK"));
-            await dialog.ShowAsync();
             return success;
         }
     }

@@ -13,6 +13,9 @@ using Template10.Utils;
 using Microsoft.WindowsAzure.MobileServices;
 using Einkaufslisten_Template10.Models.Objects;
 using Windows.UI.Popups;
+using Einkaufslisten_Template10.Services.AzureServices;
+using System.Diagnostics;
+
 namespace Einkaufslisten_Template10
 {
     /// Documentation on APIs used in this page:
@@ -51,7 +54,19 @@ namespace Einkaufslisten_Template10
         public override async Task OnStartAsync(StartKind startKind, IActivatedEventArgs args)
         {
             // TODO: add your long-running task here
-            await NavigationService.NavigateAsync(typeof(Views.MainPage));
+            ///<summary>
+            /// Rückgabe des Tokens durch URL 
+            /// </summary>
+            if (args.Kind == ActivationKind.Protocol)
+            {
+                ProtocolActivatedEventArgs protocolArgs = args as ProtocolActivatedEventArgs;
+                SyncService.MobileService.ResumeWithURL(protocolArgs.Uri);
+                await NavigationService.NavigateAsync(typeof(Views.Einkaufslisten));
+            }
+            else
+            {
+                await NavigationService.NavigateAsync(typeof(Views.MainPage));
+            }     
         }
     }
 }

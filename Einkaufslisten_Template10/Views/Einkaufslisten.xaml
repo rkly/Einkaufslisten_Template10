@@ -64,7 +64,7 @@
 
 
                                 <TextBlock Grid.Column="0"  Text="{x:Bind id}"/>
-                                <TextBlock Grid.Column="1"  Text="{x:Bind aenderungsdatum}"/>
+                                <TextBlock Grid.Column="1"  Text="{x:Bind updatedAt}"/>
                                 <!-- ======= !-->
                                 <!--  <GridView Name="Output" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{x:Bind aenderungsdatum}">
                                         <GridViewHeaderItem>
