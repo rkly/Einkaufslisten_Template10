@@ -9,6 +9,9 @@ namespace Einkaufslisten_Template10.Models.Objects
 {
     public class Produkt:BaseObject
     {   
+        public Produkt() : base() //leere Klasse für JSON Deserializer in RefreshEinkaufslisten()
+        {
+        }
         private int _anzahl;
         private string _mengenBezeichnung;                      
         public Produkt(int id_item, string name) : base(id_item, name)
