@@ -1,14 +1,14 @@
-﻿using Template10.Mvvm;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Template10.Mvvm;
 using Template10.Services.NavigationService;
 using Windows.UI.Xaml.Navigation;
-using Einkaufslisten_Template10.Models.Objects;
-using System.Collections.ObjectModel;
-using Einkaufslisten_Template10.Services.AzureServices;
 using Windows.UI.Popups;
+using Einkaufslisten_Template10.Models.Objects;
+using Einkaufslisten_Template10.Services.AzureServices;
 using Microsoft.WindowsAzure.MobileServices;
 
 namespace Einkaufslisten_Template10.ViewModels
@@ -63,19 +63,28 @@ namespace Einkaufslisten_Template10.ViewModels
     
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
-            
-#if OFFLINE_SYNC_ENABLED
-            await SyncService.InitLocalStoreAsync(); // offline sync
+            if (await AuthService.AuthenticateAsync())
+            {
+#if DEBUG 
+                Console.WriteLine(AuthService.user.ToString());
 #endif
-            await RefreshEinkaufslisten();
+#if OFFLINE_SYNC_ENABLED
+                await SyncService.InitLocalStoreAsync(); // offline sync
+#endif
+                await RefreshEinkaufslisten();
+            }
+/*#if OFFLINE_SYNC_ENABLED
+            await SyncService.InitLocalStoreAsync(); // offline sync
+#endif*/
+            
             // Datensätze eintragen (test)
-            Produkt ProduktTest = new Produkt(15, "ok")
+            /*Produkt ProduktTest = new Produkt(15, "ok")
             {
                 anzahl = 5,
                 mengenbezeichnung = "Liter"
             };
             Produkt ProduktTest2 = new Produkt(111, "gut", 9, "Gramm");
-            Einkaufsliste EinkauflisteTest = new Einkaufsliste(1, "list1", DateTime.Now);
+            Einkaufsliste EinkauflisteTest = new Einkaufsliste(1, "list1", DateTime.Now);*/
             
             //await Produkt.InsertAsync(ProduktTest);
             //await Produkt.InsertAsync(ProduktTest2);

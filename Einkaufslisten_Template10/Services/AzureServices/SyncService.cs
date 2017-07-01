@@ -16,6 +16,13 @@ namespace Einkaufslisten_Template10.Services.AzureServices
         private static MobileServiceClient _MobileService = new MobileServiceClient(
             "https://einkaufslisten.azurewebsites.net"
         );
+        public static MobileServiceClient MobileService
+        {
+            get
+            {
+                return _MobileService;
+            }
+        }
         /// <summary>
         /// Tabellen in Azure (Easy Tables), Modellen sind in Models.Objects
         /// </summary>

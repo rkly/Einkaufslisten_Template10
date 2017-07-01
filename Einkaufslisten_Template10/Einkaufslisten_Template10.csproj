@@ -107,6 +107,7 @@
     <Compile Include="Models\Source\FileReaderProdukt.cs" />
     <Compile Include="Models\Source\ISource.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AzureServices\AuthService.cs" />
     <Compile Include="Services\AzureServices\SyncService.cs" />
     <Compile Include="Services\SettingsServices\SettingsService.cs" />
     <Compile Include="ViewModels\EinkaufslistenViewModel.cs" />
