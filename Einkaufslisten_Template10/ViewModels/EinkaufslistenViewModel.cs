@@ -23,25 +23,26 @@ namespace Einkaufslisten_Template10.ViewModels
     
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
-            if (await AuthService.AuthenticateAsync())
+            if (true/*await AuthService.AuthenticateAsync()*/)
             {
 #if DEBUG 
-                Console.WriteLine(AuthService.user.ToString());
+               // Console.WriteLine(AuthService.user.ToString());
 #endif
 #if OFFLINE_SYNC_ENABLED
                 await SyncService.InitLocalStoreAsync(); // offline sync
 #endif
-            DelegateCommand ShowBusyCommand;
-            ShowBusyCommand = new DelegateCommand(async () =>
-            {
-                Views.Busy.SetBusy(true, "Bitte warten. Daten werden geladen");
-                await RefreshEinkaufslisten();
+                DelegateCommand ShowBusyCommand;
+                ShowBusyCommand = new DelegateCommand(async () =>
+                {
+                    Views.Busy.SetBusy(true, "Bitte warten. Daten werden geladen");
+                    await RefreshEinkaufslisten();
                 // damit die View richtig lädt
                 await Task.Delay(50);
-                Views.Busy.SetBusy(false);
-            });
-            ShowBusyCommand.Execute();
-            await RefreshEinkaufslisten();
+                    Views.Busy.SetBusy(false);
+                });
+                ShowBusyCommand.Execute();
+                await RefreshEinkaufslisten();
+            }
             // Datensätze eintragen (test)
             /*Produkt ProduktTest = new Produkt(15, "ok")
             {
