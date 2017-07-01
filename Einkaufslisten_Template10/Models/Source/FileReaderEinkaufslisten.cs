@@ -10,10 +10,10 @@ using System.Collections.ObjectModel;
 
 namespace Einkaufslisten_Template10.Models.Source
 {
-    class FileReaderEinkaufslisten : ISource <Einkaufsliste>
+    class FileReaderEinkaufslisten //: ISource <Einkaufsliste>
     {
         
-        private StorageFolder folder;
+      /*  private StorageFolder folder;
         //muss Files einlesen! 
         public FileReaderEinkaufslisten()
         {
@@ -66,6 +66,6 @@ namespace Einkaufslisten_Template10.Models.Source
                     await file.MoveAsync(folder, id + "_" + einkaufsliste.name);
                 }
             }
-        }
+        } */
     }
 }

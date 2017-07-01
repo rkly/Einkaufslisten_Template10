@@ -17,7 +17,7 @@
     </Page.DataContext>
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton x:Name="AddItemBtn" Label="Add Item" Icon="Add" Click="{x:Bind ViewModel.createButtonClicked}" />
+            <AppBarButton x:Name="AddItemBtn" Label="Add Item" Icon="Add" Click="{x:Bind ViewModel.CreateButtonClicked}" />
         </CommandBar>
     </Page.BottomAppBar>
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -55,24 +55,24 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <TextBlock x:Uid="ListeName" Grid.Column="0" Grid.Row="0" Text="Name" VerticalAlignment="Center" HorizontalAlignment="Left" Height="20" Width="40"/>
-                    <TextBlock x:Uid="ZuletztGeaendert" Grid.Column="1" Grid.Row="0" Text="zuletzt geändert" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                    <TextBlock x:Uid="ListeName" Grid.Column="0" Grid.Row="0" Text="   Name" VerticalAlignment="Center" HorizontalAlignment="Left" Height="20" Width="50"/>
+                    <TextBlock x:Uid="ZuletztGeaendert" Grid.Column="1" Grid.Row="0" Text="   zuletzt geändert" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                     <!--<TextBlock x:Uid="TempL1" Grid.Column="0"  Grid.Row="1" Text="Liste1"/>
                     <TextBlock x:Uid="TempL2" Grid.Column="0" Grid.Row="2" Text="Liste2"/>
                     <TextBlock x:Uid="TempL3" Grid.Column="0" Grid.Row="3" Text="Liste3"/>
                     <<<<<<< HEAD !-->
-                    <GridView Name="Output" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{x:Bind ViewModel.Einkaufslisten_Collection}">
+                    <ListView Name="Output" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{x:Bind ViewModel.Einkaufslisten_Collection}">
 
-                        <GridViewHeaderItem>
-                            <TextBlock Grid.Column="0" Text="Name"/>
-                        </GridViewHeaderItem>
-                        <GridViewHeaderItem>
-                            <TextBlock Grid.Column="1" Text="zuletzt genutzt"/>
-                        </GridViewHeaderItem>
+                        <ListViewHeaderItem>
+                            <TextBlock Grid.Column="0" Text="  Name"/>
+                        </ListViewHeaderItem>
+                        <ListViewHeaderItem>
+                            <TextBlock Grid.Column="1" Text="  zuletzt genutzt"/>
+                        </ListViewHeaderItem>
 
-                        <GridView.ItemTemplate >
+                        <ListView.ItemTemplate >
 
-                            <DataTemplate x:DataType="model:Einkaufsliste" >
+                        <DataTemplate x:DataType="model:Einkaufsliste" >
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="220"/>
@@ -80,8 +80,8 @@
                                     </Grid.ColumnDefinitions>
 
 
-                                    <TextBlock Grid.Column="0"  Text="{x:Bind name}"/>
-                                    <TextBlock Grid.Column="1"  Text="zuletzt genutzt"/>
+                                    <TextBlock Grid.Column="0"  Text="{x:Bind id}"/>
+                                    <TextBlock Grid.Column="1"  Text="{x:Bind aenderungsdatum}"/>
                                     <!-- ======= !-->
                                   <!--  <GridView Name="Output" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{x:Bind aenderungsdatum}">
                                         <GridViewHeaderItem>
@@ -114,8 +114,8 @@
                                     <!-->>>>>>> ed3ce16d0057d3786faaebce4169f6a7f156c773 !-->
                                 </Grid>
                             </DataTemplate>
-                        </GridView.ItemTemplate>
-                    </GridView>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </Grid>
             </Grid>
         </ScrollViewer>

@@ -55,7 +55,7 @@ namespace Einkaufslisten_Template10.Models.Source
         {
             if (!produkte.Contains(produkt)) { 
             int id = produkte.Count;
-            produkt.id_item = id;
+            //produkt.id_item = id;
             produkte.Add(produkt);
             } else
             {

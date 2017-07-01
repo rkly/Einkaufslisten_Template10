@@ -25,9 +25,5 @@ namespace Einkaufslisten_Template10.Views
             InitializeComponent();
         }
 
-        private async void NeueListe_Click(object sender, RoutedEventArgs e)
-        {
-           //await EinkaufslistenViewModel.RefreshEinkaufslisten();
-        }
     }
 }

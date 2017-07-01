@@ -73,13 +73,14 @@ namespace Einkaufslisten_Template10.ViewModels
         /// <summary>
         /// Tabellen in Azure (Easy Tables), Modellen sind in Models.Objects
         /// </summary>
+        /// 
         private MobileServiceCollection<Produkt, Produkt> Produkten_Collection;
         public MobileServiceCollection<Einkaufsliste, Einkaufsliste> Einkaufslisten_Collection;
 #if OFFLINE_SYNC_ENABLED
         private IMobileServiceSyncTable<Produkt> Produkt = SyncService.MobileService.GetSyncTable<Produkt>();
         private IMobileServiceSyncTable<Einkaufsliste> Einkaufsliste = SyncService.MobileService.GetSyncTable<Einkaufsliste>();
 #else
-        private IMobileServiceTable<Produkt> Produkt = MobileService.GetTable<Produkt>();
+        //private IMobileServiceTable<Produkt> Produkt = MobileService.GetTable<Produkt>();
         private IMobileServiceTable<Einkaufsliste> Einkaufsliste = MobileService.GetTable<Einkaufsliste>();
 #endif
 
@@ -113,6 +114,17 @@ namespace Einkaufslisten_Template10.ViewModels
         #endregion
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
+             DelegateCommand ShowBusyCommand;
+             ShowBusyCommand = new DelegateCommand(async () =>
+             {
+                 Views.Busy.SetBusy(true, "Bitte warten. Daten werden geladen");
+                 await RefreshEinkaufslisten();
+                 // damit die View richtig lädt
+                 await Task.Delay(50);
+                 Views.Busy.SetBusy(false);
+             });
+             ShowBusyCommand.Execute();
+         //
             await RefreshEinkaufslisten();
 #if OFFLINE_SYNC_ENABLED
             await InitLocalStoreAsync(); // offline sync
@@ -125,12 +137,12 @@ namespace Einkaufslisten_Template10.ViewModels
                 mengenbezeichnung = "Liter"
             };
             Produkt ProduktTest2 = new Produkt(111, "gut", 9, "Gramm");
-            Einkaufsliste EinkauflisteTest = new Einkaufsliste(1, "list1", DateTime.Now);
+         //   Einkaufsliste EinkauflisteTest = new Einkaufsliste(43, "Ich bin eine Liste", DateTime.Now);
             
-            await Produkt.InsertAsync(ProduktTest);
-            await Produkt.InsertAsync(ProduktTest2);
-            await Einkaufsliste.InsertAsync(EinkauflisteTest);
-
+         //   await Produkt.InsertAsync(ProduktTest);
+         //   await Produkt.InsertAsync(ProduktTest2);
+         //   await Einkaufsliste.InsertAsync(EinkauflisteTest);
+         
 #if OFFLINE_SYNC_ENABLED
             await App.MobileService.SyncContext.PushAsync(); // offline sync
 #endif
@@ -162,7 +174,7 @@ namespace Einkaufslisten_Template10.ViewModels
                 //this.ButtonSave.IsEnabled = true;
             }
         }
-        public void createButtonClicked()
+        public void CreateButtonClicked()
         {
             Einkaufsliste e = new Einkaufsliste(-1,"");
             GoEinkaufsbereich(e);

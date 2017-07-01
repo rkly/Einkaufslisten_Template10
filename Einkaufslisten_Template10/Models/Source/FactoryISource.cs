@@ -9,13 +9,14 @@ namespace Einkaufslisten_Template10.Models.Source
 {
     class FactoryISource
     {
-        public ISource<Einkaufsliste> CreateEinkaufsListenSource()
+       /* public ISource<Einkaufsliste> CreateEinkaufsListenSource()
         {
-            return new FileReaderEinkaufslisten();
+            //return new FileReaderEinkaufslisten();
         }
         public ISource<Produkt> CreateProduktSource(int id)
         {
             return new FileReaderProdukt(id);
         }
+        */
     }
 }
