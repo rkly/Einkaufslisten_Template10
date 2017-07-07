@@ -45,24 +45,19 @@
                 <TextBlock x:Uid="ListeName" Grid.Column="0" Grid.Row="0" Text="   Name" VerticalAlignment="Center" HorizontalAlignment="Left" Height="20" Width="40"/>
                 <TextBlock x:Uid="ZuletztGeaendert" Grid.Column="1" Grid.Row="0" Text="   zuletzt geändert" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <ListView Name="Output" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{x:Bind ViewModel.Einkaufslisten_Collection}">
-
                     <ListViewHeaderItem>
                         <TextBlock Grid.Column="0" Text="  Name"/>
                     </ListViewHeaderItem>
                     <ListViewHeaderItem>
                         <TextBlock Grid.Column="1" Text="  zuletzt genutzt"/>
                     </ListViewHeaderItem>
-
                     <ListView.ItemTemplate >
-
                         <DataTemplate x:DataType="model:Einkaufsliste" >
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="220"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
-
-
                                 <TextBlock Grid.Column="0"  Text="{x:Bind id}"/>
                                 <TextBlock Grid.Column="1"  Text="{x:Bind updatedAt}"/>
                                 <!-- ======= !-->

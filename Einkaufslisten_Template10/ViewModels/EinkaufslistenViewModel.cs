@@ -44,20 +44,20 @@ namespace Einkaufslisten_Template10.ViewModels
                 await RefreshEinkaufslisten();
             }
             // Datensätze eintragen (test)
-            /*Produkt ProduktTest = new Produkt(15, "ok")
+            Produkt ProduktTest = new Produkt(15, "ok")
             {
                 anzahl = 5,
                 mengenbezeichnung = "Liter"
             };
             Produkt ProduktTest2 = new Produkt(111, "gut", 9, "Gramm");
-            Einkaufsliste EinkauflisteTest = new Einkaufsliste(1, "list1", DateTime.Now);
-            */
+            Einkaufsliste EinkauflisteTest = new Einkaufsliste(2, "facebooktest", DateTime.Now, AuthService.user);
+            
             //await Produkt.InsertAsync(ProduktTest);
             //await Produkt.InsertAsync(ProduktTest2);
-            //await SyncService.Einkaufsliste.InsertAsync(EinkauflisteTest);
+            await SyncService.Einkaufsliste.InsertAsync(EinkauflisteTest);
 
 #if OFFLINE_SYNC_ENABLED
-            //await App.MobileService.SyncContext.PushAsync(); // offline sync + Push für die neuen Listen anpassen!
+            await SyncService.MobileService.SyncContext.PushAsync(); // offline sync + Push für die neuen Listen anpassen!
 #endif
 
         }
@@ -70,6 +70,7 @@ namespace Einkaufslisten_Template10.ViewModels
                 /// This code refreshes the entries in the list view by querying the Einkaufsliste table
                 /// </summary> 
                 Einkaufslisten_Collection = await SyncService.Einkaufsliste
+                    .Where(Einkaufsliste => Einkaufsliste.id_user == AuthService.user)
                     //.Where(Einkaufsliste => Einkaufsliste.Complete == false)
                     .ToCollectionAsync();
             }
