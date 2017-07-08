@@ -16,11 +16,11 @@ namespace Einkaufslisten_Template10.Services.AzureServices
         /// Define a member variable for storing the signed-in user
         /// </summary>
         private static MobileServiceUser _user;
-        public static MobileServiceUser user
+        public static String user
         {
             get
             {
-                return _user;
+                return _user.UserId;
             }
         }
         /// <summary>
