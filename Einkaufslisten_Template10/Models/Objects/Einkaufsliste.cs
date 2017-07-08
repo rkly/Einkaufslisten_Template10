@@ -7,7 +7,7 @@ using Newtonsoft.Json;
 
 namespace Einkaufslisten_Template10.Models.Objects
 {
-    public class Einkaufsliste:BaseObject
+    public class Einkaufsliste:BaseObject, IComparable
     {
         private DateTime _aenderungsdatum;
         public Einkaufsliste() : base() //leere Klasse für JSON Deserializer in RefreshEinkaufslisten()
@@ -26,6 +26,12 @@ namespace Einkaufslisten_Template10.Models.Objects
             get => _aenderungsdatum;
             set => _aenderungsdatum = value;
         }
+
+        public int CompareTo(object obj)
+        {
+            return ((IComparable)_aenderungsdatum).CompareTo(obj);
+        }
+
         public override string ToString()
         {
             return base.ToString() + " Aenderungsdatum = " + _aenderungsdatum;

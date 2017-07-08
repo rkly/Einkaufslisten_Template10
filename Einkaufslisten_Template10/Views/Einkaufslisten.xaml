@@ -17,7 +17,9 @@
     </Page.DataContext>
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton x:Name="AddItemBtn" Label="Add Item" Icon="Add" Click="{x:Bind ViewModel.CreateButtonClicked}" />
+            <AppBarButton x:Name="AddItemBtn" Label="Add Item" Icon="Add" Click="{x:Bind ViewModel.CreateNewElement}" />
+            <AppBarButton x:Name="SortAlpabeticDescend" Label="Sort Z-A" Icon="Sort" Click="{x:Bind ViewModel.OrderListZToA}" />
+
         </CommandBar>
     </Page.BottomAppBar>
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -63,7 +65,7 @@
                                 </Grid.ColumnDefinitions>
 
 
-                                <TextBlock Grid.Column="0"  Text="{x:Bind id}"/>
+                                <TextBlock Grid.Column="0"  Text="{x:Bind name}"/>
                                 <TextBlock Grid.Column="1"  Text="{x:Bind updatedAt}"/>
                                 <!-- ======= !-->
                                 <!--  <GridView Name="Output" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{x:Bind aenderungsdatum}">

@@ -13,10 +13,11 @@ using System.Collections.ObjectModel;
 using Einkaufslisten_Template10.Services.AzureServices;
 using Windows.UI.Popups;
 using Microsoft.WindowsAzure.MobileServices;
+using System.Diagnostics;
 
 namespace Einkaufslisten_Template10.ViewModels
 {
-    public class EinkaufslistenViewModel : ViewModelBase
+    public class EinkaufslistenViewModel : ViewModelBase 
     {       
         public MobileServiceCollection<Produkt, Produkt> Produkten_Collection;
         public MobileServiceCollection<Einkaufsliste, Einkaufsliste> Einkaufslisten_Collection;
@@ -31,17 +32,14 @@ namespace Einkaufslisten_Template10.ViewModels
 #if OFFLINE_SYNC_ENABLED
                 await SyncService.InitLocalStoreAsync(); // offline sync
 #endif
-                DelegateCommand ShowBusyCommand;
-                ShowBusyCommand = new DelegateCommand(async () =>
-                {
-                    Views.Busy.SetBusy(true, "Bitte warten. Daten werden geladen");
-                    await RefreshEinkaufslisten();
-                    // damit die View richtig lädt
-                    await Task.Delay(50);
-                    Views.Busy.SetBusy(false);
-                });
-                ShowBusyCommand.Execute();
+
+                Views.Busy.SetBusy(true, "Bitte warten. Daten werden geladen");
                 await RefreshEinkaufslisten();
+                Views.Busy.SetBusy(false);
+
+                IOrderedEnumerable<Einkaufsliste> o = Einkaufslisten_Collection.OrderBy(einkaufliste => einkaufliste.name);
+                Einkaufslisten_Collection = o.ToList();
+                //await RefreshEinkaufslisten();
             }
             // Datensätze eintragen (test)
             /*Produkt ProduktTest = new Produkt(15, "ok")
@@ -91,6 +89,16 @@ namespace Einkaufslisten_Template10.ViewModels
         {
             SessionState.Add("einkaufsliste", e);
             NavigationService.Navigate(typeof(Views.Einkaufsbereich), "einkaufsliste");
+        }
+        public void CreateNewElement()
+        {
+            Einkaufslisten_Collection.Add(new Einkaufsliste(3, "fadksjf"));
+        }
+
+        public void OrderListZToA()
+        {
+            Einkaufslisten_Collection.OrderByDescending(einkaufliste => einkaufliste.name);
+            
         }
     }
 }
