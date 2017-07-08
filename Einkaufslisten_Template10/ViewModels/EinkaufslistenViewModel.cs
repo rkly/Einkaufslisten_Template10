@@ -38,21 +38,21 @@ namespace Einkaufslisten_Template10.ViewModels
                 Views.Busy.SetBusy(false);
 
                 IOrderedEnumerable<Einkaufsliste> o = Einkaufslisten_Collection.OrderBy(einkaufliste => einkaufliste.name);
-                Einkaufslisten_Collection = o.ToList();
+                //Einkaufslisten_Collection = o.ToList();
                 //await RefreshEinkaufslisten();
             }
             // Datensätze eintragen (test)
-            Produkt ProduktTest = new Produkt(15, "ok")
+            /*Produkt ProduktTest = new Produkt(15, "ok")
             {
                 anzahl = 5,
                 mengenbezeichnung = "Liter"
             };
             Produkt ProduktTest2 = new Produkt(111, "gut", 9, "Gramm");
-            Einkaufsliste EinkauflisteTest = new Einkaufsliste(2, "facebooktest", DateTime.Now, AuthService.user);
+            Einkaufsliste EinkauflisteTest = new Einkaufsliste(2, "facebooktest", DateTime.Now, AuthService.user);*/
             
             //await Produkt.InsertAsync(ProduktTest);
             //await Produkt.InsertAsync(ProduktTest2);
-            await SyncService.Einkaufsliste.InsertAsync(EinkauflisteTest);
+            //await SyncService.Einkaufsliste.InsertAsync(EinkauflisteTest);
 
 #if OFFLINE_SYNC_ENABLED
             await SyncService.MobileService.SyncContext.PushAsync(); // offline sync + Push für die neuen Listen anpassen!
@@ -83,7 +83,7 @@ namespace Einkaufslisten_Template10.ViewModels
         }
         public void CreateButtonClicked()
         {
-            Einkaufsliste e = new Einkaufsliste(-1,"");
+            Einkaufsliste e = new Einkaufsliste("");
             GoEinkaufsbereich(e);
         }
         public void GoEinkaufsbereich(Einkaufsliste e)
@@ -91,9 +91,14 @@ namespace Einkaufslisten_Template10.ViewModels
             SessionState.Add("einkaufsliste", e);
             NavigationService.Navigate(typeof(Views.Einkaufsbereich), "einkaufsliste");
         }
-        public void CreateNewElement()
+        public async Task CreateNewElement()
         {
-            Einkaufslisten_Collection.Add(new Einkaufsliste(3, "fadksjf"));
+            Einkaufsliste e = new Einkaufsliste("bla",AuthService.user);
+            e.updatedAt = DateTime.Now;
+            Einkaufslisten_Collection.Add(e);
+            await SyncService.Einkaufsliste.InsertAsync(e);
+            //await SyncService.SyncAsync();
+            //await RefreshEinkaufslisten();
         }
 
         public void OrderListZToA()

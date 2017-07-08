@@ -12,17 +12,17 @@ namespace Einkaufslisten_Template10.Models.Objects
         public Produkt() : base() //leere Klasse für JSON Deserializer in RefreshEinkaufslisten()
         {
         }
-        private int _anzahl;
-        private string _mengenBezeichnung;                      
-        public Produkt(int id_item, string name) : base(id_item, name)
+        //private int _anzahl;
+        //private string _mengenBezeichnung;                      
+        public Produkt(string name) : base(name)
         {
         }
-        public Produkt(int id_item, string name, int anzahl, string mengenBezeichnung) : this(id_item, name)
+        /*public Produkt(string id_item, string name, int anzahl, string mengenBezeichnung) : this(id_item, name)
         {
             _anzahl = anzahl;
             _mengenBezeichnung = mengenBezeichnung;
-        }
-        [JsonProperty(PropertyName = "anzahl")]
+        }*/
+        /*[JsonProperty(PropertyName = "anzahl")]
         public int anzahl
         {
             get => _anzahl; 
@@ -33,10 +33,10 @@ namespace Einkaufslisten_Template10.Models.Objects
         {
             get => _mengenBezeichnung; 
             set => _mengenBezeichnung = value;
-        }
+        }*/
         public override string ToString()
         {
-            return base.ToString() + " Anzahl = " + _anzahl + " Mengenbezeichnung = " + _mengenBezeichnung;
+            return base.ToString();// + " Anzahl = " + _anzahl + " Mengenbezeichnung = " + _mengenBezeichnung;
         }
     }
 }

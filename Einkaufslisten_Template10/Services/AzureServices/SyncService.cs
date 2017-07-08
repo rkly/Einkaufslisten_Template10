@@ -29,6 +29,8 @@ namespace Einkaufslisten_Template10.Services.AzureServices
 #if OFFLINE_SYNC_ENABLED
         private static IMobileServiceSyncTable<Produkt> _Produkt = _MobileService.GetSyncTable<Produkt>();
         private static IMobileServiceSyncTable<Einkaufsliste> _Einkaufsliste = _MobileService.GetSyncTable<Einkaufsliste>();
+        private static IMobileServiceSyncTable<Einheit> _Einheit = _MobileService.GetSyncTable<Einheit>();
+        private static IMobileServiceSyncTable<Produkt_Einkaufsliste> _Produkt_Einkaufsliste = _MobileService.GetSyncTable<Produkt_Einkaufsliste>();
         public static IMobileServiceSyncTable<Einkaufsliste> Einkaufsliste
         {
             get
@@ -56,15 +58,19 @@ namespace Einkaufslisten_Template10.Services.AzureServices
                 var store = new MobileServiceSQLiteStore("localstore.db");
                 store.DefineTable<Produkt>();
                 store.DefineTable<Einkaufsliste>();
+                store.DefineTable<Einheit>();
+                store.DefineTable<Produkt_Einkaufsliste>();
                 await _MobileService.SyncContext.InitializeAsync(store);
             }
             await SyncAsync();
         }
-        private static async Task SyncAsync()
+        public static async Task SyncAsync()
         {
             await _MobileService.SyncContext.PushAsync();
             await _Produkt.PullAsync(null, _Produkt.CreateQuery());
             await _Einkaufsliste.PullAsync(null, _Einkaufsliste.CreateQuery());
+            await _Einheit.PullAsync(null, _Einheit.CreateQuery());
+            await _Produkt_Einkaufsliste.PullAsync(null, _Produkt_Einkaufsliste.CreateQuery());
         }
 #endif
         #endregion

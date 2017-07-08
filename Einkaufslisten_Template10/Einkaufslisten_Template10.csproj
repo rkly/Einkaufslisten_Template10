@@ -99,13 +99,11 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Objects\BaseObject.cs" />
+    <Compile Include="Models\Objects\Einheit.cs" />
     <Compile Include="Models\Objects\Einkaufsliste.cs" />
+    <Compile Include="Models\Objects\IdObject.cs" />
     <Compile Include="Models\Objects\Produkt.cs" />
-    <Compile Include="Models\Repository.cs" />
-    <Compile Include="Models\Source\FactoryISource.cs" />
-    <Compile Include="Models\Source\FileReaderEinkaufslisten.cs" />
-    <Compile Include="Models\Source\FileReaderProdukt.cs" />
-    <Compile Include="Models\Source\ISource.cs" />
+    <Compile Include="Models\Objects\Produkt_Einkaufsliste.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AzureServices\AuthService.cs" />
     <Compile Include="Services\AzureServices\SyncService.cs" />
