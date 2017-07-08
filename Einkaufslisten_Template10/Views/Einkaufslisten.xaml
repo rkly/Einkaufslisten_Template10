@@ -18,6 +18,7 @@
     <Page.BottomAppBar>
         <CommandBar>
             <AppBarButton x:Name="AddItemBtn" Label="Add Item" Icon="Add" Click="{x:Bind ViewModel.CreateNewElement}" />
+            <AppBarButton x:Name="EinkaufsbereichTest" Label="EinkaufsbereichTest" Icon="Play" Click="{x:Bind ViewModel.EinkaufsBereich}" />
         </CommandBar>
     </Page.BottomAppBar>
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -27,7 +28,7 @@
                     RelativePanel.AlignRightWithPanel="True"
                     RelativePanel.AlignTopWithPanel="True" Text="Einkaufslisten" x:Uid="Einkaufslisten_Title"/>
         <!--  content  -->
-        <ScrollViewer Padding="12,8,0,0" RelativePanel.AlignBottomWithPanel="True"
+        <ScrollViewer Padding="5,5,5,5" RelativePanel.AlignBottomWithPanel="True"
                     RelativePanel.AlignLeftWithPanel="True"
                     RelativePanel.AlignRightWithPanel="True"
                     RelativePanel.Below="pageHeader"
@@ -60,36 +61,6 @@
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0"  Text="{x:Bind name}"/>
                                 <TextBlock Grid.Column="1"  Text="{x:Bind updatedAt}"/>
-                                <!-- ======= !-->
-                                <!--  <GridView Name="Output" Grid.Row="1" Grid.ColumnSpan="2" ItemsSource="{x:Bind aenderungsdatum}">
-                                        <GridViewHeaderItem>
-                                            <TextBlock Grid.Column="0" Text="Name"/>
-                                        </GridViewHeaderItem>
-                                        <GridViewItem>
-                                            <TextBlock Grid.Column="1" Text="zuletzt genutzt"/>
-                                        </GridViewItem>
-                                        <GridView.ItemTemplate >
-                                            <DataTemplate x:DataType="model:Einkaufsliste" >
-                                                <Grid>
-                                                    <Grid.ColumnDefinitions>
-                                                        <ColumnDefinition Width="220"/>
-                                                        <ColumnDefinition Width="*"/>
-                                                    </Grid.ColumnDefinitions>
-                                                    <TextBlock Grid.Column="0"  Text="{x:Bind name}"/>
-                                                    <TextBlock Grid.Column="1"  Text="zuletzt genutzt"/>
-                                                </Grid>
-                                            </DataTemplate>
-                                        </GridView.ItemTemplate>
-                                    </GridView> !-->
-                                <!-->>>>>>> ed3ce16d0057d3786faaebce4169f6a7f156c773 !-->
-                                <!--<TextBlock Grid.Column="1"  Grid.Row="1" Text="04.04.2017"/>
-                    <TextBlock Grid.Column="1" Grid.Row="2" Text="25.01.2017"/>
-<<<<<<< HEAD 
-                    <TextBlock Grid.Column="1" Grid.Row="3" Text="20.01.2017"/>-->
-
-                                <!--=======!-->
-                                <!--<TextBlock Grid.Column="1" Grid.Row="3" Text="20.01.2017"/> !-->
-                                <!-->>>>>>> ed3ce16d0057d3786faaebce4169f6a7f156c773 !-->
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>

@@ -33,10 +33,19 @@ namespace Einkaufslisten_Template10.Services.AzureServices
         private static IMobileServiceSyncTable<Produkt_Einkaufsliste> _Produkt_Einkaufsliste = _MobileService.GetSyncTable<Produkt_Einkaufsliste>();
         public static IMobileServiceSyncTable<Einkaufsliste> Einkaufsliste
         {
-            get
-            {
-                return _Einkaufsliste;
-            }
+            get => _Einkaufsliste;
+        }
+        public static IMobileServiceSyncTable<Produkt_Einkaufsliste> Produkt_Einkaufsliste
+        {
+            get => _Produkt_Einkaufsliste;
+        }
+        public static IMobileServiceSyncTable<Einheit> Einheit
+        {
+            get => _Einheit;
+        }
+        public static IMobileServiceSyncTable<Produkt> Produkt
+        {
+            get => _Produkt;
         }
 #else
         private static IMobileServiceTable<Produkt> _Produkt = _MobileService.GetTable<Produkt>();
