@@ -38,10 +38,10 @@ namespace Einkaufslisten_Template10.ViewModels
                 /// <summary>
                 /// This code refreshes the entries in the list view by querying the Produkt_Einkaufsliste table
                 /// </summary> 
-                Produkt_Einkaufsliste_Collection = await SyncService.Produkt_Einkaufsliste
-                    .Where(Produkt_Einkaufsliste => Produkt_Einkaufsliste.id_einkaufsliste == "025a18d8fc5b436b9c66b0cd505f72cd")
+               // Produkt_Einkaufsliste_Collection = await SyncService.Produkt_Einkaufsliste
+               //     .Where(Produkt_Einkaufsliste => Produkt_Einkaufsliste.id_einkaufsliste == "025a18d8fc5b436b9c66b0cd505f72cd")
                     //.Where(Einkaufsliste => Einkaufsliste.Complete == false)
-                    .ToCollectionAsync();
+               //     .ToCollectionAsync();
             }
             catch (MobileServiceInvalidOperationException e)
             {

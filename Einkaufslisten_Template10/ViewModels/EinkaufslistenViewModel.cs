@@ -17,7 +17,7 @@ namespace Einkaufslisten_Template10.ViewModels
     public class EinkaufslistenViewModel : ViewModelBase 
     {       
         public MobileServiceCollection<Produkt, Produkt> Produkten_Collection;
-        public MobileServiceCollection<Einkaufsliste, Einkaufsliste> Einkaufslisten_Collection;
+        public ObservableCollection<Einkaufsliste> Einkaufslisten_Collection;
     
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
@@ -82,6 +82,7 @@ namespace Einkaufslisten_Template10.ViewModels
                 /// </summary> 
                 Einkaufslisten_Collection = await SyncService.Einkaufsliste
                     .Where(Einkaufsliste => Einkaufsliste.id_user == AuthService.user)
+                    .OrderByDescending(einkaufslise => einkaufslise.name)
                     //.Where(Einkaufsliste => Einkaufsliste.Complete == false)
                     .ToCollectionAsync();
             }
@@ -106,7 +107,7 @@ namespace Einkaufslisten_Template10.ViewModels
         }
         public async Task CreateNewElement()
         {
-            Einkaufsliste e = new Einkaufsliste("bla",AuthService.user);
+            Einkaufsliste e = new Einkaufsliste("zzz",AuthService.user);
             e.updatedAt = DateTime.Now;
             Einkaufslisten_Collection.Add(e);
             await SyncService.Einkaufsliste.InsertAsync(e);
@@ -122,6 +123,15 @@ namespace Einkaufslisten_Template10.ViewModels
         {
             Einkaufslisten_Collection.OrderByDescending(einkaufliste => einkaufliste.name);
             
+        }
+        public void SortByDate()
+        {
+           ObservableCollection <Einkaufsliste> temp = new ObservableCollection<Einkaufsliste>(Einkaufslisten_Collection.OrderBy(einkaufliste => einkaufliste.updatedAt));
+            Einkaufslisten_Collection.Clear();
+            foreach (Einkaufsliste e in temp)
+            {
+                Einkaufslisten_Collection.Add(e);
+            }
         }
     }
 }

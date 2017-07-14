@@ -19,6 +19,7 @@
         <CommandBar>
             <AppBarButton x:Name="AddItemBtn" Label="Add Item" Icon="Add" Click="{x:Bind ViewModel.CreateNewElement}" />
             <AppBarButton x:Name="EinkaufsbereichTest" Label="EinkaufsbereichTest" Icon="Play" Click="{x:Bind ViewModel.EinkaufsBereich}" />
+            <AppBarButton x:Name="sortDate" Label="Sortiere nach Datum" Icon="Sort" Click="{x:Bind ViewModel.SortByDate}" />
         </CommandBar>
     </Page.BottomAppBar>
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
