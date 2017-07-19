@@ -28,10 +28,5 @@ namespace Einkaufslisten_Template10.Models.Objects
             get => _id_user;
             set => _id_user = value;
         }
-        public void EinkaufsBereich()
-        {
-            //NavigationService.Navigate(typeof(Views.Einkaufsbereich);
-        }
-
     }
 }

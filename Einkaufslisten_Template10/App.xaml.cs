@@ -37,8 +37,7 @@ namespace Einkaufslisten_Template10
             CacheMaxDuration = settings.CacheMaxDuration;
             ShowShellBackButton = settings.UseShellBackButton;
 
-            #endregion
-
+#endregion
         }
         
         public override UIElement CreateRootElement(IActivatedEventArgs e)
