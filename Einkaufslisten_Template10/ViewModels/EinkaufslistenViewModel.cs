@@ -11,6 +11,7 @@ using Einkaufslisten_Template10.Models.Objects;
 using Einkaufslisten_Template10.Services.AzureServices;
 using Microsoft.WindowsAzure.MobileServices;
 using System.Diagnostics;
+using Windows.UI.Xaml.Controls;
 
 namespace Einkaufslisten_Template10.ViewModels
 {
@@ -44,8 +45,8 @@ namespace Einkaufslisten_Template10.ViewModels
                 anzahl = 5,
                 mengenbezeichnung = "Liter"
             };
-            Produkt ProduktTest2 = new Produkt(111, "gut", 9, "Gramm");
-            Einkaufsliste EinkauflisteTest = new Einkaufsliste(2, "facebooktest", DateTime.Now, AuthService.user);*/
+            Produkt ProduktTest2 = new Produkt(111, "gut", 9, "Gramm");*/
+            //Einkaufsliste EinkauflisteTest = new Einkaufsliste("einkaufsbereich", AuthService.user);
 
 
             //await Produkt.InsertAsync(ProduktTest2);
@@ -61,11 +62,11 @@ namespace Einkaufslisten_Template10.ViewModels
             await SyncService.Produkt.InsertAsync(new Produkt("Milch"));
             await SyncService.Produkt.InsertAsync(new Produkt("Reis"));*/
 
-            /*await SyncService.Produkt_Einkaufsliste.InsertAsync(new Produkt_Einkaufsliste("025a18d8fc5b436b9c66b0cd505f72cd", "385abccf996c4780a324e1557fca2f0a", "9daef6e198f743709c87d1f402c8e2fd", 2));
-            await SyncService.Produkt_Einkaufsliste.InsertAsync(new Produkt_Einkaufsliste("025a18d8fc5b436b9c66b0cd505f72cd", "385abccf996c4780a324e1557fca2f0a", "9daef6e198f743709c87d1f402c8e2fd", 1));
-            await SyncService.Produkt_Einkaufsliste.InsertAsync(new Produkt_Einkaufsliste("025a18d8fc5b436b9c66b0cd505f72cd", "f8aa78029a0245bba8f0e26f580e7aee", "198ec3fa5ed147f7aa99c86e46cab004", 5));
-            await SyncService.Produkt_Einkaufsliste.InsertAsync(new Produkt_Einkaufsliste("025a18d8fc5b436b9c66b0cd505f72cd", "f0afa658417b4bfbb7c161f70c55a7f6", "9daef6e198f743709c87d1f402c8e2fd", 2));
-            await SyncService.Produkt_Einkaufsliste.InsertAsync(new Produkt_Einkaufsliste("025a18d8fc5b436b9c66b0cd505f72cd", "683385893a434bbaa54d414017874420", "9daef6e198f743709c87d1f402c8e2fd", 2));*/
+            /*await SyncService.Produkt_Einkaufsliste.InsertAsync(new Produkt_Einkaufsliste("02efe8f129d44cf69b27fd33c64c86b6", "1549890959e74bc3840028888fb063bc", "f7f891c859db4000a2fe5b2c6366530e", 2));
+            await SyncService.Produkt_Einkaufsliste.InsertAsync(new Produkt_Einkaufsliste("02efe8f129d44cf69b27fd33c64c86b6", "741d5cf8a8254cbab96c7641a0ccd01c", "51ef44b1af074afa852efa2031bc072e", 1));
+            await SyncService.Produkt_Einkaufsliste.InsertAsync(new Produkt_Einkaufsliste("02efe8f129d44cf69b27fd33c64c86b6", "7a494911eb964ff29d660727d709eb45", "51ef44b1af074afa852efa2031bc072e", 5));
+            await SyncService.Produkt_Einkaufsliste.InsertAsync(new Produkt_Einkaufsliste("02efe8f129d44cf69b27fd33c64c86b6", "f959ec70245349adb51ea289bc3d3046", "51ef44b1af074afa852efa2031bc072e", 2));
+            await SyncService.Produkt_Einkaufsliste.InsertAsync(new Produkt_Einkaufsliste("02efe8f129d44cf69b27fd33c64c86b6", "f959ec70245349adb51ea289bc3d3046", "51ef44b1af074afa852efa2031bc072e", 2));*/
 
 #if OFFLINE_SYNC_ENABLED
             await SyncService.MobileService.SyncContext.PushAsync(); // offline sync + Push für die neuen Listen anpassen!
@@ -79,11 +80,11 @@ namespace Einkaufslisten_Template10.ViewModels
             {
                 /// <summary>
                 /// This code refreshes the entries in the list view by querying the Einkaufsliste table
+                /// https://docs.microsoft.com/de-de/azure/app-service-mobile/app-service-mobile-node-backend-how-to-use-server-sdk
                 /// </summary> 
                 Einkaufslisten_Collection = await SyncService.Einkaufsliste
-                    .Where(Einkaufsliste => Einkaufsliste.id_user == AuthService.user)
+                    //.Where(Einkaufsliste => Einkaufsliste.id_user == AuthService.user) im Tabelleskript
                     .OrderByDescending(einkaufslise => einkaufslise.name)
-                    //.Where(Einkaufsliste => Einkaufsliste.Complete == false)
                     .ToCollectionAsync();
             }
             catch (MobileServiceInvalidOperationException e)
@@ -114,19 +115,19 @@ namespace Einkaufslisten_Template10.ViewModels
             //await SyncService.SyncAsync();
             //await RefreshEinkaufslisten();
         }
-        public void EinkaufsBereich()
+        public void EinkaufsBereich(object sender, ItemClickEventArgs e)
         {
-            NavigationService.Navigate(typeof(Views.Einkaufsbereich));
+            Einkaufsliste clickedItem = e.ClickedItem as Einkaufsliste;
+            String id_einkaufsliste_clicked = clickedItem.id;
+            NavigationService.Navigate(typeof(Views.Einkaufsbereich), id_einkaufsliste_clicked);
         }
-
         public void OrderListZToA()
         {
             Einkaufslisten_Collection.OrderByDescending(einkaufliste => einkaufliste.name);
-            
         }
         public void SortByDate()
         {
-           ObservableCollection <Einkaufsliste> temp = new ObservableCollection<Einkaufsliste>(Einkaufslisten_Collection.OrderBy(einkaufliste => einkaufliste.updatedAt));
+            ObservableCollection <Einkaufsliste> temp = new ObservableCollection<Einkaufsliste>(Einkaufslisten_Collection.OrderBy(einkaufliste => einkaufliste.updatedAt));
             Einkaufslisten_Collection.Clear();
             foreach (Einkaufsliste e in temp)
             {

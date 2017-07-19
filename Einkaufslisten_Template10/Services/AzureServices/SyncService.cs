@@ -18,10 +18,7 @@ namespace Einkaufslisten_Template10.Services.AzureServices
         );
         public static MobileServiceClient MobileService
         {
-            get
-            {
-                return _MobileService;
-            }
+            get => _MobileService;       
         }
         /// <summary>
         /// Tabellen in Azure (Easy Tables), Modellen sind in Models.Objects
@@ -31,6 +28,7 @@ namespace Einkaufslisten_Template10.Services.AzureServices
         private static IMobileServiceSyncTable<Einkaufsliste> _Einkaufsliste = _MobileService.GetSyncTable<Einkaufsliste>();
         private static IMobileServiceSyncTable<Einheit> _Einheit = _MobileService.GetSyncTable<Einheit>();
         private static IMobileServiceSyncTable<Produkt_Einkaufsliste> _Produkt_Einkaufsliste = _MobileService.GetSyncTable<Produkt_Einkaufsliste>();
+        private static IMobileServiceSyncTable<Produkt_Einkaufsliste_View> _Produkt_Einkaufsliste_View = _MobileService.GetSyncTable<Produkt_Einkaufsliste_View>();
         public static IMobileServiceSyncTable<Einkaufsliste> Einkaufsliste
         {
             get => _Einkaufsliste;
@@ -38,6 +36,10 @@ namespace Einkaufslisten_Template10.Services.AzureServices
         public static IMobileServiceSyncTable<Produkt_Einkaufsliste> Produkt_Einkaufsliste
         {
             get => _Produkt_Einkaufsliste;
+        }
+        public static IMobileServiceSyncTable<Produkt_Einkaufsliste_View> Produkt_Einkaufsliste_View
+        {
+            get => _Produkt_Einkaufsliste_View;
         }
         public static IMobileServiceSyncTable<Einheit> Einheit
         {
@@ -50,12 +52,28 @@ namespace Einkaufslisten_Template10.Services.AzureServices
 #else
         private static IMobileServiceTable<Produkt> _Produkt = _MobileService.GetTable<Produkt>();
         private static IMobileServiceTable<Einkaufsliste> _Einkaufsliste = _MobileService.GetTable<Einkaufsliste>();
+        private static IMobileServiceTable<Einheit> _Einheit = _MobileService.GetTable<Einheit>();
+        private static IMobileServiceTable<Produkt_Einkaufsliste> _Produkt_Einkaufsliste = _MobileService.GetTable<Produkt_Einkaufsliste>();
+        private static IMobileServiceTable<Produkt_Einkaufsliste_View> _Produkt_Einkaufsliste_View = _MobileService.GetTable<Produkt_Einkaufsliste_View>();
         public static IMobileServiceTable<Einkaufsliste> Einkaufsliste
         {
-            get
-            {
-                return _Einkaufsliste;
-            }
+            get => _Einkaufsliste;
+        }
+        public static IMobileServiceTable<Produkt_Einkaufsliste> Produkt_Einkaufsliste
+        {
+            get => _Produkt_Einkaufsliste;
+        }
+        public static IMobileServiceTable<Produkt_Einkaufsliste_View> Produkt_Einkaufsliste_View
+        {
+            get => _Produkt_Einkaufsliste_View;
+        }
+        public static IMobileServiceTable<Einheit> Einheit
+        {
+            get => _Einheit;
+        }
+        public static IMobileServiceTable<Produkt> Produkt
+        {
+            get => _Produkt;
         }
 #endif 
         #region Offline sync
@@ -64,11 +82,12 @@ namespace Einkaufslisten_Template10.Services.AzureServices
         {
             if (!_MobileService.SyncContext.IsInitialized)
             {
-                var store = new MobileServiceSQLiteStore("localstore.db");
+                var store = new MobileServiceSQLiteStore("localstore.db");      
                 store.DefineTable<Produkt>();
                 store.DefineTable<Einkaufsliste>();
                 store.DefineTable<Einheit>();
                 store.DefineTable<Produkt_Einkaufsliste>();
+                store.DefineTable<Produkt_Einkaufsliste_View>();
                 await _MobileService.SyncContext.InitializeAsync(store);
             }
             await SyncAsync();
@@ -80,6 +99,7 @@ namespace Einkaufslisten_Template10.Services.AzureServices
             await _Einkaufsliste.PullAsync(null, _Einkaufsliste.CreateQuery());
             await _Einheit.PullAsync(null, _Einheit.CreateQuery());
             await _Produkt_Einkaufsliste.PullAsync(null, _Produkt_Einkaufsliste.CreateQuery());
+            await _Produkt_Einkaufsliste.PullAsync(null, _Produkt_Einkaufsliste_View.CreateQuery());
         }
 #endif
         #endregion

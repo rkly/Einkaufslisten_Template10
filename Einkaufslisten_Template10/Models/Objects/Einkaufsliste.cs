@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Windows.Input;
+using Template10.Services.NavigationService;
+using Einkaufslisten_Template10.ViewModels;
 
 namespace Einkaufslisten_Template10.Models.Objects
 {
@@ -25,9 +28,10 @@ namespace Einkaufslisten_Template10.Models.Objects
             get => _id_user;
             set => _id_user = value;
         }
-        public override string ToString()
+        public void EinkaufsBereich()
         {
-            return base.ToString();
+            //NavigationService.Navigate(typeof(Views.Einkaufsbereich);
         }
+
     }
 }

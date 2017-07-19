@@ -35,9 +35,10 @@ namespace Einkaufslisten_Template10
             var settings = SettingsService.Instance;
             RequestedTheme = settings.AppTheme;
             CacheMaxDuration = settings.CacheMaxDuration;
-            ShowShellBackButton = settings.UseShellBackButton;    
-            
-#endregion
+            ShowShellBackButton = settings.UseShellBackButton;
+
+            #endregion
+
         }
         
         public override UIElement CreateRootElement(IActivatedEventArgs e)
