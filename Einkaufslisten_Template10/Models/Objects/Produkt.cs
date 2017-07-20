@@ -36,7 +36,7 @@ namespace Einkaufslisten_Template10.Models.Objects
         }*/
         public override string ToString()
         {
-            return base.ToString();// + " Anzahl = " + _anzahl + " Mengenbezeichnung = " + _mengenBezeichnung;
+            return name;// + " Anzahl = " + _anzahl + " Mengenbezeichnung = " + _mengenBezeichnung;
         }
     }
 }

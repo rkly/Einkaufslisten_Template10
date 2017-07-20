@@ -19,6 +19,7 @@ namespace Einkaufslisten_Template10.ViewModels
     {       
         public MobileServiceCollection<Produkt, Produkt> Produkten_Collection;
         public ObservableCollection<Einkaufsliste> Einkaufslisten_Collection;
+        public ObservableCollection<Produkt> All_Produkte;
     
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
@@ -35,9 +36,7 @@ namespace Einkaufslisten_Template10.ViewModels
                 await RefreshEinkaufslisten();
                 Views.Busy.SetBusy(false);
 
-                IOrderedEnumerable<Einkaufsliste> o = Einkaufslisten_Collection.OrderBy(einkaufliste => einkaufliste.name);
-                //Einkaufslisten_Collection = o.ToList();
-                //await RefreshEinkaufslisten();
+                
             }
             // Datensätze eintragen (test)
             /*Produkt ProduktTest = new Produkt(15, "ok")
@@ -86,6 +85,7 @@ namespace Einkaufslisten_Template10.ViewModels
                     //.Where(Einkaufsliste => Einkaufsliste.id_user == AuthService.user) im Tabelleskript
                     .OrderByDescending(einkaufslise => einkaufslise.name)
                     .ToCollectionAsync();
+                All_Produkte = await SyncService.Produkt.ToCollectionAsync();
             }
             catch (MobileServiceInvalidOperationException e)
             {
@@ -108,7 +108,19 @@ namespace Einkaufslisten_Template10.ViewModels
         }
         public async Task CreateNewElement()
         {
-            Einkaufsliste e = new Einkaufsliste("zzz",AuthService.user);
+            Einkaufsliste e = new Einkaufsliste("zzz", AuthService.user);
+            e.updatedAt = DateTime.Now;
+            Einkaufslisten_Collection.Add(e);
+            await SyncService.Einkaufsliste.InsertAsync(e);
+            //await SyncService.SyncAsync();
+            //await RefreshEinkaufslisten();
+        }
+        public async Task CreateEinkaufslistenElement(Einkaufsliste e)
+        {
+            if (e == null)
+            {
+                e = new Einkaufsliste("zzz", AuthService.user);
+            }
             e.updatedAt = DateTime.Now;
             Einkaufslisten_Collection.Add(e);
             await SyncService.Einkaufsliste.InsertAsync(e);
@@ -133,6 +145,12 @@ namespace Einkaufslisten_Template10.ViewModels
             {
                 Einkaufslisten_Collection.Add(e);
             }
+        }
+        public IEnumerable<Produkt> GetMatchingProducts(string query)
+        {
+            return All_Produkte
+                .Where(c => c.name.IndexOf(query, StringComparison.CurrentCultureIgnoreCase) > -1)
+                .OrderByDescending(c => c.name.StartsWith(query, StringComparison.CurrentCultureIgnoreCase));
         }
     }
 }
