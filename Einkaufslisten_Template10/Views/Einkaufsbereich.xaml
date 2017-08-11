@@ -38,7 +38,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBox x:Name="Suche" x:Uid="Suche" Grid.ColumnSpan="2" Text="Suche" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
+                <TextBox x:Name="Suche" x:Uid="Suche" Grid.ColumnSpan="2" PlaceholderText="Suche" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Center"/>
                 <Button x:Name="Sortierung" Grid.Column="2" FontFamily="Segoe MDL2 Assets" Content="&#xE700;" Height="30" Width="30" HorizontalAlignment="Right"/>
                 <ListView Name="Output" Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{x:Bind ViewModel.Produkt_Einkaufsliste_Collection}">
                     <!---<ListViewHeaderItem>
@@ -60,9 +60,9 @@
                                     <ColumnDefinition Width="100"/>
                                 </Grid.ColumnDefinitions>
                                 <CheckBox Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
-                                <TextBlock Grid.Column="1"  Text="{x:Bind produkt}"/>
-                                <TextBlock Grid.Column="2"  Text="{x:Bind menge}"/>
-                                <TextBlock Grid.Column="3"  Text="{x:Bind einheit}"/>
+                                <TextBlock Grid.Column="1" Text="{x:Bind produkt}"/>
+                                <TextBlock Grid.Column="2" Text="{x:Bind menge}"/>
+                                <TextBlock Grid.Column="3" Text="{x:Bind einheit}"/>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>

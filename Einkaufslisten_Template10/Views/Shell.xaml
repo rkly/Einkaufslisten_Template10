@@ -13,7 +13,6 @@
       mc:Ignorable="d">
 
     <Controls:HamburgerMenu x:Name="MyHamburgerMenu">
-
         <Controls:HamburgerMenu.PrimaryButtons>
             <!--  mainpage button  -->
             <Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:MainPage">
@@ -38,7 +37,7 @@
                 </StackPanel>
             </Controls:HamburgerButtonInfo>
             <!--- Erstellen -->
-            <Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:Erstellen">
+            <!--<Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:Erstellen">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Width="48"
                                 Height="48"                                
@@ -47,11 +46,9 @@
                                VerticalAlignment="Center"
                                Text="Erstellen" />
                 </StackPanel>
-            </Controls:HamburgerButtonInfo>
+            </Controls:HamburgerButtonInfo>-->
         </Controls:HamburgerMenu.PrimaryButtons>
-
         <Controls:HamburgerMenu.SecondaryButtons>
-            
             <!--  settingspage button  -->
             <Controls:HamburgerButtonInfo x:Name="SettingsButton"
                                           PageParameter="0"
@@ -90,7 +87,5 @@
                 </StackPanel>
             </Controls:HamburgerButtonInfo>
         </Controls:HamburgerMenu.SecondaryButtons>
-
     </Controls:HamburgerMenu>
-
 </Page>

@@ -111,6 +111,7 @@
     <Compile Include="Services\SettingsServices\SettingsService.cs" />
     <Compile Include="ViewModels\EinkaufsbereichViewModel.cs" />
     <Compile Include="ViewModels\EinkaufslistenViewModel.cs" />
+    <Compile Include="ViewModels\ErstellenViewModel.cs" />
     <Compile Include="ViewModels\MainPageViewModel.cs" />
     <Compile Include="ViewModels\DetailPageViewModel.cs" />
     <Compile Include="ViewModels\SettingsPageViewModel.cs" />

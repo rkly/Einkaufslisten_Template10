@@ -14,5 +14,9 @@ namespace Einkaufslisten_Template10.Models.Objects
         public Einheit(string name) : base(name)
         {
         }
+        public override string ToString()
+        {
+            return name;
+        }
     }
 }

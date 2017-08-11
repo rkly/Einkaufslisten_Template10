@@ -61,11 +61,11 @@ namespace Einkaufslisten_Template10.ViewModels
             await SyncService.Produkt.InsertAsync(new Produkt("Milch"));
             await SyncService.Produkt.InsertAsync(new Produkt("Reis"));*/
 
-            /*await SyncService.Produkt_Einkaufsliste.InsertAsync(new Produkt_Einkaufsliste("02efe8f129d44cf69b27fd33c64c86b6", "1549890959e74bc3840028888fb063bc", "f7f891c859db4000a2fe5b2c6366530e", 2));
-            await SyncService.Produkt_Einkaufsliste.InsertAsync(new Produkt_Einkaufsliste("02efe8f129d44cf69b27fd33c64c86b6", "741d5cf8a8254cbab96c7641a0ccd01c", "51ef44b1af074afa852efa2031bc072e", 1));
-            await SyncService.Produkt_Einkaufsliste.InsertAsync(new Produkt_Einkaufsliste("02efe8f129d44cf69b27fd33c64c86b6", "7a494911eb964ff29d660727d709eb45", "51ef44b1af074afa852efa2031bc072e", 5));
-            await SyncService.Produkt_Einkaufsliste.InsertAsync(new Produkt_Einkaufsliste("02efe8f129d44cf69b27fd33c64c86b6", "f959ec70245349adb51ea289bc3d3046", "51ef44b1af074afa852efa2031bc072e", 2));
-            await SyncService.Produkt_Einkaufsliste.InsertAsync(new Produkt_Einkaufsliste("02efe8f129d44cf69b27fd33c64c86b6", "f959ec70245349adb51ea289bc3d3046", "51ef44b1af074afa852efa2031bc072e", 2));*/
+            /*await SyncService.Produkt_Einkaufsliste.InsertAsync(new Produkt_Einkaufsliste("b9142bb2-4bd1-4658-8483-44594bab3de7", "1549890959e74bc3840028888fb063bc", "f7f891c859db4000a2fe5b2c6366530e", 2));
+            await SyncService.Produkt_Einkaufsliste.InsertAsync(new Produkt_Einkaufsliste("b9142bb2-4bd1-4658-8483-44594bab3de7", "741d5cf8a8254cbab96c7641a0ccd01c", "51ef44b1af074afa852efa2031bc072e", 1));
+            await SyncService.Produkt_Einkaufsliste.InsertAsync(new Produkt_Einkaufsliste("b9142bb2-4bd1-4658-8483-44594bab3de7", "7a494911eb964ff29d660727d709eb45", "51ef44b1af074afa852efa2031bc072e", 5));
+            await SyncService.Produkt_Einkaufsliste.InsertAsync(new Produkt_Einkaufsliste("b9142bb2-4bd1-4658-8483-44594bab3de7", "f959ec70245349adb51ea289bc3d3046", "51ef44b1af074afa852efa2031bc072e", 2));
+            await SyncService.Produkt_Einkaufsliste.InsertAsync(new Produkt_Einkaufsliste("b9142bb2-4bd1-4658-8483-44594bab3de7", "f959ec70245349adb51ea289bc3d3046", "51ef44b1af074afa852efa2031bc072e", 2));*/
 
 #if OFFLINE_SYNC_ENABLED
             await SyncService.MobileService.SyncContext.PushAsync(); // offline sync + Push für die neuen Listen anpassen!
@@ -96,26 +96,27 @@ namespace Einkaufslisten_Template10.ViewModels
                 await new MessageDialog(exception.Message, "Error loading items").ShowAsync();
             }
         }
-        public void CreateButtonClicked()
+        /*public void CreateButtonClicked()
         {
             Einkaufsliste e = new Einkaufsliste("");
             GoEinkaufsbereich(e);
-        }
-        public void GoEinkaufsbereich(Einkaufsliste e)
+        }*/
+        /*public void GoEinkaufsbereich(Einkaufsliste e)
         {
             SessionState.Add("einkaufsliste", e);
             NavigationService.Navigate(typeof(Views.Einkaufsbereich), "einkaufsliste");
-        }
-        public async Task CreateNewElement()
+        }*/
+        public void NeueListe()
         {
-            Einkaufsliste e = new Einkaufsliste("zzz", AuthService.user);
-            e.updatedAt = DateTime.Now;
-            Einkaufslisten_Collection.Add(e);
-            await SyncService.Einkaufsliste.InsertAsync(e);
+            NavigationService.Navigate(typeof(Views.Erstellen));
+            //Einkaufsliste e = new Einkaufsliste("zzz", AuthService.user);
+            //e.updatedAt = DateTime.Now;
+            //inkaufslisten_Collection.Add(e);
+            //await SyncService.Einkaufsliste.InsertAsync(e);
             //await SyncService.SyncAsync();
             //await RefreshEinkaufslisten();
         }
-        public async Task CreateEinkaufslistenElement(Einkaufsliste e)
+        /*public async Task CreateEinkaufslistenElement(Einkaufsliste e)
         {
             if (e == null)
             {
@@ -126,7 +127,7 @@ namespace Einkaufslisten_Template10.ViewModels
             await SyncService.Einkaufsliste.InsertAsync(e);
             //await SyncService.SyncAsync();
             //await RefreshEinkaufslisten();
-        }
+        }*/
         public void EinkaufsBereich(object sender, ItemClickEventArgs e)
         {
             Einkaufsliste clickedItem = e.ClickedItem as Einkaufsliste;
@@ -145,12 +146,6 @@ namespace Einkaufslisten_Template10.ViewModels
             {
                 Einkaufslisten_Collection.Add(e);
             }
-        }
-        public IEnumerable<Produkt> GetMatchingProducts(string query)
-        {
-            return All_Produkte
-                .Where(c => c.name.IndexOf(query, StringComparison.CurrentCultureIgnoreCase) > -1)
-                .OrderByDescending(c => c.name.StartsWith(query, StringComparison.CurrentCultureIgnoreCase));
         }
     }
 }
