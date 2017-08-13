@@ -65,7 +65,7 @@ namespace Einkaufslisten_Template10.ViewModels
         public void ChangeStatusFromItem(object sender, ItemClickEventArgs e)
         {
             Produkt_Einkaufsliste_View_Einkaufsbereich clickedItem = e.ClickedItem as Produkt_Einkaufsliste_View_Einkaufsbereich;
-            clickedItem.InCard = true;
+            clickedItem.InCard = !clickedItem.InCard;
             Console.WriteLine(clickedItem.ToString());
             createNewList();
             //Produkt_Einkaufsliste_View_Einkaufsbereich oldElement = (Produkt_Einkaufsliste_View_Einkaufsbereich) Produkt_Einkaufsliste_Collection.Select(item => item.produkt.Equals(clickedItem.produkt));
