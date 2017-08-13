@@ -13,6 +13,12 @@ namespace Einkaufslisten_Template10.Models.Objects
         public Produkt_Einkaufsliste_View() : base()
         {
         }
+        public Produkt_Einkaufsliste_View(String produkt, String einheit, UInt16 menge)
+        {
+            _einheit = einheit;
+            _produkt = produkt;
+            _menge = menge;
+        }
         public Produkt_Einkaufsliste_View(String id_einkaufsliste, String produkt, String einheit, UInt16 menge)
         {
             _id_einkaufsliste = id_einkaufsliste;

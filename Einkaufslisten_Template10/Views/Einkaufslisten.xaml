@@ -17,7 +17,7 @@
     </Page.DataContext>
     <Page.BottomAppBar>
         <CommandBar>
-            <AppBarButton x:Name="AddItemBtn" Label="Add Item" Icon="Add" Click="{x:Bind ViewModel.CreateNewElement}" />
+            <AppBarButton x:Name="neueListe" Label="Neue Liste" Icon="Add" Click="{x:Bind ViewModel.NeueListe}" />
             <AppBarButton x:Name="sortDate" Label="Sortiere nach Datum" Icon="Sort" Click="{x:Bind ViewModel.SortByDate}" />
         </CommandBar>
     </Page.BottomAppBar>
@@ -66,10 +66,6 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <AutoSuggestBox  PlaceholderText="Search" Width="200"
-                TextChanged="AutoSuggestBox_TextChanged"
-                QuerySubmitted="AutoSuggestBox_QuerySubmitted"
-                SuggestionChosen="AutoSuggestBox_SuggestionChosen"/>
             </Grid>
 
         </ScrollViewer>
