@@ -28,5 +28,6 @@ namespace Einkaufslisten_Template10.Views
             InitializeComponent();
             NavigationCacheMode = NavigationCacheMode.Enabled;
         }
+
     }
 }

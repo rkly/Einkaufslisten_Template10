@@ -12,7 +12,7 @@ using Einkaufslisten_Template10.Services.AzureServices;
 using Microsoft.WindowsAzure.MobileServices;
 using System.Diagnostics;
 using Windows.UI.Xaml.Controls;
-
+using Einkaufslisten_Template10.Models.Enum;
 namespace Einkaufslisten_Template10.ViewModels
 {
     public class EinkaufslistenViewModel : ViewModelBase 
@@ -20,23 +20,31 @@ namespace Einkaufslisten_Template10.ViewModels
         public MobileServiceCollection<Produkt, Produkt> Produkten_Collection;
         public ObservableCollection<Einkaufsliste> Einkaufslisten_Collection;
         public ObservableCollection<Produkt> All_Produkte;
+        public int targetView;
     
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
-            if (await AuthService.AuthenticateAsync())
+
+            if (parameter != null)
             {
-#if DEBUG 
-                Console.WriteLine(AuthService.user.ToString());
+                targetView = (int) parameter;
+
+
+
+                if (await AuthService.AuthenticateAsync())
+                {
+#if DEBUG
+                    Console.WriteLine(AuthService.user.ToString());
 #endif
 #if OFFLINE_SYNC_ENABLED
                 await SyncService.InitLocalStoreAsync(); // offline sync
 #endif
 
-                Views.Busy.SetBusy(true, "Bitte warten. Daten werden geladen");
-                await RefreshEinkaufslisten();
-                Views.Busy.SetBusy(false);
+                    Views.Busy.SetBusy(true, "Bitte warten. Daten werden geladen");
+                    await RefreshEinkaufslisten();
+                    Views.Busy.SetBusy(false);
 
-                
+                }
             }
             // Datensätze eintragen (test)
             /*Produkt ProduktTest = new Produkt(15, "ok")
@@ -74,6 +82,7 @@ namespace Einkaufslisten_Template10.ViewModels
         }
         public async Task RefreshEinkaufslisten()
         {
+
             MobileServiceInvalidOperationException exception = null;
             try
             {
@@ -103,12 +112,20 @@ namespace Einkaufslisten_Template10.ViewModels
         }
         public void GoEinkaufsbereich(Einkaufsliste e)
         {
+
             SessionState.Add("einkaufsliste", e);
-            NavigationService.Navigate(typeof(Views.Einkaufsbereich), "einkaufsliste");
+            if (targetView.Equals(TargetView.EINKAUFEN))
+            {
+                NavigationService.Navigate(typeof(Views.Einkaufsbereich), "einkaufsliste");
+            } else
+            {
+                NavigationService.Navigate(typeof(Views.Erstellen), "einkaufsliste");
+            }
+            
         }
         public async Task CreateNewElement()
         {
-            Einkaufsliste e = new Einkaufsliste("zzz", AuthService.user);
+            Einkaufsliste e = new Einkaufsliste("TestListeMitEinkaufsdaten", AuthService.user);
             e.updatedAt = DateTime.Now;
             Einkaufslisten_Collection.Add(e);
             await SyncService.Einkaufsliste.InsertAsync(e);
@@ -127,11 +144,18 @@ namespace Einkaufslisten_Template10.ViewModels
             //await SyncService.SyncAsync();
             //await RefreshEinkaufslisten();
         }
-        public void EinkaufsBereich(object sender, ItemClickEventArgs e)
+        public void GoToNextView(object sender, ItemClickEventArgs e)
         {
             Einkaufsliste clickedItem = e.ClickedItem as Einkaufsliste;
             String id_einkaufsliste_clicked = clickedItem.id;
-            NavigationService.Navigate(typeof(Views.Einkaufsbereich), id_einkaufsliste_clicked);
+            if (targetView == (int) TargetView.EINKAUFEN)
+            {
+                NavigationService.Navigate(typeof(Views.Einkaufsbereich), id_einkaufsliste_clicked);
+            }
+            else
+            {
+                NavigationService.Navigate(typeof(Views.Erstellen), id_einkaufsliste_clicked);
+            }
         }
         public void OrderListZToA()
         {

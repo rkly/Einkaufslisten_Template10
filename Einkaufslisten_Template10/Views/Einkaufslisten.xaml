@@ -48,7 +48,7 @@
                           ItemsSource="{x:Bind ViewModel.Einkaufslisten_Collection}"
                           IsItemClickEnabled="True"
                           SelectionMode="None"
-                          ItemClick="{x:Bind ViewModel.EinkaufsBereich}"
+                          ItemClick="{x:Bind ViewModel.GoToNextView}"
                           HorizontalContentAlignment="Center"
                           VerticalContentAlignment="Center"
                           HorizontalAlignment="Left"

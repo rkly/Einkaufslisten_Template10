@@ -8,6 +8,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:Einkaufslisten_Template10.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:enum="using:Einkaufslisten_Template10.Models.Enum"
       xmlns:views="using:Einkaufslisten_Template10.Views"
       Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
       mc:Ignorable="d">
@@ -16,7 +17,7 @@
 
         <Controls:HamburgerMenu.PrimaryButtons>
             <!--  mainpage button  -->
-            <Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:MainPage">
+            <Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:MainPage" >
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Width="48"
                                 Height="48"
@@ -27,25 +28,25 @@
                 </StackPanel>
             </Controls:HamburgerButtonInfo>
             <!--- Einkaufslisten -->
-            <Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:Einkaufslisten">
+            <Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:Einkaufslisten" PageParameter="{x:Bind enum:TargetView.LISTE}">
                 <StackPanel Orientation="Horizontal">
                     <SymbolIcon Width="48"
                                 Height="48"                                
-                                Symbol="Bullets" />
-                    <TextBlock Margin="12,0,0,0"
-                               VerticalAlignment="Center"
-                               Text="Einkaufslisten" />
-                </StackPanel>
-            </Controls:HamburgerButtonInfo>
-            <!--- Erstellen -->
-            <Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:Erstellen">
-                <StackPanel Orientation="Horizontal">
-                    <SymbolIcon Width="48"
-                                Height="48"                                
-                                Symbol="Add" />
+                                Symbol="List" />
                     <TextBlock Margin="12,0,0,0"
                                VerticalAlignment="Center"
                                Text="Erstellen" />
+                </StackPanel>
+            </Controls:HamburgerButtonInfo>
+            <!--- Erstellen -->
+            <Controls:HamburgerButtonInfo  ClearHistory="True" PageParameter="{x:Bind enum:TargetView.EINKAUFEN}" PageType="views:Einkaufslisten" >
+                <StackPanel Orientation="Horizontal">
+                    <SymbolIcon Width="48"
+                                Height="48"                                
+                                Symbol="Shop"/>
+                    <TextBlock Margin="12,0,0,0"
+                               VerticalAlignment="Center"
+                               Text="Einkaufen" />
                 </StackPanel>
             </Controls:HamburgerButtonInfo>
         </Controls:HamburgerMenu.PrimaryButtons>

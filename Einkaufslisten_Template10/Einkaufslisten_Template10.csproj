@@ -98,6 +98,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Enum\TargetView.cs" />
     <Compile Include="Models\Objects\BaseObject.cs" />
     <Compile Include="Models\Objects\Einheit.cs" />
     <Compile Include="Models\Objects\Einkaufsliste.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="Models\Objects\Produkt.cs" />
     <Compile Include="Models\Objects\Produkt_Einkaufsliste.cs" />
     <Compile Include="Models\Objects\Produkt_Einkaufsliste_View.cs" />
+    <Compile Include="Models\Objects\Produkt_Einkaufsliste_View_Einkaufsbereich.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AzureServices\AuthService.cs" />
     <Compile Include="Services\AzureServices\SyncService.cs" />
