@@ -14,6 +14,7 @@ using Einkaufslisten_Template10.Views;
 using Windows.UI.Xaml;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace Einkaufslisten_Template10.ViewModels
 {
@@ -30,6 +31,7 @@ namespace Einkaufslisten_Template10.ViewModels
         private UInt16 _menge = 0;
         private String _name_produkt = String.Empty;
         private String _name_einheit = String.Empty;
+        public ICommand IDeleteProdukt { get; set; }
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
             await ProduktenZiehen();
@@ -190,10 +192,12 @@ namespace Einkaufslisten_Template10.ViewModels
             //db
             Produkt_Einkaufsliste NeuesProdukt = new Produkt_Einkaufsliste(id_produkt, id_einheit, menge);
             Temp_Produkten_Collection.Add(NeuesProdukt);
+            IDeleteProdukt = new DelegateCommand<Produkt_Einkaufsliste>(DeleteProdukt);
+                //new RelayCommand<Produkt_Einkaufsliste>(DeleteProdukt);
         }
-        public void DeleteProdukt(object sender, RoutedEventArgs e)
+        private void DeleteProdukt(Produkt_Einkaufsliste NeuesProdukt)
         {
-
+            
         }
         public async Task ListeSpeichern(object sender, RoutedEventArgs e)
         {
