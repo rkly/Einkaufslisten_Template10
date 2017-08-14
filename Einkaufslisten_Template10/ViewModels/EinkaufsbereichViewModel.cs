@@ -42,7 +42,7 @@ namespace Einkaufslisten_Template10.ViewModels
                 /// </summary> 
                 var parameters = new Dictionary<string, string>();
                 parameters.Add("id_einkaufsliste", id_einkaufsliste.ToString());
-                ObservableCollection<Produkt_Einkaufsliste_View> PList;
+                ObservableCollection<Produkt_Einkaufsliste_View> PList = new ObservableCollection<Produkt_Einkaufsliste_View>();
                 PList = await SyncService.Produkt_Einkaufsliste_View
                     .WithParameters(parameters)
                     .OrderBy(produkt => produkt.produkt)

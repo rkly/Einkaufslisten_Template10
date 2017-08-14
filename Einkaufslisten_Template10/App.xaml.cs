@@ -15,6 +15,7 @@ using Einkaufslisten_Template10.Models.Objects;
 using Windows.UI.Popups;
 using Einkaufslisten_Template10.Services.AzureServices;
 using System.Diagnostics;
+using Einkaufslisten_Template10.Models.Enum;
 
 namespace Einkaufslisten_Template10
 {
@@ -61,7 +62,7 @@ namespace Einkaufslisten_Template10
             {
                 ProtocolActivatedEventArgs protocolArgs = args as ProtocolActivatedEventArgs;
                 SyncService.MobileService.ResumeWithURL(protocolArgs.Uri);
-                await NavigationService.NavigateAsync(typeof(Views.Einkaufslisten));
+                await NavigationService.NavigateAsync(typeof(Views.Einkaufslisten), TargetView.LISTE);
             }
             else
             {

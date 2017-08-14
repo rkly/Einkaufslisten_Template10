@@ -50,9 +50,7 @@
                 </StackPanel>
             </Controls:HamburgerButtonInfo>
         </Controls:HamburgerMenu.PrimaryButtons>
-
         <Controls:HamburgerMenu.SecondaryButtons>
-            
             <!--  settingspage button  -->
             <Controls:HamburgerButtonInfo x:Name="SettingsButton"
                                           PageParameter="0"
@@ -91,7 +89,5 @@
                 </StackPanel>
             </Controls:HamburgerButtonInfo>
         </Controls:HamburgerMenu.SecondaryButtons>
-
     </Controls:HamburgerMenu>
-
 </Page>
