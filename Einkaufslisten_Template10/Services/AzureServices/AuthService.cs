@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.WindowsAzure.MobileServices;
-using Einkaufslisten_Template10.Services.AzureServices;
 using Windows.UI.Popups;
-using System.Diagnostics;
+using System.Net.Http;
+using Einkaufslisten_Template10.Models.Objects;
 
 namespace Einkaufslisten_Template10.Services.AzureServices
 {
@@ -15,16 +12,9 @@ namespace Einkaufslisten_Template10.Services.AzureServices
         /// <summary>
         /// Define a member variable for storing the signed-in user
         /// </summary>
-        private static MobileServiceUser _user;
-        public static String user
-        {
-            get
-            {
-                return _user.UserId;
-            }
-        }
+        private static MobileServiceUser_Erweitert _user;
         /// <summary>
-        /// Define a method that performs the authentication process using Azure Active Directory sign-in. 
+        /// Define a method that performs the authentication process using Facebook sign-in. 
         /// </summary>
         public static async Task<bool> AuthenticateAsync()
         {
@@ -39,10 +29,9 @@ namespace Einkaufslisten_Template10.Services.AzureServices
                 try
                 {
                     var provider = MobileServiceAuthenticationProvider.Facebook;
-                    //bool singleSignOn = true;
                     string uriScheme = "einkaufslisten-scheme";
-                    _user = await SyncService.MobileService.LoginAsync(provider, uriScheme);
-                    message = string.Format("Sie sind eingeloggt - {0}", _user.UserId);
+                    _user = await AuthenticateFacebook(provider, uriScheme);
+                    message = string.Format("Sie sind eingeloggt - {0} - {1} - {2} ", _user.Message.id, _user.Message.name, _user.Message.email);
                     success = true;
                 }
                 catch (InvalidOperationException)
@@ -54,6 +43,29 @@ namespace Einkaufslisten_Template10.Services.AzureServices
                 await dialog.ShowAsync();
             }
             return success;
+        }
+        private static async Task<MobileServiceUser_Erweitert> GetUserData()
+        {
+            return await SyncService.MobileService.InvokeApiAsync<MobileServiceUser_Erweitert>(
+                    "getextrauserinfo",
+                    HttpMethod.Get,
+                    null);
+        }
+        public static async Task<MobileServiceUser_Erweitert> AuthenticateFacebook(MobileServiceAuthenticationProvider provider, String uriScheme)
+        {
+            await Authenticate(provider, uriScheme);
+            return await GetUserData();
+        }
+        private static async Task<MobileServiceUser> Authenticate(MobileServiceAuthenticationProvider provider, String uriScheme)
+        {
+            try
+            {
+                return await SyncService.MobileService.LoginAsync(provider, uriScheme);
+            }
+            catch (Exception)
+            {
+                return null;
+            }
         }
     }
 }

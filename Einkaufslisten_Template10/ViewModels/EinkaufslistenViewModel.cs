@@ -26,7 +26,7 @@ namespace Einkaufslisten_Template10.ViewModels
             {
                 targetView = (Byte)parameter;
 #if DEBUG
-                Debug.WriteLine(AuthService.user.ToString());
+                //Debug.WriteLine(AuthService.user.ToString());
 #endif
 #if OFFLINE_SYNC_ENABLED
             await SyncService.InitLocalStoreAsync(); // offline sync

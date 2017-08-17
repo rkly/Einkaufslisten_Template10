@@ -36,7 +36,7 @@ namespace Einkaufslisten_Template10.ViewModels
         {
             await ProduktenZiehen();
             await EinheitenZiehen();
-            _NeueEinkaufsliste = new Einkaufsliste("Liste", AuthService.user);
+            //_NeueEinkaufsliste = new Einkaufsliste("Liste", AuthService.user);
         }
         /*veraltet public override async Task OnNavigatedFromAsync(IDictionary<string, object> suspensionState, bool suspending)
         {

@@ -107,6 +107,7 @@
     <Compile Include="Models\Objects\Produkt_Einkaufsliste.cs" />
     <Compile Include="Models\Objects\Produkt_Einkaufsliste_View.cs" />
     <Compile Include="Models\Objects\Produkt_Einkaufsliste_View_Einkaufsbereich.cs" />
+    <Compile Include="Models\Objects\MobileServiceUser_Erweitert.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AzureServices\AuthService.cs" />
     <Compile Include="Services\AzureServices\SyncService.cs" />
@@ -219,7 +220,7 @@
       <Version>4.0.1</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.UniversalWindowsPlatform">
-      <Version>5.3.3</Version>
+      <Version>5.3.4</Version>
     </PackageReference>
     <PackageReference Include="Template10">
       <Version>1.1.12</Version>
