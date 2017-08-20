@@ -22,12 +22,9 @@ namespace Einkaufslisten_Template10.ViewModels
         public Byte targetView;
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {                  
-            if (await AuthService.AuthenticateAsync() && parameter != null)
+            if (AuthService.eingeloggt && parameter != null)
             {
                 targetView = (Byte)parameter;
-#if DEBUG
-                //Debug.WriteLine(AuthService.user.ToString());
-#endif
 #if OFFLINE_SYNC_ENABLED
             await SyncService.InitLocalStoreAsync(); // offline sync
 #endif

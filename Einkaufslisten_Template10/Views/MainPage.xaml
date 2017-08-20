@@ -92,7 +92,8 @@
                    RelativePanel.AlignLeftWith="parameterResizer"
                    RelativePanel.Below="parameterResizer"
                    Text="Current Visual State" />
-       
+        <Button Click="{x:Bind ViewModel.Einloggen}" Content="Login"     
+                RelativePanel.Below="stateTextBox" />
     </RelativePanel>
     <Page.BottomAppBar>
         <CommandBar>

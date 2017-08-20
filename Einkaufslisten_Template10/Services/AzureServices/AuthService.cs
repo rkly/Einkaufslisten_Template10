@@ -13,35 +13,38 @@ namespace Einkaufslisten_Template10.Services.AzureServices
         /// Define a member variable for storing the signed-in user
         /// </summary>
         private static MobileServiceUser_Erweitert _user;
+        public static Boolean eingeloggt = false;
         /// <summary>
         /// Define a method that performs the authentication process using Facebook sign-in. 
         /// </summary>
         public static async Task<bool> AuthenticateAsync()
         {
-            bool success = false;
+            Boolean success = false;
+            String message;
             if (_user != null)
             {
                 success = true;
             }
             else
-            {
-                string message;              
+            {                
                 try
                 {
                     var provider = MobileServiceAuthenticationProvider.Facebook;
-                    string uriScheme = "einkaufslisten-scheme";
+                    String uriScheme = "einkaufslisten-scheme";
                     _user = await AuthenticateFacebook(provider, uriScheme);
-                    message = string.Format("Sie sind eingeloggt - {0} - {1} - {2} ", _user.Message.id, _user.Message.name, _user.Message.email);
                     success = true;
+                    eingeloggt = true;
                 }
                 catch (InvalidOperationException)
                 {
                     message = "You must log in. Login Required";
-                }
-                var dialog = new MessageDialog(message);
-                dialog.Commands.Add(new UICommand("OK"));
-                await dialog.ShowAsync();
+                }   
             }
+            message = string.Format("Sie sind eingeloggt - {0} - {1} - {2} ", _user.Message.id, _user.Message.name, _user.Message.email);          
+            var dialog = new MessageDialog(message);
+            dialog.Commands.Add(new UICommand("OK"));
+            Views.Busy.SetBusy(false);
+            await dialog.ShowAsync();
             return success;
         }
         private static async Task<MobileServiceUser_Erweitert> GetUserData()

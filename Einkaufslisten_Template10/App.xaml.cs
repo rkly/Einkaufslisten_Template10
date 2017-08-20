@@ -29,18 +29,14 @@ namespace Einkaufslisten_Template10
         {
             InitializeComponent();
             SplashFactory = (e) => new Views.Splash(e);
-
 #region app settings
-
             // some settings must be set in app.constructor
             var settings = SettingsService.Instance;
             RequestedTheme = settings.AppTheme;
             CacheMaxDuration = settings.CacheMaxDuration;
             ShowShellBackButton = settings.UseShellBackButton;
-
 #endregion
-        }
-        
+        }      
         public override UIElement CreateRootElement(IActivatedEventArgs e)
         {
             var service = NavigationServiceFactory(BackButton.Attach, ExistingContent.Exclude);
@@ -51,7 +47,6 @@ namespace Einkaufslisten_Template10
                 ModalContent = new Views.Busy(),
             };
         }
-
         public override async Task OnStartAsync(StartKind startKind, IActivatedEventArgs args)
         {
             // TODO: add your long-running task here
@@ -62,12 +57,8 @@ namespace Einkaufslisten_Template10
             {
                 ProtocolActivatedEventArgs protocolArgs = args as ProtocolActivatedEventArgs;
                 SyncService.MobileService.ResumeWithURL(protocolArgs.Uri);
-                await NavigationService.NavigateAsync(typeof(Views.Einkaufslisten), TargetView.LISTE);
             }
-            else
-            {
-                await NavigationService.NavigateAsync(typeof(Views.MainPage));
-            }     
+            await NavigationService.NavigateAsync(typeof(Views.MainPage));
         }
     }
 }

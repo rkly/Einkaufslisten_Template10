@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Template10.Services.NavigationService;
 using Windows.UI.Xaml.Navigation;
+using Einkaufslisten_Template10.Services.AzureServices;
 
 namespace Einkaufslisten_Template10.ViewModels
 {
@@ -57,5 +58,10 @@ namespace Einkaufslisten_Template10.ViewModels
         public void GotoAbout() =>
             NavigationService.Navigate(typeof(Views.SettingsPage), 2);
 
+        public async Task Einloggen()
+        {
+            Views.Busy.SetBusy(true, "Bitte warten");
+            await AuthService.AuthenticateAsync();     
+        }          
     }
 }
