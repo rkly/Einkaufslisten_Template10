@@ -22,7 +22,7 @@
                              RelativePanel.AlignLeftWithPanel="True"
                              RelativePanel.AlignRightWithPanel="True"
                              RelativePanel.AlignTopWithPanel="True"
-                             Text="Neue Liste erstellen" />
+                             Text="{x:Bind ViewModel.erstellen_titel}" />
         <!--  content  -->
         <ScrollViewer Padding="5,5,5,5" RelativePanel.AlignBottomWithPanel="True"
                     RelativePanel.AlignLeftWithPanel="True"
@@ -41,7 +41,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="30"/>
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Row="0" Grid.ColumnSpan="4" PlaceholderText="Listename eingeben" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextChanged="{x:Bind ViewModel.GetName}"/>
+                <TextBox Grid.Row="0" Grid.ColumnSpan="4" PlaceholderText="Listename eingeben" Text="{x:Bind ViewModel.name}" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextChanged="{x:Bind ViewModel.GetName}"/>
                 <Grid Grid.Row="1" Grid.ColumnSpan="4">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="30"/>

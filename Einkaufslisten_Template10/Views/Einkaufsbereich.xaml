@@ -21,7 +21,7 @@
         <controls:PageHeader x:Name="pageHeader" Frame="{x:Bind Frame}"
                     RelativePanel.AlignLeftWithPanel="True"
                     RelativePanel.AlignRightWithPanel="True"
-                    RelativePanel.AlignTopWithPanel="True" Text="Einkaufsbereich"/>
+                    RelativePanel.AlignTopWithPanel="True" Text="{x:Bind ViewModel.einkaufsbereich_titel}"/>
         <!--  content  -->
         <ScrollViewer Padding="5,5,5,5" RelativePanel.AlignBottomWithPanel="True"
                     RelativePanel.AlignLeftWithPanel="True"

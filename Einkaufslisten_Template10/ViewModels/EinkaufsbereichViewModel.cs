@@ -17,14 +17,15 @@ namespace Einkaufslisten_Template10.ViewModels
     public class EinkaufsbereichViewModel : ViewModelBase
     {
         public ObservableCollection<Produkt_Einkaufsliste_View_Einkaufsbereich> Produkt_Einkaufsliste_Collection = new ObservableCollection<Produkt_Einkaufsliste_View_Einkaufsbereich>();
-
-
-        public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
+        public String einkaufsbereich_titel = String.Empty;
+        public override async Task OnNavigatedToAsync(Object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
-            if (await AuthService.AuthenticateAsync())
+            if (AuthService.eingeloggt)
             {
+                Einkaufsliste parameter_casted = parameter as Einkaufsliste;
                 Views.Busy.SetBusy(true, "Bitte warten. Daten werden geladen");
-                await RefreshEinkaufsbereich(parameter);
+                einkaufsbereich_titel = parameter_casted.name;
+                await RefreshEinkaufsbereich(parameter_casted.id);
                 Views.Busy.SetBusy(false);
             }
             //await SyncService.Produkt_Einkaufsliste_View.InsertAsync(new Produkt_Einkaufsliste_View("02efe8f129d44cf69b27fd33c64c86b6", "Milch_string", "Liter_string", 2));
@@ -32,7 +33,7 @@ namespace Einkaufslisten_Template10.ViewModels
             await SyncService.MobileService.SyncContext.PushAsync(); // offline sync + Push für die neuen Listen anpassen!
 #endif
         }
-        public async Task RefreshEinkaufsbereich(object id_einkaufsliste)
+        public async Task RefreshEinkaufsbereich(String id_einkaufsliste)
         {
             MobileServiceInvalidOperationException exception = null;
             try

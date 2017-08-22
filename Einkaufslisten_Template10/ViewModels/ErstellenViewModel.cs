@@ -15,6 +15,7 @@ using Windows.UI.Xaml;
 using System.Diagnostics;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
+using Einkaufslisten_Template10.Models.Enum;
 
 namespace Einkaufslisten_Template10.ViewModels
 {
@@ -23,20 +24,58 @@ namespace Einkaufslisten_Template10.ViewModels
         public ObservableCollection<Produkt> Produkt_Collection;
         public ObservableCollection<Einheit> Einheit_Collection;
         public ObservableCollection<Produkt_Einkaufsliste_View> Produkt_Einkaufsliste_Erstellen_Collection = new ObservableCollection<Produkt_Einkaufsliste_View>();
-        private ObservableCollection<Produkt_Einkaufsliste> Temp_Produkten_Collection = new ObservableCollection<Produkt_Einkaufsliste>();
-        private Einkaufsliste _NeueEinkaufsliste;
-        private String name = String.Empty;
+        private ObservableCollection<Produkt_Einkaufsliste> Produkt_Einkaufsliste_Collection = new ObservableCollection<Produkt_Einkaufsliste>();
+        private Einkaufsliste _Einkaufsliste = new Einkaufsliste();   
         private String _id_produkt = String.Empty;
         private String _id_einheit = String.Empty;
         private UInt16 _menge = 0;
         private String _name_produkt = String.Empty;
         private String _name_einheit = String.Empty;
+        public String name = String.Empty;
+        public String erstellen_titel = "Neue Liste erstellen";
         public ICommand IDeleteProdukt { get; set; }
-        public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> state)
+        public override async Task OnNavigatedToAsync(Object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
             await ProduktenZiehen();
-            await EinheitenZiehen();
-            //_NeueEinkaufsliste = new Einkaufsliste("Liste", AuthService.user);
+            await EinheitenZiehen();         
+            if (!parameter.Equals(null))
+            {
+                Einkaufsliste parameter_casted = parameter as Einkaufsliste;
+                erstellen_titel = "Liste bearbeiten";
+                name = parameter_casted.name;
+                _Einkaufsliste.name = name;
+                await ListeBearbeiten(parameter_casted.id);
+            }   
+        }
+        public async Task ListeBearbeiten(String id_einkaufsliste)
+        {
+            MobileServiceInvalidOperationException exception = null;
+            try
+            {
+                _Einkaufsliste.id = id_einkaufsliste;
+                /// <summary>
+                /// This code refreshes the entries in the list view by querying the Produkt_Einkaufsliste table
+                /// </summary> 
+                var parameters = new Dictionary<string, string>();
+                parameters.Add("id_einkaufsliste", id_einkaufsliste.ToString());
+                //ObservableCollection<Produkt_Einkaufsliste_View> PList = new ObservableCollection<Produkt_Einkaufsliste_View>();
+                Produkt_Einkaufsliste_Erstellen_Collection = await SyncService.Produkt_Einkaufsliste_View
+                    .WithParameters(parameters)
+                    .OrderBy(produkt => produkt.produkt)
+                    .ToCollectionAsync();
+                /*foreach (Produkt_Einkaufsliste_View produkt in PList)
+                {
+                    Produkt_Einkaufsliste_Erstellen_Collection.Add(new Produkt_Einkaufsliste_View(produkt.id_einkaufsliste, produkt.produkt, produkt.einheit, produkt.menge));
+                }*/
+            }
+            catch (MobileServiceInvalidOperationException e)
+            {
+                exception = e;
+            }
+            if (exception != null)
+            {
+                await new MessageDialog(exception.Message, "Error loading items").ShowAsync();
+            }
         }
         /*veraltet public override async Task OnNavigatedFromAsync(IDictionary<string, object> suspensionState, bool suspending)
         {
@@ -122,7 +161,7 @@ namespace Einkaufslisten_Template10.ViewModels
         {
             TextBox textBoxName = sender as TextBox;
             name = textBoxName.Text;
-            _NeueEinkaufsliste.name = name;
+            _Einkaufsliste.name = name;
         }
         public void ProduktBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
@@ -191,7 +230,7 @@ namespace Einkaufslisten_Template10.ViewModels
             Produkt_Einkaufsliste_Erstellen_Collection.Add(NeuesProduktView);
             //db
             Produkt_Einkaufsliste NeuesProdukt = new Produkt_Einkaufsliste(id_produkt, id_einheit, menge);
-            Temp_Produkten_Collection.Add(NeuesProdukt);
+            Produkt_Einkaufsliste_Collection.Add(NeuesProdukt);
             IDeleteProdukt = new DelegateCommand<Produkt_Einkaufsliste>(DeleteProdukt);
                 //new RelayCommand<Produkt_Einkaufsliste>(DeleteProdukt);
         }
@@ -201,13 +240,21 @@ namespace Einkaufslisten_Template10.ViewModels
         }
         public async Task ListeSpeichern(object sender, RoutedEventArgs e)
         {
-            if (Temp_Produkten_Collection.Any())
+            if (Produkt_Einkaufsliste_Erstellen_Collection.Any()) //beim Bearbeiten sind die Produkte erstmal nur in View
             {
-                await SyncService.Einkaufsliste.InsertAsync(_NeueEinkaufsliste);
-                String id_einkaufsliste = _NeueEinkaufsliste.id;
+                if (String.IsNullOrEmpty(_Einkaufsliste.id))
+                {
+                    await SyncService.Einkaufsliste.InsertAsync(_Einkaufsliste);
+                }
+                else
+                {
+                    await SyncService.Einkaufsliste.UpdateAsync(_Einkaufsliste);
+                }
+
+                String id_einkaufsliste = _Einkaufsliste.id;
                 try
                 {
-                    foreach (Produkt_Einkaufsliste item in Temp_Produkten_Collection)
+                    foreach (Produkt_Einkaufsliste item in Produkt_Einkaufsliste_Collection)
                     {
                         item.id_einkaufsliste = id_einkaufsliste;
                         await SyncService.Produkt_Einkaufsliste.InsertAsync(item);
@@ -216,7 +263,7 @@ namespace Einkaufslisten_Template10.ViewModels
                 catch
                 {
                 }
-                NavigationService.Navigate(typeof(Einkaufslisten));
+                NavigationService.Navigate(typeof(Einkaufslisten), TargetView.LISTE);
             }
             else
             {

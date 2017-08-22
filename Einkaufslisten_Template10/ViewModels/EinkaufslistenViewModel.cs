@@ -129,14 +129,16 @@ namespace Einkaufslisten_Template10.ViewModels
         public void GoToNextView(object sender, ItemClickEventArgs e)
         {
             Einkaufsliste clickedItem = e.ClickedItem as Einkaufsliste;
-            String id_einkaufsliste_clicked = clickedItem.id;
+            var next_view_parameters = new Einkaufsliste(); //NavigationService serializes objects automatically
+            next_view_parameters.id = clickedItem.id;
+            next_view_parameters.name = clickedItem.name;
             if (targetView == (Byte)TargetView.EINKAUFEN)
             {
-                NavigationService.Navigate(typeof(Views.Einkaufsbereich), id_einkaufsliste_clicked);
+                NavigationService.Navigate(typeof(Views.Einkaufsbereich), next_view_parameters);
             }
             else
             {
-                NavigationService.Navigate(typeof(Views.Erstellen), id_einkaufsliste_clicked);
+                NavigationService.Navigate(typeof(Views.Erstellen), next_view_parameters);
             }
         }
         public void OrderListZToA()
