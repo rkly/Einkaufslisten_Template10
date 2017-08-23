@@ -38,7 +38,7 @@ namespace Einkaufslisten_Template10.ViewModels
         {
             await ProduktenZiehen();
             await EinheitenZiehen();         
-            if (!parameter.Equals(null))
+            if (parameter != null)
             {
                 Einkaufsliste parameter_casted = parameter as Einkaufsliste;
                 erstellen_titel = "Liste bearbeiten";
@@ -214,6 +214,10 @@ namespace Einkaufslisten_Template10.ViewModels
         }
         public async Task ProduktHinzufuegen(object sender, RoutedEventArgs e)
         {
+            if(String.IsNullOrEmpty(_id_produkt) || String.IsNullOrEmpty(_id_einheit))
+            {
+                await neueElementeEintragen();
+            }
             if(!String.IsNullOrEmpty(_id_produkt) && !String.IsNullOrEmpty(_id_einheit) && _menge > 0)
             {
                 AddProdukt(_id_produkt, _id_einheit, _menge);
@@ -221,6 +225,21 @@ namespace Einkaufslisten_Template10.ViewModels
             else
             {
                 await new MessageDialog("Geben Sie bitte Produkte vollständig an"+_id_produkt + _id_einheit+ _menge.ToString(), "Fehler").ShowAsync();
+            }
+        }
+        private async Task neueElementeEintragen()
+        {
+            if(!String.IsNullOrEmpty(_name_produkt) && String.IsNullOrEmpty(_id_produkt))
+            {
+                Produkt neuesProdukt = new Produkt(_name_produkt);
+                await SyncService.Produkt.InsertAsync(neuesProdukt);
+                _id_produkt = neuesProdukt.id;
+            }
+            if (!String.IsNullOrEmpty(_name_einheit) && String.IsNullOrEmpty(_id_einheit))
+            {
+                Einheit neueEinheit = new Einheit(_name_einheit);
+                await SyncService.Einheit.InsertAsync(neueEinheit);
+                _id_einheit = neueEinheit.id;
             }
         }
         private void AddProdukt(String id_produkt, String id_einheit, UInt16 menge)
@@ -232,7 +251,7 @@ namespace Einkaufslisten_Template10.ViewModels
             Produkt_Einkaufsliste NeuesProdukt = new Produkt_Einkaufsliste(id_produkt, id_einheit, menge);
             Produkt_Einkaufsliste_Collection.Add(NeuesProdukt);
             IDeleteProdukt = new DelegateCommand<Produkt_Einkaufsliste>(DeleteProdukt);
-                //new RelayCommand<Produkt_Einkaufsliste>(DeleteProdukt);
+            //new RelayCommand<Produkt_Einkaufsliste>(DeleteProdukt);
         }
         private void DeleteProdukt(Produkt_Einkaufsliste NeuesProdukt)
         {
@@ -272,12 +291,16 @@ namespace Einkaufslisten_Template10.ViewModels
         }
         public IEnumerable<Produkt> GetMatchingProdukte(string query)
         {
+            _name_produkt = query;
+            _id_produkt = null;
             return Produkt_Collection
                 .Where(c => c.name.IndexOf(query, StringComparison.CurrentCultureIgnoreCase) > -1)
                 .OrderByDescending(c => c.name.StartsWith(query, StringComparison.CurrentCultureIgnoreCase));
         }
         public IEnumerable<Einheit> GetMatchingEinheiten(string query)
         {
+            _name_einheit = query;
+            _id_einheit = null;
             return Einheit_Collection
                 .Where(c => c.name.IndexOf(query, StringComparison.CurrentCultureIgnoreCase) > -1)
                 .OrderByDescending(c => c.name.StartsWith(query, StringComparison.CurrentCultureIgnoreCase));
