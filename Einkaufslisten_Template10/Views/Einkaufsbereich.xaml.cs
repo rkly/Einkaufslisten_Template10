@@ -26,7 +26,7 @@ namespace Einkaufslisten_Template10.Views
         public Einkaufsbereich()
         {
             InitializeComponent();
-            NavigationCacheMode = NavigationCacheMode.Enabled;
+            NavigationCacheMode = NavigationCacheMode.Disabled;
         }
 
     }
