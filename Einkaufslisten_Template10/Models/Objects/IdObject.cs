@@ -11,6 +11,15 @@ namespace Einkaufslisten_Template10.Models.Objects
         public IdObject()
         {
         }
-        public string id { get; set; }
+        public IdObject(String id)
+        {
+            _id = id;
+        }
+        protected String _id;
+        public String id
+        {
+            get => _id;
+            set => _id = value;
+        }
     }
 }

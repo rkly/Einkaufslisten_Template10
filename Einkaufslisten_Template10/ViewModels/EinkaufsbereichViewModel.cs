@@ -28,12 +28,11 @@ namespace Einkaufslisten_Template10.ViewModels
                 await RefreshEinkaufsbereich(parameter_casted.id);
                 Views.Busy.SetBusy(false);
             }
-            //await SyncService.Produkt_Einkaufsliste_View.InsertAsync(new Produkt_Einkaufsliste_View("02efe8f129d44cf69b27fd33c64c86b6", "Milch_string", "Liter_string", 2));
 #if OFFLINE_SYNC_ENABLED
             await SyncService.MobileService.SyncContext.PushAsync(); // offline sync + Push für die neuen Listen anpassen!
 #endif
         }
-        public async Task RefreshEinkaufsbereich(String id_einkaufsliste)
+        private async Task RefreshEinkaufsbereich(String id_einkaufsliste)
         {
             MobileServiceInvalidOperationException exception = null;
             try
@@ -52,7 +51,6 @@ namespace Einkaufslisten_Template10.ViewModels
                 {
                     Produkt_Einkaufsliste_Collection.Add(new Produkt_Einkaufsliste_View_Einkaufsbereich(produkt.id_einkaufsliste, produkt.produkt, produkt.einheit, produkt.menge, false));
                 }
-
             }
             catch (MobileServiceInvalidOperationException e)
             {
@@ -69,8 +67,6 @@ namespace Einkaufslisten_Template10.ViewModels
             clickedItem.InCard = !clickedItem.InCard;
             Console.WriteLine(clickedItem.ToString());
             createNewList();
-            //Produkt_Einkaufsliste_View_Einkaufsbereich oldElement = (Produkt_Einkaufsliste_View_Einkaufsbereich) Produkt_Einkaufsliste_Collection.Select(item => item.produkt.Equals(clickedItem.produkt));
-            //oldElement.InCard = !oldElement.InCard;
         }
         private void createNewList()
         {

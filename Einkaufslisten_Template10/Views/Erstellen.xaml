@@ -69,7 +69,7 @@
                                     <TextBlock Grid.Column="0" Text="{x:Bind produkt}"/>
                                     <TextBlock Grid.Column="1" Text="{x:Bind einheit}"/>
                                     <TextBlock Grid.Column="2" Text="{x:Bind menge}"/>
-                                    <!--<Button Grid.Column="3" x:Name="DeleteProdukt" Content="-" VerticalAlignment="Center" HorizontalAlignment="Stretch" CommandParameter="{Binding}" Command="{Binding RelativeSource={RelativeSource Mode=FindAncestor,AncestorType={x:Type ListView}}, Path=DataContext.ClickMeCommand}"/>-->
+                                    <Button Grid.Column="3" Content="-" VerticalAlignment="Center" HorizontalAlignment="Stretch" Command="{Binding ElementName=Erstellen_Output, Path=DataContext.IDeleteProdukt}" CommandParameter="{Binding}"/>
                                 </Grid>
                             </DataTemplate>
                         </ListView.ItemTemplate>

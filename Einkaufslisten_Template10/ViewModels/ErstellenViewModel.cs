@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Navigation;
 using Template10.Mvvm;
@@ -12,7 +11,6 @@ using Windows.UI.Popups;
 using Windows.UI.Xaml.Controls;
 using Einkaufslisten_Template10.Views;
 using Windows.UI.Xaml;
-using System.Diagnostics;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Einkaufslisten_Template10.Models.Enum;
@@ -45,9 +43,10 @@ namespace Einkaufslisten_Template10.ViewModels
                 name = parameter_casted.name;
                 _Einkaufsliste.name = name;
                 await ListeBearbeiten(parameter_casted.id);
-            }   
+            }
+            IDeleteProdukt = new DelegateCommand<Produkt_Einkaufsliste_View>(DeleteProdukt);
         }
-        public async Task ListeBearbeiten(String id_einkaufsliste)
+        private async Task ListeBearbeiten(String id_einkaufsliste)
         {
             MobileServiceInvalidOperationException exception = null;
             try
@@ -58,44 +57,17 @@ namespace Einkaufslisten_Template10.ViewModels
                 /// </summary> 
                 var parameters = new Dictionary<string, string>();
                 parameters.Add("id_einkaufsliste", id_einkaufsliste.ToString());
-                //ObservableCollection<Produkt_Einkaufsliste_View> PList = new ObservableCollection<Produkt_Einkaufsliste_View>();
                 Produkt_Einkaufsliste_Erstellen_Collection = await SyncService.Produkt_Einkaufsliste_View
                     .WithParameters(parameters)
                     .OrderBy(produkt => produkt.produkt)
                     .ToCollectionAsync();
-                /*foreach (Produkt_Einkaufsliste_View produkt in PList)
-                {
-                    Produkt_Einkaufsliste_Erstellen_Collection.Add(new Produkt_Einkaufsliste_View(produkt.id_einkaufsliste, produkt.produkt, produkt.einheit, produkt.menge));
-                }*/
             }
             catch (MobileServiceInvalidOperationException e)
             {
                 exception = e;
             }
-            if (exception != null)
-            {
-                await new MessageDialog(exception.Message, "Error loading items").ShowAsync();
-            }
+            if (exception != null) await new MessageDialog(exception.Message, "Error loading items").ShowAsync();
         }
-        /*veraltet public override async Task OnNavigatedFromAsync(IDictionary<string, object> suspensionState, bool suspending)
-        {
-            if (!_NeueEinkaufsliste.Equals(null))
-            {
-                try
-                {
-                    foreach (Produkt_Einkaufsliste item in Temp_Produkten_Collection)
-                    {
-                        await SyncService.Produkt_Einkaufsliste.DeleteAsync(item);
-                    }
-                }
-                catch
-                {
-
-                }
-                Temp_Produkten_Collection = null;
-                await SyncService.Einkaufsliste.DeleteAsync(_NeueEinkaufsliste);
-            }  
-        }*/
         private async Task ProduktenZiehen()
         {
             MobileServiceInvalidOperationException exception = null;
@@ -110,10 +82,7 @@ namespace Einkaufslisten_Template10.ViewModels
             {
                 exception = e;
             }
-            if (exception != null)
-            {
-                await new MessageDialog(exception.Message, "Produkt DB Fehler").ShowAsync();
-            }
+            if (exception != null) await new MessageDialog(exception.Message, "Produkt DB Fehler").ShowAsync();
         }
         private async Task EinheitenZiehen()
         {
@@ -129,10 +98,7 @@ namespace Einkaufslisten_Template10.ViewModels
             {
                 exception = e;
             }
-            if (exception != null)
-            {
-                await new MessageDialog(exception.Message, "Einheit DB Fehler").ShowAsync();
-            }
+            if (exception != null) await new MessageDialog(exception.Message, "Einheit DB Fehler").ShowAsync();
         }
         public void GetName(object sender, TextChangedEventArgs e)
         {
@@ -146,7 +112,7 @@ namespace Einkaufslisten_Template10.ViewModels
             sender.Text = string.Format("{0}", produkt.name);
             _id_produkt = produkt.id;
             _name_produkt = produkt.name;
-            }
+        }
         public void EinheitBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
         {
             var einheit = args.SelectedItem as Einheit;
@@ -154,19 +120,6 @@ namespace Einkaufslisten_Template10.ViewModels
             _id_einheit = einheit.id;
             _name_einheit = einheit.name;
         }
-        /*veraltet
-        public void GetProdukt()
-        {
-            //ListBox listBoxProdukt = sender as ListBox;
-            //Produkt selectedProdukt = listBoxProdukt.SelectedItem as Produkt;
-            //_id_produkt = selectedProdukt.id;
-        }*/
-        /*public void GetEinheit(object sender, SelectionChangedEventArgs e)
-        {
-            ListBox listBoxEinheit = sender as ListBox;
-            Einheit selectedEinheit = listBoxEinheit.SelectedItem as Einheit;
-            _id_einheit = selectedEinheit.id;
-        }*/
         public async void GetMenge(object sender, TextChangedEventArgs e)
         {
             TextBox textBoxMenge = sender as TextBox;
@@ -177,6 +130,7 @@ namespace Einkaufslisten_Template10.ViewModels
             }
             catch (Exception exception)
             {
+                textBoxMenge.IsEnabled = false;
                 String Fehlermeldung = String.Empty;
                 if (exception is OverflowException)
                 {
@@ -188,21 +142,36 @@ namespace Einkaufslisten_Template10.ViewModels
                 }
                 await new MessageDialog(exception.Message, Fehlermeldung).ShowAsync();
             }
+            textBoxMenge.IsEnabled = true;
         }
         public async Task ProduktHinzufuegen(object sender, RoutedEventArgs e)
         {
             if(String.IsNullOrEmpty(_id_produkt))
             {
-                _id_produkt = Produkt_Collection.First(a => a.name == _name_produkt).id;
+                try
+                {
+                    var produkt_object = await Task.FromResult(Produkt_Collection.SingleOrDefault(a => a.name == _name_produkt)); //hier kann man nicht direkt id abrufen, Task wird nicht gewartet (?!?!?!)
+                    if (produkt_object != null) _id_produkt = produkt_object.id;
+                }
+                catch(ArgumentNullException)
+                {
+                    await new MessageDialog("ArgumentNullException", "Fehler").ShowAsync();
+                }
+                
             }
             if (String.IsNullOrEmpty(_id_einheit))
             {
-                _id_einheit = Einheit_Collection.First(a => a.name == _name_einheit).id;
+                try
+                {
+                    var einheit_object = await Task.FromResult(Einheit_Collection.SingleOrDefault(a => a.name == _name_einheit));
+                    if (einheit_object != null) _id_einheit = einheit_object.id;
+                }
+                catch (ArgumentNullException)
+                {
+                    await new MessageDialog("ArgumentNullException", "Fehler").ShowAsync();
+                }
             }
-            if (String.IsNullOrEmpty(_id_produkt) || String.IsNullOrEmpty(_id_einheit))
-            {
-                await neueElementeEintragen();
-            }
+            if (String.IsNullOrEmpty(_id_produkt) || String.IsNullOrEmpty(_id_einheit)) await neueElementeEintragen();
             if(!String.IsNullOrEmpty(_id_produkt) && !String.IsNullOrEmpty(_id_einheit) && _menge > 0)
             {
                 AddProdukt(_id_produkt, _id_einheit, _menge);
@@ -234,15 +203,26 @@ namespace Einkaufslisten_Template10.ViewModels
             //local
             Produkt_Einkaufsliste_View NeuesProduktView = new Produkt_Einkaufsliste_View(_name_produkt, _name_einheit, menge);
             Produkt_Einkaufsliste_Erstellen_Collection.Add(NeuesProduktView);
-            //db
+            //db vorbereitung
             Produkt_Einkaufsliste NeuesProdukt = new Produkt_Einkaufsliste(id_produkt, id_einheit, menge);
             Produkt_Einkaufsliste_Collection.Add(NeuesProdukt);
-            IDeleteProdukt = new DelegateCommand<Produkt_Einkaufsliste>(DeleteProdukt);
-            //new RelayCommand<Produkt_Einkaufsliste>(DeleteProdukt);
-        }
-        private void DeleteProdukt(Produkt_Einkaufsliste NeuesProdukt)
+        } 
+        public async void DeleteProdukt(Produkt_Einkaufsliste_View delete_clicked)
         {
-            
+            if(delete_clicked.id != null)
+            {
+                var Produkt_Temp = Produkt_Einkaufsliste_Collection.FirstOrDefault(d => d.id == delete_clicked.id);
+                Produkt_Einkaufsliste_Collection.Remove(Produkt_Temp);
+                if(_Einkaufsliste.id != null) await SyncService.Produkt_Einkaufsliste.DeleteAsync(new Produkt_Einkaufsliste(delete_clicked.id));
+            }
+            else if(delete_clicked.id == null)
+            {
+                String id_produkt_temp = Produkt_Collection.FirstOrDefault(p => p.name == delete_clicked.produkt).id;
+                String id_einheit_temp = Einheit_Collection.FirstOrDefault(e => e.name == delete_clicked.einheit).id;
+                var Produkt_Temp = Produkt_Einkaufsliste_Collection.FirstOrDefault(d => d.id_produkt == id_produkt_temp && d.id_einheit == id_einheit_temp && d.menge == delete_clicked.menge);
+                Produkt_Einkaufsliste_Collection.Remove(Produkt_Temp);
+            }
+            Produkt_Einkaufsliste_Erstellen_Collection.Remove(delete_clicked);
         }
         public async Task ListeSpeichern(object sender, RoutedEventArgs e)
         {
@@ -256,7 +236,6 @@ namespace Einkaufslisten_Template10.ViewModels
                 {
                     await SyncService.Einkaufsliste.UpdateAsync(_Einkaufsliste);
                 }
-
                 String id_einkaufsliste = _Einkaufsliste.id;
                 try
                 {
@@ -266,8 +245,9 @@ namespace Einkaufslisten_Template10.ViewModels
                         await SyncService.Produkt_Einkaufsliste.InsertAsync(item);
                     }
                 }
-                catch
+                catch (Exception)
                 {
+                    await new MessageDialog("Exception", "Fehler").ShowAsync();
                 }
                 NavigationService.Navigate(typeof(Einkaufslisten), TargetView.LISTE);
             }

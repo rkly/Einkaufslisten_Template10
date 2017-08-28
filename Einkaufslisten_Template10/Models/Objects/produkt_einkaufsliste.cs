@@ -7,6 +7,9 @@ namespace Einkaufslisten_Template10.Models.Objects
         public Produkt_Einkaufsliste() : base()
         {
         }
+        public Produkt_Einkaufsliste(String id) : base(id)
+        {
+        } 
         public Produkt_Einkaufsliste(String id_produkt, String id_einheit, UInt16 menge)
         {
             _id_einheit = id_einheit;

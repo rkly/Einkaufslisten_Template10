@@ -17,7 +17,6 @@ namespace Einkaufslisten_Template10.Models.Objects
         {
             _name = name;
         }
-        //[JsonProperty(PropertyName = "name")]
         public string name
         {
             get => _name;
