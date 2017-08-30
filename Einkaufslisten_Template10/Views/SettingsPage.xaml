@@ -63,6 +63,7 @@
 
         <!--  header  -->
         <controls:PageHeader x:Name="pageHeader"
+                             x:Uid="Einstellungen_Title"
                              Content="Settings Page"
                              Frame="{x:Bind Frame}"
                              RelativePanel.AlignLeftWithPanel="True"
@@ -134,14 +135,13 @@
 
                         <Button x:Name="Sprache"
                                 x:Uid="Sprache"
-                                Content="Sprache: {x:Bind ViewModel.SettingsPartViewModel.test}"
+                                Content="Sprache"
                                 Margin="0,12,0,0"                               
                                 RelativePanel.Below="BusyTextTextBox">
                             <Button.Flyout>
                                 <MenuFlyout Placement="Bottom">
-                                    <MenuFlyoutItem x:Uid="Deutsch" Tag="de-de" Click="MenuFlyoutItem_Click"/>
-                                    <MenuFlyoutItem x:Uid="Ukrainisch" Tag="uk-ua" Click="MenuFlyoutItem_Click"/>
-                                    <MenuFlyoutItem x:Uid="Englisch" Tag="en-us" Click="MenuFlyoutItem_Click"/>
+                                    <MenuFlyoutItem x:Uid="Deutsch" Tag="de-de" Click="{x:Bind ViewModel.SettingsPartViewModel.SpracheAendern}"/>
+                                    <MenuFlyoutItem x:Uid="Ukrainisch" Tag="uk-ua" Click="{x:Bind ViewModel.SettingsPartViewModel.SpracheAendern}"/>
                                 </MenuFlyout>
                             </Button.Flyout>
                         </Button>

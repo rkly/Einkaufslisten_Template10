@@ -18,7 +18,8 @@
     <Page.BottomAppBar>
         <CommandBar>
             <AppBarButton x:Name="neueListe" Label="Neue Liste" Icon="Add" Click="{x:Bind ViewModel.NeueListe}" />
-            <AppBarButton x:Name="sortDate" Label="Sortiere nach Datum" Icon="Sort" Click="{x:Bind ViewModel.SortByDate}" />
+            <AppBarButton x:Name="sortDate" Label="Sortiere nach Datum" Icon="Sort" Click="{x:Bind ViewModel.Sort}" Tag="1"/>
+            <AppBarButton x:Name="sortName" Label="Sortiere nach Name" Icon="Sort" Click="{x:Bind ViewModel.Sort}" Tag="0"/>
         </CommandBar>
     </Page.BottomAppBar>
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -67,8 +68,6 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </Grid>
-
         </ScrollViewer>
-
     </RelativePanel>
 </Page>

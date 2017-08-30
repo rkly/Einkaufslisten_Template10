@@ -83,15 +83,9 @@ namespace Einkaufslisten_Template10.Services.SettingsServices
             get { return _helper.Read<String>(nameof(Sprache), CultureInfo.CurrentCulture.ToString()); }
             set
             {
-                _helper.Write(nameof(Sprache), value);
-                /*CultureInfo.CurrentCulture = new CultureInfo(value);
-                CultureInfo.CurrentUICulture = new CultureInfo(value);
-                CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(value);
-                CultureInfo.DefaultThreadCurrentCulture = new CultureInfo(value);*/             
-                CultureInfo culture = CultureInfo.DefaultThreadCurrentUICulture = new CultureInfo(value);
-                Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = culture.Name;          
-                //BootStrapper.Current.NavigationService.Refresh();
-                //BootStrapper.Current.NavigationService.Navigate(typeof(Views.SettingsPage), 0);
+                _helper.Write(nameof(Sprache), value);             
+                CultureInfo culture  = new CultureInfo(value);
+                Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = culture.Name;
             }
         }
     }
