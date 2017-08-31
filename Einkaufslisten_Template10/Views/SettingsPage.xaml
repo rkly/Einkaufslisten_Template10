@@ -10,7 +10,8 @@
       xmlns:local="using:Einkaufslisten_Template10.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:vm="using:Einkaufslisten_Template10.ViewModels"
-      mc:Ignorable="d">
+      mc:Ignorable="d"
+       xmlns:app ="using:Einkaufslisten_Template10">
 
     <Page.DataContext>
         <vm:SettingsPageViewModel x:Name="ViewModel" />
@@ -29,8 +30,12 @@
             </converter:ValueWhenConverter.Otherwise>
         </converter:ValueWhenConverter>
     </Page.Resources>
+    <Page.BottomAppBar>
+        <CommandBar>
 
-    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        </CommandBar>
+    </Page.BottomAppBar>
+    <RelativePanel Background="{x:Bind Path=ViewModel.SettingsPartViewModel.StyleController.RelativePanelSolidColorBrush, Mode=OneWay}">
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="AdaptiveVisualStateGroup">
@@ -98,7 +103,8 @@
                                       OffContent="Current theme is Dark"
                                       OnContent="Current theme is Light"
                                       RelativePanel.AlignLeftWithPanel="True"
-                                      RelativePanel.Below="UseShellDrawnBackButtonToggleSwtich" />
+                                      RelativePanel.Below="UseShellDrawnBackButtonToggleSwtich"
+                                      />
 
                         <ToggleSwitch x:Name="ShowHamburgerButtonToggleSwitch"
                                       Header="Einkaufslisten_Template10 Button Visibility"
@@ -110,12 +116,14 @@
                                       RelativePanel.Below="UseLightThemeToggleSwitch" />
 
                         <ToggleSwitch x:Name="IsFullScreenToggleSwitch"
-                                      Header="Page content is Full Screen"
                                       IsOn="{Binding IsFullScreen, Mode=TwoWay}"
                                       OffContent="Einkaufslisten_Template10 Menu is visible"
                                       OnContent="Einkaufslisten_Template10 Menu is hidden"
                                       RelativePanel.AlignLeftWithPanel="True"
-                                      RelativePanel.Below="ShowHamburgerButtonToggleSwitch" />
+                                      RelativePanel.Below="ShowHamburgerButtonToggleSwitch" >
+                            <Button x:Name="Test" Content="hallo"
+                                Style="{x:Bind Path=ViewModel.SettingsPartViewModel.StyleController.BtnStyle, Mode=OneWay}" RenderTransformOrigin="0.513,0.5"/>
+                        </ToggleSwitch>
 
                         <TextBox x:Name="BusyTextTextBox"
                                  Width="200"

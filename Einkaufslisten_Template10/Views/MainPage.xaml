@@ -8,13 +8,17 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="using:Einkaufslisten_Template10.Views"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-      xmlns:vm="using:Einkaufslisten_Template10.ViewModels" mc:Ignorable="d">
+      xmlns:vm="using:Einkaufslisten_Template10.ViewModels" mc:Ignorable="d"
+      xmlns:m ="using:Einkaufslisten_Template10.Models.Objects">
 
     <Page.DataContext>
-        <vm:MainPageViewModel x:Name="ViewModel" />
+        <vm:MainPageViewModel x:Name="ViewModel"/>
     </Page.DataContext>
-
-    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.Resources>
+        <vm:MainPageViewModel x:Key="viewModel"></vm:MainPageViewModel>
+    </Page.Resources>
+    <RelativePanel Background="{x:Bind Path=ViewModel.StyleController.RelativePanelSolidColorBrush, Mode=OneWay}">
+        
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="AdaptiveVisualStateGroup">
@@ -50,7 +54,7 @@
 
         <controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
                              RelativePanel.AlignRightWithPanel="True"
-                             RelativePanel.AlignTopWithPanel="True" Text="Main Page">
+                             RelativePanel.AlignTopWithPanel="True" Text="Main Page" >
 
             <!--  secondary commands  -->
             <controls:PageHeader.SecondaryCommands>
@@ -82,11 +86,14 @@
             </TextBox>
 
         </controls:Resizer>
-
-        <Button x:Name="submitButton"
-                Click="{x:Bind ViewModel.GotoDetailsPage}" Content="Submit"
+        <!--Style="{x:Bind Path=sc.BtnStyle, Mode=OneWay }"-->
+        <Button 
+                x:Name="submitButton"
+            Click="{x:Bind ViewModel.Refresh}"  Content="{x:Bind Path=ViewModel.StyleController.Suffix, Mode=OneWay }" 
+            Style="{x:Bind Path=ViewModel.StyleController.BtnStyle, Mode=OneWay }"
                 RelativePanel.AlignBottomWith="parameterResizer"
-                RelativePanel.RightOf="parameterResizer" />
+                RelativePanel.RightOf="parameterResizer" 
+/>
 
         <TextBlock x:Name="stateTextBox" Margin="16,16,0,0"
                    RelativePanel.AlignLeftWith="parameterResizer"
@@ -97,7 +104,7 @@
     </RelativePanel>
     <Page.BottomAppBar>
         <CommandBar>
-           
+
         </CommandBar>
     </Page.BottomAppBar>
 </Page>

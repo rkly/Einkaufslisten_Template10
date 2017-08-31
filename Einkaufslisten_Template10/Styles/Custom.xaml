@@ -35,11 +35,9 @@
                 <Setter Property="GrabberBrush" Value="{ThemeResource CustomColorBrush}" />
                 <Setter Property="GrabberVisibility" Value="Visible" />
             </Style>
-
         </ResourceDictionary>
-
         <ResourceDictionary x:Key="Default">
-
+            
             <SolidColorBrush x:Key="CustomColorBrush" Color="{StaticResource CustomColor}" />
             <SolidColorBrush x:Key="ContrastColorBrush" Color="{StaticResource ContrastColor}" />
             <SolidColorBrush x:Key="ExtendedSplashBackground" Color="{StaticResource CustomColor}" />

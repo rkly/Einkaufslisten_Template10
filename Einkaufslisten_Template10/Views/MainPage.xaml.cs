@@ -6,11 +6,13 @@ using Windows.UI.Xaml.Navigation;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using Einkaufslisten_Template10.Models.Objects;
 
 namespace Einkaufslisten_Template10.Views
 {
     public sealed partial class MainPage : Page
     {
+        //private StyleController sc = new StyleController();
         public MainPage()
         {
             InitializeComponent();
@@ -21,6 +23,7 @@ namespace Einkaufslisten_Template10.Views
         {
             var p = Template10.Services.SerializationService.SerializationService.Json.Deserialize<int>(e.Parameter?.ToString());
             base.OnNavigatedTo(e);
+            
         }
         private void AutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
         {
@@ -54,6 +57,14 @@ namespace Einkaufslisten_Template10.Views
                 sender.Text = args.QueryText;
                 // Use args.QueryText to determine what to do.
             }
+        }
+
+        private void submitButton_Click(object sender, RoutedEventArgs e)
+        {
+           
+            ViewModel.StyleController.changeStyle();
+    
+
         }
     }
 }

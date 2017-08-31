@@ -108,6 +108,7 @@
     <Compile Include="Models\Objects\Produkt_Einkaufsliste_View.cs" />
     <Compile Include="Models\Objects\Produkt_Einkaufsliste_View_Einkaufsbereich.cs" />
     <Compile Include="Models\Objects\MobileServiceUser_Erweitert.cs" />
+    <Compile Include="Models\Objects\StyleController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AzureServices\AuthService.cs" />
     <Compile Include="Services\AzureServices\SyncService.cs" />
@@ -170,6 +171,11 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Styles\Custom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Styles\Dictionary1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

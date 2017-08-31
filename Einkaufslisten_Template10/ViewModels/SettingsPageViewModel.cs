@@ -4,8 +4,10 @@ using System.Threading.Tasks;
 using Template10.Mvvm;
 using Template10.Services.SettingsService;
 using Windows.UI.Xaml;
-using Windows.UI.Popups; //TEST !
+using Windows.UI.Popups;
 using System.Globalization;
+using Windows.UI.Xaml.Controls;
+using Einkaufslisten_Template10.Models.Objects;
 
 namespace Einkaufslisten_Template10.ViewModels
 {
@@ -18,7 +20,6 @@ namespace Einkaufslisten_Template10.ViewModels
     public class SettingsPartViewModel : ViewModelBase
     {
         Services.SettingsServices.SettingsService _settings;
-
         public SettingsPartViewModel()
         {
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
@@ -29,6 +30,7 @@ namespace Einkaufslisten_Template10.ViewModels
             {
                 _settings = Services.SettingsServices.SettingsService.Instance;
             }
+            this.styleController = new StyleController();
         }
 
         public bool ShowHamburgerButton
@@ -64,7 +66,21 @@ namespace Einkaufslisten_Template10.ViewModels
         public bool UseLightThemeButton
         {
             get { return _settings.AppTheme.Equals(ApplicationTheme.Light); }
-            set { _settings.AppTheme = value ? ApplicationTheme.Light : ApplicationTheme.Dark; base.RaisePropertyChanged(); }
+            set
+            {
+                //_settings.AppTheme = value ? ApplicationTheme.Light : ApplicationTheme.Dark;
+                if (App.stylePrefix == "ru")
+                {
+                    App.changeStylePrefix("de");
+                }
+                else
+                {
+                    App.changeStylePrefix("ru");
+                }
+                base.RaisePropertyChanged();
+                NavigationService.Navigate(typeof(Views.MainPage), 0);
+
+            }
         }
 
         private string _BusyText = "Please wait...";
@@ -77,11 +93,18 @@ namespace Einkaufslisten_Template10.ViewModels
                 _ShowBusyCommand.RaiseCanExecuteChanged();
             }
         }
+        private StyleController styleController;
 
+        public StyleController StyleController
+        {
+            get { return styleController; }
+        }
         public string Sprache
         {
             get { return _settings.Sprache; }
-            set { _settings.Sprache = value; base.RaisePropertyChanged(Sprache); }
+            set { _settings.Sprache = value;
+                this.StyleController.changeStyle();
+                base.RaisePropertyChanged(Sprache); }
         }
 
         DelegateCommand _ShowBusyCommand;

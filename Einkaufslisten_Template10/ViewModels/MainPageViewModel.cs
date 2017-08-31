@@ -5,7 +5,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Template10.Services.NavigationService;
 using Windows.UI.Xaml.Navigation;
+
 using Einkaufslisten_Template10.Services.AzureServices;
+using Windows.UI.Xaml;
+using Einkaufslisten_Template10.Models.Objects;
 
 namespace Einkaufslisten_Template10.ViewModels
 {
@@ -17,9 +20,17 @@ namespace Einkaufslisten_Template10.ViewModels
             {
                 Value = "Designtime value";
             }
+            this.styleController = new StyleController();
+            
+        }
+        private StyleController styleController;
+        
+        public StyleController StyleController
+        {
+            get { return styleController; }
         }
 
-        string _Value = "Gas";
+        string _Value = "bla_Test";
         public string Value { get { return _Value; } set { Set(ref _Value, value); } }
 
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
@@ -28,6 +39,7 @@ namespace Einkaufslisten_Template10.ViewModels
             {
                 Value = suspensionState[nameof(Value)]?.ToString();
             }
+            this.StyleController.loadStyle();
             await Task.CompletedTask;
         }
 
@@ -63,5 +75,10 @@ namespace Einkaufslisten_Template10.ViewModels
             Views.Busy.SetBusy(true, "Bitte warten");
             await AuthService.AuthenticateAsync();     
         }          
+        public void Refresh()
+        {
+            //NavigationService.Navigate(typeof(Views.MainPage), 0);
+            this.StyleController.changeStyle();
+        }
     }
 }

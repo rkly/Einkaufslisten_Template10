@@ -105,4 +105,9 @@
             </Grid>
         </ScrollViewer>
     </RelativePanel>
+    <Page.BottomAppBar>
+        <CommandBar>
+
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>
