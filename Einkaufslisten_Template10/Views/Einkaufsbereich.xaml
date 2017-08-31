@@ -15,11 +15,7 @@
     <Page.DataContext>
         <vm:EinkaufsbereichViewModel x:Name="ViewModel" />
     </Page.DataContext>
-    <Page.BottomAppBar>
-        <CommandBar>
-
-        </CommandBar>
-    </Page.BottomAppBar>
+    
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <!--  header  -->
         <controls:PageHeader x:Name="pageHeader" Frame="{x:Bind Frame}"

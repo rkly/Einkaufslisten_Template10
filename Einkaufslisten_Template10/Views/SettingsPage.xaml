@@ -30,11 +30,6 @@
             </converter:ValueWhenConverter.Otherwise>
         </converter:ValueWhenConverter>
     </Page.Resources>
-    <Page.BottomAppBar>
-        <CommandBar>
-
-        </CommandBar>
-    </Page.BottomAppBar>
     <RelativePanel Background="{x:Bind Path=ViewModel.SettingsPartViewModel.StyleController.RelativePanelSolidColorBrush, Mode=OneWay}">
 
         <VisualStateManager.VisualStateGroups>

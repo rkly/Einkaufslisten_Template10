@@ -18,7 +18,7 @@
         <vm:MainPageViewModel x:Key="viewModel"></vm:MainPageViewModel>
     </Page.Resources>
     <RelativePanel Background="{x:Bind Path=ViewModel.StyleController.RelativePanelSolidColorBrush, Mode=OneWay}">
-        
+
 
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="AdaptiveVisualStateGroup">
@@ -56,12 +56,12 @@
                              RelativePanel.AlignRightWithPanel="True"
                              RelativePanel.AlignTopWithPanel="True" Text="Main Page" >
 
-            <!--  secondary commands  -->
+            <!--  secondary commands  
             <controls:PageHeader.SecondaryCommands>
                 <AppBarButton Click="{x:Bind ViewModel.GotoSettings}" Label="Settings" />
                 <AppBarButton Click="{x:Bind ViewModel.GotoPrivacy}" Label="Privacy" />
                 <AppBarButton Click="{x:Bind ViewModel.GotoAbout}" Label="About" />
-            </controls:PageHeader.SecondaryCommands>
+            </controls:PageHeader.SecondaryCommands> -->
 
         </controls:PageHeader>
 
@@ -102,9 +102,4 @@
         <Button Click="{x:Bind ViewModel.Einloggen}" Content="Login"     
                 RelativePanel.Below="stateTextBox" />
     </RelativePanel>
-    <Page.BottomAppBar>
-        <CommandBar>
-
-        </CommandBar>
-    </Page.BottomAppBar>
 </Page>

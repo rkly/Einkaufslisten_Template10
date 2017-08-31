@@ -23,6 +23,8 @@
                              RelativePanel.AlignRightWithPanel="True"
                              RelativePanel.AlignTopWithPanel="True"
                              Text="{x:Bind ViewModel.erstellen_titel}" />
+
+
         <!--  content  -->
         <ScrollViewer Padding="5,5,5,5" RelativePanel.AlignBottomWithPanel="True"
                     RelativePanel.AlignLeftWithPanel="True"
@@ -105,9 +107,5 @@
             </Grid>
         </ScrollViewer>
     </RelativePanel>
-    <Page.BottomAppBar>
-        <CommandBar>
 
-        </CommandBar>
-    </Page.BottomAppBar>
 </Page>

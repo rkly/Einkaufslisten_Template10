@@ -15,19 +15,18 @@
     <Page.DataContext>
         <vm:EinkaufslistenViewModel x:Name="ViewModel" />
     </Page.DataContext>
-    <Page.BottomAppBar>
-        <CommandBar>
-            <AppBarButton x:Name="neueListe" Label="Neue Liste" Icon="Add" Click="{x:Bind ViewModel.NeueListe}" />
-            <AppBarButton x:Name="sortDate" Label="Sortiere nach Datum" Icon="Sort" Click="{x:Bind ViewModel.Sort}" Tag="1"/>
-            <AppBarButton x:Name="sortName" Label="Sortiere nach Name" Icon="Sort" Click="{x:Bind ViewModel.Sort}" Tag="0"/>
-        </CommandBar>
-    </Page.BottomAppBar>
     <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <!--  header  -->
         <controls:PageHeader x:Name="pageHeader" Frame="{x:Bind Frame}"
                     RelativePanel.AlignLeftWithPanel="True"
                     RelativePanel.AlignRightWithPanel="True"
-                    RelativePanel.AlignTopWithPanel="True" Text="Einkaufslisten" x:Uid="Einkaufslisten_Title"/>
+                    RelativePanel.AlignTopWithPanel="True" Text="Einkaufslisten" x:Uid="Einkaufslisten_Title">
+            <controls:PageHeader.SecondaryCommands>
+                <AppBarButton Click="{x:Bind ViewModel.NeueListe}" Label="neueListe" />
+                <AppBarButton Click="{x:Bind ViewModel.Sort}" Label="Nach Datum sortieren" Tag="1"/>
+                <AppBarButton Click="{x:Bind ViewModel.Sort}" Label="Nach Name sortieren" Tag="0"/>
+            </controls:PageHeader.SecondaryCommands>
+        </controls:PageHeader>
         <!--  content  -->
         <ScrollViewer Padding="5,5,5,5" RelativePanel.AlignBottomWithPanel="True"
                     RelativePanel.AlignLeftWithPanel="True"
