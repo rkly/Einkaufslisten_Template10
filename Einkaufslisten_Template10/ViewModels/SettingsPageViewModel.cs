@@ -4,6 +4,7 @@ using Template10.Common;
 using Template10.Mvvm;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Einkaufslisten_Template10.Models.Objects;
 
 namespace Einkaufslisten_Template10.ViewModels
 {
@@ -26,6 +27,7 @@ namespace Einkaufslisten_Template10.ViewModels
             {
                 _settings = Services.SettingsServices.SettingsService.Instance;
             }
+			 this.styleController = new StyleController();
         }
         public bool ShowHamburgerButton
         {
@@ -69,11 +71,19 @@ namespace Einkaufslisten_Template10.ViewModels
                 _ShowBusyCommand.RaiseCanExecuteChanged();
             }
         }
+ private StyleController styleController;
+
+        public StyleController StyleController
+
+        {
+            get { return styleController; }
+		}
         private string Sprache
         {
             set
             {
                 _settings.Sprache = value;
+				this.StyleController.changeStyle();
                 base.RaisePropertyChanged();
             }
         }
@@ -93,6 +103,7 @@ namespace Einkaufslisten_Template10.ViewModels
                 Windows.ApplicationModel.Resources.Core.ResourceContext.GetForCurrentView().Reset();
                 Windows.ApplicationModel.Resources.Core.ResourceContext.GetForViewIndependentUse().Reset();
                 BootStrapper.Current.NavigationService.Refresh();
+				
             }
         }
         DelegateCommand _ShowBusyCommand;
