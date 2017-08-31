@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
+using Template10.Common;
 using Template10.Mvvm;
-using Template10.Services.SettingsService;
 using Windows.UI.Xaml;
-using Windows.UI.Popups;
-using System.Globalization;
 using Windows.UI.Xaml.Controls;
-using Einkaufslisten_Template10.Models.Objects;
 
 namespace Einkaufslisten_Template10.ViewModels
 {
@@ -16,10 +12,10 @@ namespace Einkaufslisten_Template10.ViewModels
         public SettingsPartViewModel SettingsPartViewModel { get; } = new SettingsPartViewModel();
         public AboutPartViewModel AboutPartViewModel { get; } = new AboutPartViewModel();
     }
-
     public class SettingsPartViewModel : ViewModelBase
     {
         Services.SettingsServices.SettingsService _settings;
+
         public SettingsPartViewModel()
         {
             if (Windows.ApplicationModel.DesignMode.DesignModeEnabled)
@@ -30,15 +26,12 @@ namespace Einkaufslisten_Template10.ViewModels
             {
                 _settings = Services.SettingsServices.SettingsService.Instance;
             }
-            this.styleController = new StyleController();
         }
-
         public bool ShowHamburgerButton
         {
             get { return _settings.ShowHamburgerButton; }
             set { _settings.ShowHamburgerButton = value; base.RaisePropertyChanged(); }
         }
-
         public bool IsFullScreen
         {
             get { return _settings.IsFullScreen; }
@@ -56,33 +49,16 @@ namespace Einkaufslisten_Template10.ViewModels
                 }
             }
         }
-
         public bool UseShellBackButton
         {
             get { return _settings.UseShellBackButton; }
             set { _settings.UseShellBackButton = value; base.RaisePropertyChanged(); }
         }
-
         public bool UseLightThemeButton
         {
             get { return _settings.AppTheme.Equals(ApplicationTheme.Light); }
-            set
-            {
-                //_settings.AppTheme = value ? ApplicationTheme.Light : ApplicationTheme.Dark;
-                if (App.stylePrefix == "ru")
-                {
-                    App.changeStylePrefix("de");
-                }
-                else
-                {
-                    App.changeStylePrefix("ru");
-                }
-                base.RaisePropertyChanged();
-                NavigationService.Navigate(typeof(Views.MainPage), 0);
-
-            }
+            set { _settings.AppTheme = value ? ApplicationTheme.Light : ApplicationTheme.Dark; base.RaisePropertyChanged(); }
         }
-
         private string _BusyText = "Please wait...";
         public string BusyText
         {
@@ -93,20 +69,32 @@ namespace Einkaufslisten_Template10.ViewModels
                 _ShowBusyCommand.RaiseCanExecuteChanged();
             }
         }
-        private StyleController styleController;
-
-        public StyleController StyleController
+        private string Sprache
         {
-            get { return styleController; }
+            set
+            {
+                _settings.Sprache = value;
+                base.RaisePropertyChanged();
+            }
         }
-        public string Sprache
+        public async Task SpracheAendern(object sender, RoutedEventArgs e)
         {
-            get { return _settings.Sprache; }
-            set { _settings.Sprache = value;
-                this.StyleController.changeStyle();
-                base.RaisePropertyChanged(Sprache); }
+            String sprache_clicked = (sender as MenuFlyoutItem).Tag.ToString();
+            Sprache = sprache_clicked;
+            /*var type = BootStrapper.Current.NavigationService.CurrentPageType;
+            var param = BootStrapper.Current.NavigationService.CurrentPageParam;*/
+            try
+            {
+                BootStrapper.Current.NavigationService.ClearCache();
+                await Task.Delay(100);
+            }
+            finally
+            {
+                Windows.ApplicationModel.Resources.Core.ResourceContext.GetForCurrentView().Reset();
+                Windows.ApplicationModel.Resources.Core.ResourceContext.GetForViewIndependentUse().Reset();
+                BootStrapper.Current.NavigationService.Refresh();
+            }
         }
-
         DelegateCommand _ShowBusyCommand;
         public DelegateCommand ShowBusyCommand
             => _ShowBusyCommand ?? (_ShowBusyCommand = new DelegateCommand(async () =>
@@ -116,15 +104,11 @@ namespace Einkaufslisten_Template10.ViewModels
                 Views.Busy.SetBusy(false);
             }, () => !string.IsNullOrEmpty(BusyText)));
     }
-
     public class AboutPartViewModel : ViewModelBase
     {
         public Uri Logo => Windows.ApplicationModel.Package.Current.Logo;
-
         public string DisplayName => Windows.ApplicationModel.Package.Current.DisplayName;
-
         public string Publisher => Windows.ApplicationModel.Package.Current.PublisherDisplayName;
-
         public string Version
         {
             get
@@ -133,7 +117,6 @@ namespace Einkaufslisten_Template10.ViewModels
                 return $"{v.Major}.{v.Minor}.{v.Build}.{v.Revision}";
             }
         }
-
         public Uri RateMe => new Uri("http://aka.ms/template10");
     }
 }

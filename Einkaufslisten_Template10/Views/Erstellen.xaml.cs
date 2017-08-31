@@ -124,6 +124,6 @@ namespace Einkaufslisten_Template10.Views
                 }
 #endif
             }
-        }
+        }      
     }
 }

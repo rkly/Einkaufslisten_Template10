@@ -13,6 +13,8 @@ using Microsoft.WindowsAzure.MobileServices;
 using System.Diagnostics;
 using Windows.UI.Xaml.Controls;
 using Einkaufslisten_Template10.Models.Enum;
+using Windows.UI.Xaml;
+
 namespace Einkaufslisten_Template10.ViewModels
 {
     public class EinkaufslistenViewModel : ViewModelBase
@@ -141,17 +143,22 @@ namespace Einkaufslisten_Template10.ViewModels
                 NavigationService.Navigate(typeof(Views.Erstellen), next_view_parameters);
             }
         }
-        public void OrderListZToA()
+        public void Sort(object sender, RoutedEventArgs e)
         {
-            Einkaufslisten_Collection.OrderByDescending(einkaufliste => einkaufliste.name);
-        }
-        public void SortByDate()
-        {
-            ObservableCollection<Einkaufsliste> temp = new ObservableCollection<Einkaufsliste>(Einkaufslisten_Collection.OrderBy(einkaufliste => einkaufliste.updatedAt));
-            Einkaufslisten_Collection.Clear();
-            foreach (Einkaufsliste e in temp)
+            String art = ((AppBarButton)sender).Tag.ToString();
+            ObservableCollection<Einkaufsliste> temp = null;
+            if (art == "0")
             {
-                Einkaufslisten_Collection.Add(e);
+                temp = new ObservableCollection<Einkaufsliste>(Einkaufslisten_Collection.OrderBy(einkaufliste => einkaufliste.name));
+            }
+            else if (art == "1")
+            {
+                temp = new ObservableCollection<Einkaufsliste>(Einkaufslisten_Collection.OrderBy(einkaufliste => einkaufliste.updatedAt));
+            }
+            Einkaufslisten_Collection.Clear();
+            foreach (Einkaufsliste elem in temp)
+            {
+                Einkaufslisten_Collection.Add(elem);
             }
         }
     }
