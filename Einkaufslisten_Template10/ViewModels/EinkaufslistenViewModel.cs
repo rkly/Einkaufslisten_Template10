@@ -14,14 +14,15 @@ using System.Diagnostics;
 using Windows.UI.Xaml.Controls;
 using Einkaufslisten_Template10.Models.Enum;
 using Windows.UI.Xaml;
+using System.Windows.Input;
 
 namespace Einkaufslisten_Template10.ViewModels
 {
     public class EinkaufslistenViewModel : ViewModelBase
     {
-        public MobileServiceCollection<Produkt, Produkt> Produkten_Collection;
         public ObservableCollection<Einkaufsliste> Einkaufslisten_Collection;
         public Byte targetView;
+        public ICommand IDeleteListe { get; set; }
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {                  
             if (AuthService.eingeloggt && parameter != null)
@@ -33,6 +34,7 @@ namespace Einkaufslisten_Template10.ViewModels
                 Views.Busy.SetBusy(true, "Bitte warten. Daten werden geladen");
                 await RefreshEinkaufslisten();
                 Views.Busy.SetBusy(false);
+                IDeleteListe = new DelegateCommand<Einkaufsliste>(DeleteListe);
             }
                 // Datensätze eintragen (test)
                 /*Produkt ProduktTest = new Produkt(15, "ok")
@@ -84,6 +86,14 @@ namespace Einkaufslisten_Template10.ViewModels
             {
                 await new MessageDialog(exception.Message, "Error loading items").ShowAsync();
             }
+        }
+        public async void DeleteListe(Einkaufsliste delete_clicked)
+        {
+            if (delete_clicked.id != null)
+            {
+                await SyncService.Einkaufsliste.DeleteAsync(delete_clicked); //Produkt_Einkaufsliste werden in nodejs gelöscht! 
+            }
+            Einkaufslisten_Collection.Remove(delete_clicked);
         }
         /*public void CreateButtonClicked()
         {

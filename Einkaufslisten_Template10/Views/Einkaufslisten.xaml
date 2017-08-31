@@ -58,11 +58,13 @@
                         <DataTemplate x:DataType="model:Einkaufsliste">
                             <Grid HorizontalAlignment="Stretch">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="50*"/>
-                                    <ColumnDefinition Width="50*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="{x:Bind name}" TextAlignment="Center" HorizontalAlignment="Stretch"/>
                                 <TextBlock Grid.Column="1" Text="{x:Bind updatedAt}" TextAlignment="Center" HorizontalAlignment="Stretch"/>
+                                <Button Grid.Column="2" Content="-" VerticalAlignment="Center" HorizontalAlignment="Stretch" Command="{Binding ElementName=Einkaufsliste_List, Path=DataContext.IDeleteListe}" CommandParameter="{Binding}"/>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
