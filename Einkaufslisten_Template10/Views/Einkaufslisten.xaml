@@ -10,6 +10,7 @@
       xmlns:model="using:Einkaufslisten_Template10.Models.Objects"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
       xmlns:vm="using:Einkaufslisten_Template10.ViewModels" 
+      xmlns:enum="using:Einkaufslisten_Template10.Models.Enum"
       mc:Ignorable="d">
 
     <Page.DataContext>
@@ -23,8 +24,8 @@
                     RelativePanel.AlignTopWithPanel="True" Text="Einkaufslisten" x:Uid="Einkaufslisten_Title">
             <controls:PageHeader.SecondaryCommands>
                 <AppBarButton Click="{x:Bind ViewModel.NeueListe}" Label="neueListe" />
-                <AppBarButton Click="{x:Bind ViewModel.Sort}" Label="Nach Datum sortieren" Tag="1"/>
-                <AppBarButton Click="{x:Bind ViewModel.Sort}" Label="Nach Name sortieren" Tag="0"/>
+                <AppBarButton Click="{x:Bind ViewModel.Sort}" Label="Nach Datum sortieren" Tag="{x:Bind enum:SortArt.DATUM}"/>
+                <AppBarButton Click="{x:Bind ViewModel.Sort}" Label="Nach Name sortieren" Tag="{x:Bind enum:SortArt.NAME}"/>
             </controls:PageHeader.SecondaryCommands>
         </controls:PageHeader>
         <!--  content  -->

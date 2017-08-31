@@ -98,6 +98,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Enum\SortArt.cs" />
     <Compile Include="Models\Enum\TargetView.cs" />
     <Compile Include="Models\Objects\BaseObject.cs" />
     <Compile Include="Models\Objects\Einheit.cs" />

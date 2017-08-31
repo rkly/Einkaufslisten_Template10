@@ -143,22 +143,29 @@ namespace Einkaufslisten_Template10.ViewModels
                 NavigationService.Navigate(typeof(Views.Erstellen), next_view_parameters);
             }
         }
-        public void Sort(object sender, RoutedEventArgs e)
+        public async void Sort(object sender, RoutedEventArgs e)
         {
-            String art = ((AppBarButton)sender).Tag.ToString();
-            ObservableCollection<Einkaufsliste> temp = null;
-            if (art == "0")
+            try
             {
-                temp = new ObservableCollection<Einkaufsliste>(Einkaufslisten_Collection.OrderBy(einkaufliste => einkaufliste.name));
+                Byte art = (Byte)((AppBarButton)sender).Tag;
+                ObservableCollection<Einkaufsliste> temp = null;
+                if (art == (Byte)SortArt.NAME)
+                {
+                    temp = new ObservableCollection<Einkaufsliste>(Einkaufslisten_Collection.OrderBy(einkaufliste => einkaufliste.name));
+                }
+                else if (art == (Byte)SortArt.DATUM)
+                {
+                    temp = new ObservableCollection<Einkaufsliste>(Einkaufslisten_Collection.OrderBy(einkaufliste => einkaufliste.updatedAt));
+                }
+                Einkaufslisten_Collection.Clear();
+                foreach (Einkaufsliste elem in temp)
+                {
+                    Einkaufslisten_Collection.Add(elem);
+                }
             }
-            else if (art == "1")
+            catch(Exception sort_e)
             {
-                temp = new ObservableCollection<Einkaufsliste>(Einkaufslisten_Collection.OrderBy(einkaufliste => einkaufliste.updatedAt));
-            }
-            Einkaufslisten_Collection.Clear();
-            foreach (Einkaufsliste elem in temp)
-            {
-                Einkaufslisten_Collection.Add(elem);
+                await new MessageDialog(sort_e.Message, "Sort Error").ShowAsync();
             }
         }
     }
