@@ -7,7 +7,8 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Styles\Custom.xaml" />
-                <ResourceDictionary Source="Styles\Dictionary1.xaml" />
+                <ResourceDictionary Source="Styles\de_Styles.xaml" />
+                <ResourceDictionary Source="Styles\ru_Styles.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <!--  custom resources  -->
         </ResourceDictionary>

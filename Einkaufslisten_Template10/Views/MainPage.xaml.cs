@@ -59,12 +59,6 @@ namespace Einkaufslisten_Template10.Views
             }
         }
 
-        private void submitButton_Click(object sender, RoutedEventArgs e)
-        {
-           
-            ViewModel.StyleController.changeStyle();
-    
 
-        }
     }
 }

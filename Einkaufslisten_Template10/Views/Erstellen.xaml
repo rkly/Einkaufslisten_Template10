@@ -16,7 +16,7 @@
         <vm:ErstellenViewModel x:Name="ViewModel" />
     </Page.DataContext>
 
-    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <RelativePanel Background="{x:Bind Path=ViewModel.StyleController.RelativePanelSolidColorBrush, Mode=OneWay}">
         <!--  header  -->
         <controls:PageHeader x:Name="pageHeader" Frame="{x:Bind Frame}"
                              RelativePanel.AlignLeftWithPanel="True"
@@ -44,28 +44,14 @@
                     <ColumnDefinition Width="30"/>
                 </Grid.ColumnDefinitions>
                 <TextBox Grid.Row="0" Grid.ColumnSpan="4" PlaceholderText="Listename eingeben" Text="{x:Bind ViewModel.name}" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextChanged="{x:Bind ViewModel.GetName}"/>
-                <Grid Grid.Row="1" Grid.ColumnSpan="4">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="30"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="30"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock x:Uid="ElementProdukt" Grid.Column="0" Grid.Row="0" Text="Produkt" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBlock x:Uid="ElementEinheit" Grid.Column="1" Grid.Row="0" Text="Einheit" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <TextBlock x:Uid="ElementMenge" Grid.Column="2" Grid.Row="0" Text="Menge" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                    <ListView Name="Erstellen_Output" Grid.Row="1" Grid.ColumnSpan="4" ItemsSource="{x:Bind ViewModel.Produkt_Einkaufsliste_Erstellen_Collection}">
+                <ListView Name="Erstellen_Output" Grid.Row="1" Grid.ColumnSpan="5" ItemsSource="{x:Bind ViewModel.Produkt_Einkaufsliste_Erstellen_Collection}" >
                         <ListView.ItemTemplate>
                             <DataTemplate x:DataType="model:Produkt_Einkaufsliste_View">
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="97"/>
+                                        <ColumnDefinition Width="97"/>
+                                        <ColumnDefinition Width="97"/>
                                         <ColumnDefinition Width="30"/>
                                     </Grid.ColumnDefinitions>
                                     <TextBlock Grid.Column="0" Text="{x:Bind produkt}"/>
@@ -76,7 +62,7 @@
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
-                </Grid>
+                
                 <Grid Grid.Row="2" Grid.ColumnSpan="4">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -102,7 +88,8 @@
                         SuggestionChosen="{x:Bind ViewModel.EinheitBox_SuggestionChosen}"/>
                     <TextBox Grid.Row="0" Grid.Column="2" InputScope="Number" PlaceholderText="Menge" TextChanging="TextBox_TextChanging" TextChanged="{x:Bind ViewModel.GetMenge}"/>
                     <Button Grid.Row="0" Grid.Column="3" FontFamily="Segoe MDL2 Assets" Content="&#59643;" Click="{x:Bind ViewModel.ProduktHinzufuegen}"/>
-                    <Button x:Uid="ListeSpeichern" Grid.Row="1" Grid.ColumnSpan="4" Content="Liste Speichern" HorizontalAlignment="Stretch" Click="{x:Bind ViewModel.ListeSpeichern}"/>
+                    <Button x:Uid="ListeSpeichern" Grid.Row="1" Grid.ColumnSpan="4" Content="Liste Speichern" HorizontalAlignment="Stretch" Click="{x:Bind ViewModel.ListeSpeichern}"
+                            Style="{x:Bind Path=ViewModel.StyleController.BtnStyle, Mode=OneWay}"/>
                 </Grid>
             </Grid>
         </ScrollViewer>

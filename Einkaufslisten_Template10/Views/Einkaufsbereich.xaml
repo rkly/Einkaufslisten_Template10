@@ -15,8 +15,8 @@
     <Page.DataContext>
         <vm:EinkaufsbereichViewModel x:Name="ViewModel" />
     </Page.DataContext>
-    
-    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <RelativePanel Background="{x:Bind Path=ViewModel.StyleController.RelativePanelSolidColorBrush, Mode=OneWay}">
         <!--  header  -->
         <controls:PageHeader x:Name="pageHeader" Frame="{x:Bind Frame}"
                     RelativePanel.AlignLeftWithPanel="True"

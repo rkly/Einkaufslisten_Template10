@@ -18,8 +18,15 @@ namespace Einkaufslisten_Template10.ViewModels
     {
         public ObservableCollection<Produkt_Einkaufsliste_View_Einkaufsbereich> Produkt_Einkaufsliste_Collection = new ObservableCollection<Produkt_Einkaufsliste_View_Einkaufsbereich>();
         public String einkaufsbereich_titel = String.Empty;
+        private StyleController styleController = new StyleController();
+
+        public StyleController StyleController
+        {
+            get { return styleController; }
+        }
         public override async Task OnNavigatedToAsync(Object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
+            this.StyleController.loadStyle();
             if (AuthService.eingeloggt)
             {
                 Einkaufsliste parameter_casted = parameter as Einkaufsliste;

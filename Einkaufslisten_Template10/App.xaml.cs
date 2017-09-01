@@ -25,33 +25,24 @@ namespace Einkaufslisten_Template10
     [Bindable]
     sealed partial class App : BootStrapper
     {
-        public static String stylePrefix = "ru";
-        public static Style btn_style = (Style)Application.Current.Resources[App.stylePrefix + "_btn_style"];
-        public static void changeStylePrefix(String prefix)
-        {
-            stylePrefix = prefix;
-            changeStyle();
-            
-        }
 
         public App()
         {
             InitializeComponent();
             SplashFactory = (e) => new Views.Splash(e);
+         
 #region app settings
             // some settings must be set in app.constructor
             var settings = SettingsService.Instance;
             RequestedTheme = settings.AppTheme;
             CacheMaxDuration = settings.CacheMaxDuration;
             ShowShellBackButton = settings.UseShellBackButton;
-#endregion
+            
+            #endregion
         }
 
 
-        public static void changeStyle()
-        {
-            App.btn_style = (Style)Application.Current.Resources[App.stylePrefix + "_btn_style"];
-        }
+       
 
         public override UIElement CreateRootElement(IActivatedEventArgs e)
         {

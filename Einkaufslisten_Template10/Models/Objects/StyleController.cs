@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Einkaufslisten_Template10.Services.SettingsServices;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -59,17 +60,11 @@ namespace Einkaufslisten_Template10.Models.Objects
                 OnPropertyChanged("BtnStyle");
             }
         }
-        public static Style btn_style = (Style)Application.Current.Resources[App.stylePrefix + "_btn_style"];
+        public static Style btn_style;
 
         public void changeStyle()
         {
-            if (prefix == "ru")
-            {
-                prefix = "de";
-            } else
-            {
-                prefix = "ru";
-            }
+            loadPrefix();
             loadStyle();
            
         }
@@ -77,11 +72,24 @@ namespace Einkaufslisten_Template10.Models.Objects
         {
             if (prefix == null)
             {
-                prefix = "ru";
+                loadPrefix();
             }
+           
             this.Suffix = prefix;
             this.BtnStyle = (Style) Application.Current.Resources[prefix + "_btn_style"];
             this.RelativePanelSolidColorBrush = (SolidColorBrush) Application.Current.Resources[prefix + "_solidColorBrush_RelativePanel"];
+        }
+        private void loadPrefix()
+        {
+            String sprache = SettingsService.Instance.Sprache;
+            if (sprache.Equals("de-de"))
+            {
+                prefix = "de";
+            }
+            else
+            {
+                prefix = "ru";
+            }
         }
 
 

@@ -16,7 +16,7 @@
     <Page.DataContext>
         <vm:EinkaufslistenViewModel x:Name="ViewModel" />
     </Page.DataContext>
-    <RelativePanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <RelativePanel Background="{x:Bind Path=ViewModel.StyleController.RelativePanelSolidColorBrush, Mode=OneWay}">
         <!--  header  -->
         <controls:PageHeader x:Name="pageHeader" Frame="{x:Bind Frame}"
                     RelativePanel.AlignLeftWithPanel="True"
@@ -43,8 +43,6 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock x:Uid="ListeName" Grid.Column="0" Grid.Row="0" Text="Name" VerticalAlignment="Center" HorizontalAlignment="Center"/>
-                <TextBlock x:Uid="ZuletztGeaendert" Grid.Column="1" Grid.Row="0" Text="zuletzt geändert" VerticalAlignment="Center" HorizontalAlignment="Center"/>
                 <ListView Name="Einkaufsliste_List" Grid.Row="1" Grid.ColumnSpan="2"
                           ItemsSource="{x:Bind ViewModel.Einkaufslisten_Collection}"
                           IsItemClickEnabled="True"
@@ -52,15 +50,15 @@
                           ItemClick="{x:Bind ViewModel.GoToNextView}"
                           HorizontalContentAlignment="Center"
                           VerticalContentAlignment="Center"
-                          HorizontalAlignment="Left"
+                          HorizontalAlignment="Stretch"
                           VerticalAlignment="Top">
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="model:Einkaufsliste">
                             <Grid HorizontalAlignment="Stretch">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="30"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBlock Grid.Column="0" Text="{x:Bind name}" TextAlignment="Center" HorizontalAlignment="Stretch"/>
                                 <TextBlock Grid.Column="1" Text="{x:Bind updatedAt}" TextAlignment="Center" HorizontalAlignment="Stretch"/>

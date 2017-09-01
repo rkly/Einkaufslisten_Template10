@@ -20,17 +20,17 @@ namespace Einkaufslisten_Template10.ViewModels
             {
                 Value = "Designtime value";
             }
-            this.styleController = new StyleController();
+            
             
         }
-        private StyleController styleController;
+        private StyleController styleController = new StyleController();
         
         public StyleController StyleController
         {
             get { return styleController; }
         }
 
-        string _Value = "bla_Test";
+        string _Value = "";
         public string Value { get { return _Value; } set { Set(ref _Value, value); } }
 
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
@@ -58,8 +58,7 @@ namespace Einkaufslisten_Template10.ViewModels
             await Task.CompletedTask;
         }
 
-        public void GotoDetailsPage() =>
-            NavigationService.Navigate(typeof(Views.DetailPage), Value);
+
 
         public void GotoSettings() =>
             NavigationService.Navigate(typeof(Views.SettingsPage), 0);
@@ -75,10 +74,6 @@ namespace Einkaufslisten_Template10.ViewModels
             Views.Busy.SetBusy(true, "Bitte warten");
             await AuthService.AuthenticateAsync();     
         }          
-        public void Refresh()
-        {
-            //NavigationService.Navigate(typeof(Views.MainPage), 0);
-            this.StyleController.changeStyle();
-        }
+ 
     }
 }

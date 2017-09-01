@@ -32,8 +32,15 @@ namespace Einkaufslisten_Template10.ViewModels
         public String name = String.Empty;
         public String erstellen_titel = "Neue Liste erstellen";
         public ICommand IDeleteProdukt { get; set; }
+        private StyleController styleController = new StyleController();
+
+        public StyleController StyleController
+        {
+            get { return styleController; }
+        }
         public override async Task OnNavigatedToAsync(Object parameter, NavigationMode mode, IDictionary<string, object> state)
         {
+            this.StyleController.loadStyle();
             await ProduktenZiehen();
             await EinheitenZiehen();         
             if (parameter != null)

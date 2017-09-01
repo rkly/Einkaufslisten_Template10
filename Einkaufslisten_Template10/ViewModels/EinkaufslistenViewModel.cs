@@ -23,10 +23,17 @@ namespace Einkaufslisten_Template10.ViewModels
         public ObservableCollection<Einkaufsliste> Einkaufslisten_Collection;
         public Byte targetView;
         public ICommand IDeleteListe { get; set; }
+        private StyleController styleController = new StyleController();
+
+        public StyleController StyleController
+        {
+            get { return styleController; }
+        }
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {                  
             if (AuthService.eingeloggt && parameter != null)
             {
+                StyleController.loadStyle();
                 targetView = (Byte)parameter;
 #if OFFLINE_SYNC_ENABLED
             await SyncService.InitLocalStoreAsync(); // offline sync
