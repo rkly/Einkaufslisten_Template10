@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Xaml.Navigation;
 using Template10.Mvvm;
@@ -18,8 +17,7 @@ namespace Einkaufslisten_Template10.ViewModels
     {
         public ObservableCollection<Produkt_Einkaufsliste_View_Einkaufsbereich> Produkt_Einkaufsliste_Collection = new ObservableCollection<Produkt_Einkaufsliste_View_Einkaufsbereich>();
         public String einkaufsbereich_titel = String.Empty;
-        private StyleController styleController = new StyleController();
-
+        private StyleController styleController = new StyleController(); 
         public StyleController StyleController
         {
             get { return styleController; }
@@ -30,14 +28,11 @@ namespace Einkaufslisten_Template10.ViewModels
             if (AuthService.eingeloggt)
             {
                 Einkaufsliste parameter_casted = parameter as Einkaufsliste;
-                Views.Busy.SetBusy(true, "Bitte warten. Daten werden geladen");
+                Views.Busy.SetBusy(true, new Windows.ApplicationModel.Resources.ResourceLoader().GetString("DatenWerdenGeladen"));
                 einkaufsbereich_titel = parameter_casted.name;
                 await RefreshEinkaufsbereich(parameter_casted.id);
                 Views.Busy.SetBusy(false);
             }
-#if OFFLINE_SYNC_ENABLED
-            await SyncService.MobileService.SyncContext.PushAsync(); // offline sync + Push für die neuen Listen anpassen!
-#endif
         }
         private async Task RefreshEinkaufsbereich(String id_einkaufsliste)
         {
@@ -65,7 +60,8 @@ namespace Einkaufslisten_Template10.ViewModels
             }
             if (exception != null)
             {
-                await new MessageDialog(exception.Message, "Error loading items").ShowAsync();
+                await new MessageDialog(exception.Message,
+                    new Windows.ApplicationModel.Resources.ResourceLoader().GetString("Fehler")).ShowAsync();
             }
         }
         public void ChangeStatusFromItem(object sender, ItemClickEventArgs e)

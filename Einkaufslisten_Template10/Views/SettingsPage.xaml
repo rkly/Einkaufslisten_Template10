@@ -31,7 +31,6 @@
         </converter:ValueWhenConverter>
     </Page.Resources>
     <RelativePanel Background="{x:Bind Path=ViewModel.SettingsPartViewModel.StyleController.RelativePanelSolidColorBrush, Mode=OneWay}">
-
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="AdaptiveVisualStateGroup">
                 <VisualState x:Name="VisualStateNarrow">
@@ -60,16 +59,14 @@
                 </VisualState>
             </VisualStateGroup>
         </VisualStateManager.VisualStateGroups>
-
         <!--  header  -->
         <controls:PageHeader x:Name="pageHeader"
-                             x:Uid="Einstellungen_Title"
-                             Content="Einstellungen"
+                             x:Uid="Title_Einstellungen"
+                             Text="Einstellungen"
                              Frame="{x:Bind Frame}"
                              RelativePanel.AlignLeftWithPanel="True"
                              RelativePanel.AlignRightWithPanel="True"
                              RelativePanel.AlignTopWithPanel="True" />
-
         <!--  content  -->
         <Pivot x:Name="MyPivot"
                Grid.Row="1"
@@ -77,23 +74,22 @@
                RelativePanel.AlignLeftWithPanel="True"
                RelativePanel.AlignRightWithPanel="True"
                RelativePanel.Below="pageHeader">
-
             <!--  settings  -->
-            <PivotItem DataContext="{Binding SettingsPartViewModel}" Header="Settings">
+            <PivotItem x:Uid="Pivot_Einstellungen" DataContext="{Binding SettingsPartViewModel}" Header="Settings">
                 <ScrollViewer Margin="0,12,-12,0"
                               HorizontalContentAlignment="Left"
                               VerticalScrollBarVisibility="Auto">
                     <RelativePanel HorizontalAlignment="Left">
-
-                        <ToggleSwitch x:Name="UseShellDrawnBackButtonToggleSwtich"
+                        <ToggleSwitch x:Uid="UseShellDrawnBackButtonToggleSwtich"
+                                      x:Name="UseShellDrawnBackButtonToggleSwtich"
                                       Header="Shell-drawn Back Button"
                                       IsOn="{Binding UseShellBackButton, Mode=TwoWay}"
                                       OffContent="Back button is in Page Header"
                                       OnContent="Back button in Title/TaskBar"
                                       RelativePanel.AlignLeftWithPanel="True"
                                       RelativePanel.AlignTopWithPanel="True" />
-
-                        <ToggleSwitch x:Name="UseLightThemeToggleSwitch"
+                        <ToggleSwitch x:Uid="UseLightThemeToggleSwitch"
+                                      x:Name="UseLightThemeToggleSwitch"
                                       Header="Requested Application Theme"
                                       IsOn="{Binding UseLightThemeButton, Mode=TwoWay}"
                                       OffContent="Current theme is Dark"
@@ -101,8 +97,8 @@
                                       RelativePanel.AlignLeftWithPanel="True"
                                       RelativePanel.Below="UseShellDrawnBackButtonToggleSwtich"
                                       />
-
-                        <ToggleSwitch x:Name="ShowHamburgerButtonToggleSwitch"
+                        <ToggleSwitch x:Uid="ShowHamburgerButtonToggleSwitch" 
+                                      x:Name="ShowHamburgerButtonToggleSwitch"
                                       Header="Einkaufslisten_Template10 Button Visibility"
                                       IsEnabled="{Binding IsOn, ElementName=IsFullScreenToggleSwitch, Converter={StaticResource FalseWhenTrueConverter}}"
                                       IsOn="{Binding ShowHamburgerButton, Mode=TwoWay}"
@@ -110,17 +106,14 @@
                                       OnContent="Einkaufslisten_Template10 Button is visible"
                                       RelativePanel.AlignLeftWithPanel="True"
                                       RelativePanel.Below="UseLightThemeToggleSwitch" />
-
-                        <ToggleSwitch x:Name="IsFullScreenToggleSwitch"
+                        <ToggleSwitch x:Uid="IsFullScreenToggleSwitch" 
+                                      x:Name="IsFullScreenToggleSwitch"
                                       IsOn="{Binding IsFullScreen, Mode=TwoWay}"
                                       OffContent="Einkaufslisten_Template10 Menu is visible"
                                       OnContent="Einkaufslisten_Template10 Menu is hidden"
                                       RelativePanel.AlignLeftWithPanel="True"
                                       RelativePanel.Below="ShowHamburgerButtonToggleSwitch" >
                         </ToggleSwitch>
-
-                        
-
                         <Button x:Name="Sprache"
                                 x:Uid="Sprache"
                                 Content="Sprache"
@@ -134,16 +127,9 @@
                                 </MenuFlyout>
                             </Button.Flyout>
                         </Button>
-
                     </RelativePanel>
-
                 </ScrollViewer>
             </PivotItem>
-
-            
-            
         </Pivot>
-
     </RelativePanel>
-
 </Page>

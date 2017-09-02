@@ -4,18 +4,9 @@ using Einkaufslisten_Template10.Services.SettingsServices;
 using Windows.ApplicationModel.Activation;
 using Template10.Controls;
 using Template10.Common;
-using System;
-using System.Linq;
 using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Controls;
-using System.IO;
-using Template10.Utils;
 using Microsoft.WindowsAzure.MobileServices;
-using Einkaufslisten_Template10.Models.Objects;
-using Windows.UI.Popups;
 using Einkaufslisten_Template10.Services.AzureServices;
-using System.Diagnostics;
-using Einkaufslisten_Template10.Models.Enum;
 
 namespace Einkaufslisten_Template10
 {
@@ -25,24 +16,18 @@ namespace Einkaufslisten_Template10
     [Bindable]
     sealed partial class App : BootStrapper
     {
-
         public App()
         {
             InitializeComponent();
-            SplashFactory = (e) => new Views.Splash(e);
-         
+            SplashFactory = (e) => new Views.Splash(e);       
 #region app settings
             // some settings must be set in app.constructor
             var settings = SettingsService.Instance;
             RequestedTheme = settings.AppTheme;
             CacheMaxDuration = settings.CacheMaxDuration;
-            ShowShellBackButton = settings.UseShellBackButton;
-            
+            ShowShellBackButton = settings.UseShellBackButton;           
             #endregion
         }
-
-
-       
 
         public override UIElement CreateRootElement(IActivatedEventArgs e)
         {

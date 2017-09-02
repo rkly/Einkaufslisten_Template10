@@ -117,100 +117,145 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutMenu.Content" xml:space="preserve">
-    <value>About</value>
-  </data>
-  <data name="Dark.Text" xml:space="preserve">
-    <value>Dunkel</value>
-  </data>
   <data name="Deutsch.Text" xml:space="preserve">
     <value>Deutsch</value>
   </data>
-  <data name="EinkaufslistenMenu.Content" xml:space="preserve">
-    <value>Einkaufslisten</value>
-  </data>
-  <data name="Einkaufslisten_Title.Text" xml:space="preserve">
-    <value>Einkaufslisten</value>
-  </data>
-  <data name="EinstellungenMenu.Content" xml:space="preserve">
-    <value>Einstellungen</value>
-  </data>
-  <data name="Einstellungen_Title.Text" xml:space="preserve">
-    <value>Einstellungen</value>
-  </data>
-  <data name="ElementEinheit.Text" xml:space="preserve">
-    <value>Einheit</value>
-  </data>
-  <data name="ElementMenge.Text" xml:space="preserve">
-    <value>Menge</value>
-  </data>
-  <data name="ElementName.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="Englisch.Text" xml:space="preserve">
-    <value>Englisch</value>
-  </data>
-  <data name="ErstellenMenu.Content" xml:space="preserve">
-    <value>Erstellen</value>
-  </data>
-  <data name="Layout.Content" xml:space="preserve">
-    <value>Layout</value>
-  </data>
-  <data name="Light.Text" xml:space="preserve">
-    <value>Hell</value>
-  </data>
-  <data name="ListeName.Text" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="ListeSpeichern.Content" xml:space="preserve">
-    <value>Liste Speichern</value>
-  </data>
-  <data name="NeueListe.Content" xml:space="preserve">
+  <data name="Dots_neueListe.Label" xml:space="preserve">
     <value>Neue Liste</value>
   </data>
-  <data name="NeuesElement.Content" xml:space="preserve">
-    <value>Neues Element</value>
+  <data name="Dots_sortDatum.Label" xml:space="preserve">
+    <value>Nach Datum sortieren</value>
+  </data>
+  <data name="Dots_sortName.Label" xml:space="preserve">
+    <value>Nach Name sortieren</value>
+  </data>
+  <data name="Einstellungen.Label" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="Erstellen_Einheit.PlaceholderText" xml:space="preserve">
+    <value>Einheit</value>
+  </data>
+  <data name="Erstellen_Listenname_eingeben.PlaceholderText" xml:space="preserve">
+    <value>Listename eingeben</value>
+  </data>
+  <data name="Erstellen_ListeSpeichern.Content" xml:space="preserve">
+    <value>Liste speichern</value>
+  </data>
+  <data name="Erstellen_Menge.PlaceholderText" xml:space="preserve">
+    <value>Menge</value>
+  </data>
+  <data name="Erstellen_Produkt.PlaceholderText" xml:space="preserve">
+    <value>Produkt</value>
+  </data>
+  <data name="IsFullScreenToggleSwitch.OffContent" xml:space="preserve">
+    <value>Menu ist eingeblendet</value>
+  </data>
+  <data name="IsFullScreenToggleSwitch.OnContent" xml:space="preserve">
+    <value>Menu ist ausgeblendet</value>
+  </data>
+  <data name="Login.Text" xml:space="preserve">
+    <value>Einloggen</value>
+  </data>
+  <data name="LoginButton.Content" xml:space="preserve">
+    <value>Einloggen</value>
+  </data>
+  <data name="Menu_Einkaufen_" xml:space="preserve">
+    <value>Einkaufen</value>
+  </data>
+  <data name="Menu_Einstellungen_" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="Menu_Erstellen_" xml:space="preserve">
+    <value>Erstellen</value>
+  </data>
+  <data name="Menu_Login_" xml:space="preserve">
+    <value>Einloggen</value>
+  </data>
+  <data name="Pivot_Einstellungen.Header" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="ShowHamburgerButtonToggleSwitch.Header" xml:space="preserve">
+    <value>Button sichtbarkeit</value>
+  </data>
+  <data name="ShowHamburgerButtonToggleSwitch.OffContent" xml:space="preserve">
+    <value>Button ist ausgeblendet</value>
+  </data>
+  <data name="ShowHamburgerButtonToggleSwitch.OnContent" xml:space="preserve">
+    <value>Button ist eingeblendet</value>
   </data>
   <data name="Sprache.Content" xml:space="preserve">
     <value>Sprache</value>
   </data>
-  <data name="Suche.Text" xml:space="preserve">
-    <value>Suche</value>
+  <data name="Title_Einkaufslisten.Text" xml:space="preserve">
+    <value>Einkaufslisten</value>
   </data>
-  <data name="TempGramm.Text" xml:space="preserve">
-    <value>Gramm</value>
-  </data>
-  <data name="TempGurken.Text" xml:space="preserve">
-    <value>Gurken</value>
-  </data>
-  <data name="TempL1.Text" xml:space="preserve">
-    <value>Liste 1</value>
-  </data>
-  <data name="TempL2.Text" xml:space="preserve">
-    <value>Liste 2</value>
-  </data>
-  <data name="TempL3.Text" xml:space="preserve">
-    <value>Liste 3</value>
-  </data>
-  <data name="TempListe1.Text" xml:space="preserve">
-    <value>Liste 1</value>
-  </data>
-  <data name="TempLiter.Text" xml:space="preserve">
-    <value>Liter</value>
-  </data>
-  <data name="TempStück.Text" xml:space="preserve">
-    <value>Stück</value>
-  </data>
-  <data name="TempWasser.Text" xml:space="preserve">
-    <value>Wasser</value>
-  </data>
-  <data name="TempZucker.Text" xml:space="preserve">
-    <value>Zucker</value>
+  <data name="Title_Einstellungen.Text" xml:space="preserve">
+    <value>Einstellungen</value>
   </data>
   <data name="Ukrainisch.Text" xml:space="preserve">
     <value>Ukrainisch</value>
   </data>
-  <data name="ZuletztGenutzt.Text" xml:space="preserve">
-    <value>Zuletzt genutzt</value>
+  <data name="UseLightThemeToggleSwitch.Header" xml:space="preserve">
+    <value>Angefordertes Anwendung Thema</value>
+  </data>
+  <data name="UseLightThemeToggleSwitch.OffContent" xml:space="preserve">
+    <value>Aktuelles Thema ist dunkel</value>
+  </data>
+  <data name="UseLightThemeToggleSwitch.OnContent" xml:space="preserve">
+    <value>Aktuelles Thema ist helles</value>
+  </data>
+  <data name="UseShellDrawnBackButtonToggleSwtich.Header" xml:space="preserve">
+    <value>Shell-Zurücktaste</value>
+  </data>
+  <data name="UseShellDrawnBackButtonToggleSwtich.OffContent" xml:space="preserve">
+    <value>Zurück-Taste befindet sich im Seitenkopf</value>
+  </data>
+  <data name="UseShellDrawnBackButtonToggleSwtich.OnContent" xml:space="preserve">
+    <value>Zurück-Taste befindet sich im Title/TaskBar</value>
+  </data>
+  <data name="BitteWarten" xml:space="preserve">
+    <value>Bitte Warten</value>
+  </data>
+  <data name="DatenWerdenGeladen" xml:space="preserve">
+    <value>Bitte warten. Daten werden geladen</value>
+  </data>
+  <data name="einProdukt" xml:space="preserve">
+    <value>Geben Sie bitte mindestens ein Produkt an</value>
+  </data>
+  <data name="Fehler" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="ListeBearbeiten" xml:space="preserve">
+    <value>Liste bearbeiten</value>
+  </data>
+  <data name="ListeErstellen" xml:space="preserve">
+    <value>Neue Liste erstellen</value>
+  </data>
+  <data name="MengeGross" xml:space="preserve">
+    <value>Die Menge ist zu groß</value>
+  </data>
+  <data name="Menu_Einkaufen.Text" xml:space="preserve">
+    <value>Einkaufen</value>
+  </data>
+  <data name="Menu_Einstellungen.Text" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="Menu_Erstellen.Text" xml:space="preserve">
+    <value>Erstellen</value>
+  </data>
+  <data name="Menu_Login.Text" xml:space="preserve">
+    <value>Einloggen</value>
+  </data>
+  <data name="SieMuessenSichEinloggen" xml:space="preserve">
+    <value>Sie müssen sich einloggen</value>
+  </data>
+  <data name="SieSindEingeloggt" xml:space="preserve">
+    <value>Sie sind eingeloggt als</value>
+  </data>
+  <data name="UngueltigeZahl" xml:space="preserve">
+    <value>Ungültige Zahl</value>
+  </data>
+  <data name="vollProdukt" xml:space="preserve">
+    <value>Geben Sie bitte Produkte vollständig an</value>
   </data>
 </root>

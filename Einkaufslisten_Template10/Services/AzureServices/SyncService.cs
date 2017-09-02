@@ -1,10 +1,5 @@
 ﻿using Microsoft.WindowsAzure.MobileServices;
 using Einkaufslisten_Template10.Models.Objects;
-using System.Threading.Tasks;
-#if OFFLINE_SYNC_ENABLED
-using Microsoft.WindowsAzure.MobileServices.SQLiteStore;  // offline sync
-using Microsoft.WindowsAzure.MobileServices.Sync;         // offline sync
-#endif
 
 namespace Einkaufslisten_Template10.Services.AzureServices
 {
@@ -23,33 +18,6 @@ namespace Einkaufslisten_Template10.Services.AzureServices
         /// <summary>
         /// Tabellen in Azure (Easy Tables), Modellen sind in Models.Objects
         /// </summary>
-#if OFFLINE_SYNC_ENABLED
-        private static IMobileServiceSyncTable<Produkt> _Produkt = _MobileService.GetSyncTable<Produkt>();
-        private static IMobileServiceSyncTable<Einkaufsliste> _Einkaufsliste = _MobileService.GetSyncTable<Einkaufsliste>();
-        private static IMobileServiceSyncTable<Einheit> _Einheit = _MobileService.GetSyncTable<Einheit>();
-        private static IMobileServiceSyncTable<Produkt_Einkaufsliste> _Produkt_Einkaufsliste = _MobileService.GetSyncTable<Produkt_Einkaufsliste>();
-        private static IMobileServiceSyncTable<Produkt_Einkaufsliste_View> _Produkt_Einkaufsliste_View = _MobileService.GetSyncTable<Produkt_Einkaufsliste_View>();
-        public static IMobileServiceSyncTable<Einkaufsliste> Einkaufsliste
-        {
-            get => _Einkaufsliste;
-        }
-        public static IMobileServiceSyncTable<Produkt_Einkaufsliste> Produkt_Einkaufsliste
-        {
-            get => _Produkt_Einkaufsliste;
-        }
-        public static IMobileServiceSyncTable<Produkt_Einkaufsliste_View> Produkt_Einkaufsliste_View
-        {
-            get => _Produkt_Einkaufsliste_View;
-        }
-        public static IMobileServiceSyncTable<Einheit> Einheit
-        {
-            get => _Einheit;
-        }
-        public static IMobileServiceSyncTable<Produkt> Produkt
-        {
-            get => _Produkt;
-        }
-#else
         private static IMobileServiceTable<Produkt> _Produkt = _MobileService.GetTable<Produkt>();
         private static IMobileServiceTable<Einkaufsliste> _Einkaufsliste = _MobileService.GetTable<Einkaufsliste>();
         private static IMobileServiceTable<Einheit> _Einheit = _MobileService.GetTable<Einheit>();
@@ -75,33 +43,5 @@ namespace Einkaufslisten_Template10.Services.AzureServices
         {
             get => _Produkt;
         }
-#endif 
-        #region Offline sync
-#if OFFLINE_SYNC_ENABLED
-        public static async Task InitLocalStoreAsync()
-        {
-            if (!_MobileService.SyncContext.IsInitialized)
-            {
-                var store = new MobileServiceSQLiteStore("localstore.db");      
-                store.DefineTable<Produkt>();
-                store.DefineTable<Einkaufsliste>();
-                store.DefineTable<Einheit>();
-                store.DefineTable<Produkt_Einkaufsliste>();
-                store.DefineTable<Produkt_Einkaufsliste_View>();
-                await _MobileService.SyncContext.InitializeAsync(store);
-            }
-            await SyncAsync();
-        }
-        public static async Task SyncAsync()
-        {
-            await _MobileService.SyncContext.PushAsync();
-            await _Produkt.PullAsync(null, _Produkt.CreateQuery());
-            await _Einkaufsliste.PullAsync(null, _Einkaufsliste.CreateQuery());
-            await _Einheit.PullAsync(null, _Einheit.CreateQuery());
-            await _Produkt_Einkaufsliste.PullAsync(null, _Produkt_Einkaufsliste.CreateQuery());
-            await _Produkt_Einkaufsliste.PullAsync(null, _Produkt_Einkaufsliste_View.CreateQuery());
-        }
-#endif
-        #endregion
     }
 }

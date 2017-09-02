@@ -5,17 +5,17 @@ using Template10.Mvvm;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Einkaufslisten_Template10.Models.Objects;
+using Einkaufslisten_Template10.Services.SettingsServices;
 
 namespace Einkaufslisten_Template10.ViewModels
 {
     public class SettingsPageViewModel : ViewModelBase
     {
-        public SettingsPartViewModel SettingsPartViewModel { get; } = new SettingsPartViewModel();
-        public AboutPartViewModel AboutPartViewModel { get; } = new AboutPartViewModel();
+        public SettingsPartViewModel SettingsPartViewModel { get; } = new SettingsPartViewModel();       
     }
     public class SettingsPartViewModel : ViewModelBase
     {
-        Services.SettingsServices.SettingsService _settings;
+        SettingsService _settings;
 
         public SettingsPartViewModel()
         {
@@ -61,17 +61,7 @@ namespace Einkaufslisten_Template10.ViewModels
             get { return _settings.AppTheme.Equals(ApplicationTheme.Light); }
             set { _settings.AppTheme = value ? ApplicationTheme.Light : ApplicationTheme.Dark; base.RaisePropertyChanged(); }
         }
-        private string _BusyText = "Please wait...";
-        public string BusyText
-        {
-            get { return _BusyText; }
-            set
-            {
-                Set(ref _BusyText, value);
-                _ShowBusyCommand.RaiseCanExecuteChanged();
-            }
-        }
- private StyleController styleController;
+        private StyleController styleController;
 
         public StyleController StyleController
 
@@ -91,11 +81,15 @@ namespace Einkaufslisten_Template10.ViewModels
         {
             String sprache_clicked = (sender as MenuFlyoutItem).Tag.ToString();
             Sprache = sprache_clicked;
-            /*var type = BootStrapper.Current.NavigationService.CurrentPageType;
-            var param = BootStrapper.Current.NavigationService.CurrentPageParam;*/
             try
             {
                 BootStrapper.Current.NavigationService.ClearCache();
+                var sprachen = new Windows.ApplicationModel.Resources.ResourceLoader();
+                String login = sprachen.GetString("Menu_Login_");
+                String erstellen = sprachen.GetString("Menu_Erstellen_");
+                String einkaufen = sprachen.GetString("Menu_Einkaufen_");
+                String einstellungen = sprachen.GetString("Menu_Einstellungen_");
+                await Views.Shell.UpdateTextShell(login, erstellen, einkaufen, einstellungen);                
                 await Task.Delay(100);
             }
             finally
@@ -103,31 +97,7 @@ namespace Einkaufslisten_Template10.ViewModels
                 Windows.ApplicationModel.Resources.Core.ResourceContext.GetForCurrentView().Reset();
                 Windows.ApplicationModel.Resources.Core.ResourceContext.GetForViewIndependentUse().Reset();
                 BootStrapper.Current.NavigationService.Refresh();
-				
             }
         }
-        DelegateCommand _ShowBusyCommand;
-        public DelegateCommand ShowBusyCommand
-            => _ShowBusyCommand ?? (_ShowBusyCommand = new DelegateCommand(async () =>
-            {
-                Views.Busy.SetBusy(true, _BusyText);
-                await Task.Delay(5000);
-                Views.Busy.SetBusy(false);
-            }, () => !string.IsNullOrEmpty(BusyText)));
-    }
-    public class AboutPartViewModel : ViewModelBase
-    {
-        public Uri Logo => Windows.ApplicationModel.Package.Current.Logo;
-        public string DisplayName => Windows.ApplicationModel.Package.Current.DisplayName;
-        public string Publisher => Windows.ApplicationModel.Package.Current.PublisherDisplayName;
-        public string Version
-        {
-            get
-            {
-                var v = Windows.ApplicationModel.Package.Current.Id.Version;
-                return $"{v.Major}.{v.Minor}.{v.Build}.{v.Revision}";
-            }
-        }
-        public Uri RateMe => new Uri("http://aka.ms/template10");
     }
 }

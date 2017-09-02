@@ -6,7 +6,6 @@ namespace Einkaufslisten_Template10.Views
     public sealed partial class SettingsPage : Page
     {
         Template10.Services.SerializationService.ISerializationService _SerializationService;
-
         public SettingsPage()
         {
             InitializeComponent();

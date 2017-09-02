@@ -14,7 +14,6 @@
       mc:Ignorable="d">
 
     <Controls:HamburgerMenu x:Name="MyHamburgerMenu">
-
         <Controls:HamburgerMenu.PrimaryButtons>
             <!--  mainpage button  -->
             <Controls:HamburgerButtonInfo ClearHistory="True" PageType="views:MainPage" >
@@ -22,7 +21,9 @@
                     <SymbolIcon Width="48"
                                 Height="48"
                                 Symbol="Home" />
-                    <TextBlock Margin="12,0,0,0"
+                    <TextBlock x:Uid="Menu_Login"
+                               x:Name="Menu_Login"
+                               Margin="12,0,0,0"
                                VerticalAlignment="Center"
                                Text="Login" />
                 </StackPanel>
@@ -33,7 +34,9 @@
                     <SymbolIcon Width="48"
                                 Height="48"                                
                                 Symbol="List" />
-                    <TextBlock Margin="12,0,0,0"
+                    <TextBlock x:Uid="Menu_Erstellen"
+                               x:Name="Menu_Erstellen"
+                               Margin="12,0,0,0"
                                VerticalAlignment="Center"
                                Text="Erstellen" />
                 </StackPanel>
@@ -44,7 +47,9 @@
                     <SymbolIcon Width="48"
                                 Height="48"                                
                                 Symbol="Shop"/>
-                    <TextBlock Margin="12,0,0,0"
+                    <TextBlock x:Uid="Menu_Einkaufen"
+                               x:Name="Menu_Einkaufen"
+                               Margin="12,0,0,0"
                                VerticalAlignment="Center"
                                Text="Einkaufen" />
                 </StackPanel>
@@ -62,13 +67,14 @@
                     <SymbolIcon Width="48"
                                 Height="48"
                                 Symbol="Setting" />
-                    <TextBlock Margin="12,0,0,0"
+                    <TextBlock x:Uid="Menu_Einstellungen"
+                               x:Name="Menu_Einstellungen"
+                               Margin="12,0,0,0"
                                VerticalAlignment="Center"
                                Text="Einstellungen" />
                 </StackPanel>
             </Controls:HamburgerButtonInfo>
-            <!--  profile button  -->
-            
+            <!--  profile button  -->        
         </Controls:HamburgerMenu.SecondaryButtons>
     </Controls:HamburgerMenu>
 </Page>

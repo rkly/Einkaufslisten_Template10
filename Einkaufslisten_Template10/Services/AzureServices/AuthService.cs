@@ -37,10 +37,10 @@ namespace Einkaufslisten_Template10.Services.AzureServices
                 }
                 catch (InvalidOperationException)
                 {
-                    message = "You must log in. Login Required";
+                    message = new Windows.ApplicationModel.Resources.ResourceLoader().GetString("SieMuessenSichEinloggen");
                 }   
             }
-            message = string.Format("Sie sind eingeloggt - {0} - {1} - {2} ", _user.Message.id, _user.Message.name, _user.Message.email);          
+            message = string.Format(new Windows.ApplicationModel.Resources.ResourceLoader().GetString("SieSindEingeloggt")+" - {0} - {1} - {2} ", _user.Message.id, _user.Message.name, _user.Message.email);          
             var dialog = new MessageDialog(message);
             dialog.Commands.Add(new UICommand("OK"));
             Views.Busy.SetBusy(false);

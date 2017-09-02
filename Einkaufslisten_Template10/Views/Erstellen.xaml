@@ -23,8 +23,6 @@
                              RelativePanel.AlignRightWithPanel="True"
                              RelativePanel.AlignTopWithPanel="True"
                              Text="{x:Bind ViewModel.erstellen_titel}" />
-
-
         <!--  content  -->
         <ScrollViewer Padding="5,5,5,5" RelativePanel.AlignBottomWithPanel="True"
                     RelativePanel.AlignLeftWithPanel="True"
@@ -43,26 +41,25 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="30"/>
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Row="0" Grid.ColumnSpan="4" PlaceholderText="Listename eingeben" Text="{x:Bind ViewModel.name}" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextChanged="{x:Bind ViewModel.GetName}"/>
+                <TextBox Grid.Row="0" Grid.ColumnSpan="4" x:Uid="Erstellen_Listenname_eingeben" PlaceholderText="Listename eingeben" Text="{x:Bind ViewModel.name}" Height="30" HorizontalAlignment="Stretch" VerticalAlignment="Center" TextChanged="{x:Bind ViewModel.GetName}"/>
                 <ListView Name="Erstellen_Output" Grid.Row="1" Grid.ColumnSpan="5" ItemsSource="{x:Bind ViewModel.Produkt_Einkaufsliste_Erstellen_Collection}" >
-                        <ListView.ItemTemplate>
-                            <DataTemplate x:DataType="model:Produkt_Einkaufsliste_View">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="97"/>
-                                        <ColumnDefinition Width="97"/>
-                                        <ColumnDefinition Width="97"/>
-                                        <ColumnDefinition Width="30"/>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="0" Text="{x:Bind produkt}"/>
-                                    <TextBlock Grid.Column="1" Text="{x:Bind einheit}"/>
-                                    <TextBlock Grid.Column="2" Text="{x:Bind menge}"/>
-                                    <Button Grid.Column="3" Content="-" VerticalAlignment="Center" HorizontalAlignment="Stretch" Command="{Binding ElementName=Erstellen_Output, Path=DataContext.IDeleteProdukt}" CommandParameter="{Binding}"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Produkt_Einkaufsliste_View">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="97"/>
+                                    <ColumnDefinition Width="97"/>
+                                    <ColumnDefinition Width="97"/>
+                                    <ColumnDefinition Width="30"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{x:Bind produkt}"/>
+                                <TextBlock Grid.Column="1" Text="{x:Bind einheit}"/>
+                                <TextBlock Grid.Column="2" Text="{x:Bind menge}"/>
+                                <Button Grid.Column="3" Content="-" VerticalAlignment="Center" HorizontalAlignment="Stretch" Command="{Binding ElementName=Erstellen_Output, Path=DataContext.IDeleteProdukt}" CommandParameter="{Binding}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
                 <Grid Grid.Row="2" Grid.ColumnSpan="4">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -76,19 +73,21 @@
                     </Grid.RowDefinitions>
                     <AutoSuggestBox Grid.Column="0" Grid.Row="0"
                         x:Name="ProduktBox"
+                        x:Uid="Erstellen_Produkt"
                         PlaceholderText="Produkt"                       
                         TextChanged="ProduktBox_TextChanged"
                         QuerySubmitted="ProduktBox_QuerySubmitted"
                         SuggestionChosen="{x:Bind ViewModel.ProduktBox_SuggestionChosen}"/>
                     <AutoSuggestBox Grid.Column="1" Grid.Row="0"
                         x:Name="EinheitBox"
+                        x:Uid="Erstellen_Einheit"
                         PlaceholderText="Einheit"                      
                         TextChanged="EinheitBox_TextChanged"
                         QuerySubmitted="EinheitBox_QuerySubmitted"
                         SuggestionChosen="{x:Bind ViewModel.EinheitBox_SuggestionChosen}"/>
-                    <TextBox Grid.Row="0" Grid.Column="2" InputScope="Number" PlaceholderText="Menge" TextChanging="TextBox_TextChanging" TextChanged="{x:Bind ViewModel.GetMenge}"/>
+                    <TextBox x:Uid="Erstellen_Menge"  Grid.Row="0" Grid.Column="2" InputScope="Number" PlaceholderText="Menge" TextChanging="TextBox_TextChanging" TextChanged="{x:Bind ViewModel.GetMenge}"/>
                     <Button Grid.Row="0" Grid.Column="3" FontFamily="Segoe MDL2 Assets" Content="&#59643;" Click="{x:Bind ViewModel.ProduktHinzufuegen}"/>
-                    <Button x:Uid="ListeSpeichern" Grid.Row="1" Grid.ColumnSpan="4" Content="Liste Speichern" HorizontalAlignment="Stretch" Click="{x:Bind ViewModel.ListeSpeichern}"
+                    <Button x:Uid="Erstellen_ListeSpeichern" Grid.Row="1" Grid.ColumnSpan="4" Content="Liste Speichern" HorizontalAlignment="Stretch" Click="{x:Bind ViewModel.ListeSpeichern}"
                             Style="{x:Bind Path=ViewModel.StyleController.BtnStyle, Mode=OneWay}"/>
                 </Grid>
             </Grid>

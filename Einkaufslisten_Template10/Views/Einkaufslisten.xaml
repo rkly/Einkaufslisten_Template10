@@ -18,14 +18,17 @@
     </Page.DataContext>
     <RelativePanel Background="{x:Bind Path=ViewModel.StyleController.RelativePanelSolidColorBrush, Mode=OneWay}">
         <!--  header  -->
-        <controls:PageHeader x:Name="pageHeader" Frame="{x:Bind Frame}"
-                    RelativePanel.AlignLeftWithPanel="True"
-                    RelativePanel.AlignRightWithPanel="True"
-                    RelativePanel.AlignTopWithPanel="True" Text="Einkaufslisten" x:Uid="Einkaufslisten_Title">
+        <controls:PageHeader x:Uid="Title_Einkaufslisten"
+                             x:Name="pageHeader" 
+                             Frame="{x:Bind Frame}"
+                             RelativePanel.AlignLeftWithPanel="True"
+                             RelativePanel.AlignRightWithPanel="True"
+                             RelativePanel.AlignTopWithPanel="True" 
+                             Text="Einkaufslisten" >
             <controls:PageHeader.SecondaryCommands>
-                <AppBarButton Click="{x:Bind ViewModel.NeueListe}" Label="neueListe" />
-                <AppBarButton Click="{x:Bind ViewModel.Sort}" Label="Nach Datum sortieren" Tag="{x:Bind enum:SortArt.DATUM}"/>
-                <AppBarButton Click="{x:Bind ViewModel.Sort}" Label="Nach Name sortieren" Tag="{x:Bind enum:SortArt.NAME}"/>
+                <AppBarButton x:Uid="Dots_neueListe" Click="{x:Bind ViewModel.NeueListe}" Label="Neue Liste" />
+                <AppBarButton x:Uid="Dots_sortDatum" Click="{x:Bind ViewModel.Sort}" Label="Nach Datum sortieren" Tag="{x:Bind enum:SortArt.DATUM}"/>
+                <AppBarButton x:Uid="Dots_sortName" Click="{x:Bind ViewModel.Sort}" Label="Nach Name sortieren" Tag="{x:Bind enum:SortArt.NAME}"/>
             </controls:PageHeader.SecondaryCommands>
         </controls:PageHeader>
         <!--  content  -->
@@ -33,7 +36,8 @@
                     RelativePanel.AlignLeftWithPanel="True"
                     RelativePanel.AlignRightWithPanel="True"
                     RelativePanel.Below="pageHeader"
-                    VerticalScrollBarVisibility="Auto" Name="ScrollView">
+                    VerticalScrollBarVisibility="Auto" 
+                    Name="ScrollView">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>

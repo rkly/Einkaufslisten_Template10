@@ -117,100 +117,145 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AboutMenu.Content" xml:space="preserve">
-    <value>About</value>
+  <data name="BitteWarten" xml:space="preserve">
+    <value>Зачекайте будь ласка</value>
   </data>
-  <data name="Dark.Text" xml:space="preserve">
-    <value>Темна</value>
+  <data name="DatenWerdenGeladen" xml:space="preserve">
+    <value>Зачекайте будь ласка. Дані завантажуються</value>
   </data>
   <data name="Deutsch.Text" xml:space="preserve">
     <value>Німецька</value>
   </data>
-  <data name="EinkaufslistenMenu.Content" xml:space="preserve">
-    <value>Списки покупок</value>
-  </data>
-  <data name="Einkaufslisten_Title.Text" xml:space="preserve">
-    <value>Списки покупок</value>
-  </data>
-  <data name="EinstellungenMenu.Content" xml:space="preserve">
-    <value>Налаштування</value>
-  </data>
-  <data name="Einstellungen_Title.Text" xml:space="preserve">
-    <value>Налаштування</value>
-  </data>
-  <data name="ElementEinheit.Text" xml:space="preserve">
-    <value>Одиниця</value>
-  </data>
-  <data name="ElementMenge.Text" xml:space="preserve">
-    <value>Кількість</value>
-  </data>
-  <data name="ElementName.Text" xml:space="preserve">
-    <value>Назва товару</value>
-  </data>
-  <data name="Englisch.Text" xml:space="preserve">
-    <value>Англійська</value>
-  </data>
-  <data name="ErstellenMenu.Content" xml:space="preserve">
-    <value>Створити</value>
-  </data>
-  <data name="Layout.Content" xml:space="preserve">
-    <value>Тема</value>
-  </data>
-  <data name="Light.Text" xml:space="preserve">
-    <value>Світла</value>
-  </data>
-  <data name="ListeName.Text" xml:space="preserve">
-    <value>Назва списку</value>
-  </data>
-  <data name="ListeSpeichern.Content" xml:space="preserve">
-    <value>Зберегти список</value>
-  </data>
-  <data name="NeueListe.Content" xml:space="preserve">
+  <data name="Dots_neueListe.Label" xml:space="preserve">
     <value>Новий список</value>
   </data>
-  <data name="NeuesElement.Content" xml:space="preserve">
-    <value>Новий товар</value>
+  <data name="Dots_sortDatum.Label" xml:space="preserve">
+    <value>Сортувати по даті</value>
+  </data>
+  <data name="Dots_sortName.Label" xml:space="preserve">
+    <value>Сортувати по імені</value>
+  </data>
+  <data name="einProdukt" xml:space="preserve">
+    <value>Необхідно щонайменше один продукт</value>
+  </data>
+  <data name="Einstellungen.Label" xml:space="preserve">
+    <value>Налаштування</value>
+  </data>
+  <data name="Erstellen_Einheit.PlaceholderText" xml:space="preserve">
+    <value>Одиниця</value>
+  </data>
+  <data name="Erstellen_Listenname_eingeben.PlaceholderText" xml:space="preserve">
+    <value>Назва списку</value>
+  </data>
+  <data name="Erstellen_ListeSpeichern.Content" xml:space="preserve">
+    <value>Зберегти список</value>
+  </data>
+  <data name="Erstellen_Menge.PlaceholderText" xml:space="preserve">
+    <value>Кількість</value>
+  </data>
+  <data name="Erstellen_Produkt.PlaceholderText" xml:space="preserve">
+    <value>Продукт</value>
+  </data>
+  <data name="Fehler" xml:space="preserve">
+    <value>Помилка</value>
+  </data>
+  <data name="IsFullScreenToggleSwitch.OffContent" xml:space="preserve">
+    <value>Меню показано</value>
+  </data>
+  <data name="IsFullScreenToggleSwitch.OnContent" xml:space="preserve">
+    <value>Меню приховано</value>
+  </data>
+  <data name="ListeBearbeiten" xml:space="preserve">
+    <value>Редагувати список</value>
+  </data>
+  <data name="ListeErstellen" xml:space="preserve">
+    <value>Створити новий список</value>
+  </data>
+  <data name="Login.Text" xml:space="preserve">
+    <value>Увійти</value>
+  </data>
+  <data name="LoginButton.Content" xml:space="preserve">
+    <value>Увійти</value>
+  </data>
+  <data name="MengeGross" xml:space="preserve">
+    <value>Число завелике</value>
+  </data>
+  <data name="Menu_Einkaufen.Text" xml:space="preserve">
+    <value>Покупки</value>
+  </data>
+  <data name="Menu_Einkaufen_" xml:space="preserve">
+    <value>Покупки</value>
+  </data>
+  <data name="Menu_Einstellungen.Text" xml:space="preserve">
+    <value>Налаштування</value>
+  </data>
+  <data name="Menu_Einstellungen_" xml:space="preserve">
+    <value>Налаштування</value>
+  </data>
+  <data name="Menu_Erstellen.Text" xml:space="preserve">
+    <value>Створити</value>
+  </data>
+  <data name="Menu_Erstellen_" xml:space="preserve">
+    <value>Створити</value>
+  </data>
+  <data name="Menu_Login.Text" xml:space="preserve">
+    <value>Увійти</value>
+  </data>
+  <data name="Menu_Login_" xml:space="preserve">
+    <value>Увійти</value>
+  </data>
+  <data name="Pivot_Einstellungen.Header" xml:space="preserve">
+    <value>Налаштування</value>
+  </data>
+  <data name="ShowHamburgerButtonToggleSwitch.Header" xml:space="preserve">
+    <value>Відображення кнопки</value>
+  </data>
+  <data name="ShowHamburgerButtonToggleSwitch.OffContent" xml:space="preserve">
+    <value>Кнопка прихована</value>
+  </data>
+  <data name="ShowHamburgerButtonToggleSwitch.OnContent" xml:space="preserve">
+    <value>Кнопка показана</value>
+  </data>
+  <data name="SieMuessenSichEinloggen" xml:space="preserve">
+    <value>Ви повинні увійти</value>
+  </data>
+  <data name="SieSindEingeloggt" xml:space="preserve">
+    <value>Ви увійшли як</value>
   </data>
   <data name="Sprache.Content" xml:space="preserve">
     <value>Мова</value>
   </data>
-  <data name="Suche.Text" xml:space="preserve">
-    <value>Пошук</value>
+  <data name="Title_Einkaufslisten.Text" xml:space="preserve">
+    <value>Списки покупок</value>
   </data>
-  <data name="TempGramm.Text" xml:space="preserve">
-    <value>Грам</value>
-  </data>
-  <data name="TempGurken.Text" xml:space="preserve">
-    <value>Огірки</value>
-  </data>
-  <data name="TempL1.Text" xml:space="preserve">
-    <value>Список 1</value>
-  </data>
-  <data name="TempL2.Text" xml:space="preserve">
-    <value>Список 2</value>
-  </data>
-  <data name="TempL3.Text" xml:space="preserve">
-    <value>Список 3</value>
-  </data>
-  <data name="TempListe1.Text" xml:space="preserve">
-    <value>Список 1</value>
-  </data>
-  <data name="TempLiter.Text" xml:space="preserve">
-    <value>Літр</value>
-  </data>
-  <data name="TempStück.Text" xml:space="preserve">
-    <value>Штук</value>
-  </data>
-  <data name="TempWasser.Text" xml:space="preserve">
-    <value>Вода</value>
-  </data>
-  <data name="TempZucker.Text" xml:space="preserve">
-    <value>Цукор</value>
+  <data name="Title_Einstellungen.Text" xml:space="preserve">
+    <value>Налаштування</value>
   </data>
   <data name="Ukrainisch.Text" xml:space="preserve">
     <value>Українська</value>
   </data>
-  <data name="ZuletztGenutzt.Text" xml:space="preserve">
-    <value>Останній використаний</value>
+  <data name="UngueltigeZahl" xml:space="preserve">
+    <value>Не правильний формат числа</value>
+  </data>
+  <data name="UseLightThemeToggleSwitch.Header" xml:space="preserve">
+    <value>Тема додатку</value>
+  </data>
+  <data name="UseLightThemeToggleSwitch.OffContent" xml:space="preserve">
+    <value>Тема темна</value>
+  </data>
+  <data name="UseLightThemeToggleSwitch.OnContent" xml:space="preserve">
+    <value>Тема світла</value>
+  </data>
+  <data name="UseShellDrawnBackButtonToggleSwtich.Header" xml:space="preserve">
+    <value>Кнопка "Назад"</value>
+  </data>
+  <data name="UseShellDrawnBackButtonToggleSwtich.OffContent" xml:space="preserve">
+    <value>Кнопка "Назад" знаходиться в заголовку сторінки</value>
+  </data>
+  <data name="UseShellDrawnBackButtonToggleSwtich.OnContent" xml:space="preserve">
+    <value>Кнопка "Назад" знаходиться в заголовку</value>
+  </data>
+  <data name="vollProdukt" xml:space="preserve">
+    <value>Заповніть всі поля будь ласка </value>
   </data>
 </root>

@@ -1,18 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
+﻿using System.Linq;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
-using Einkaufslisten_Template10.ViewModels;
 using System.Text.RegularExpressions;
 using Einkaufslisten_Template10.Models.Objects;
 using System.Diagnostics;
@@ -26,7 +13,6 @@ namespace Einkaufslisten_Template10.Views
         public Erstellen()
         {
             InitializeComponent();
-            //cached ?
         }
         private void TextBox_TextChanging(TextBox sender, TextBoxTextChangingEventArgs args)
         {
@@ -49,11 +35,6 @@ namespace Einkaufslisten_Template10.Views
                 sender.ItemsSource = matchingProdukte.ToList();
             }
         }
-        /*private void ProduktBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
-        {
-            var produkt = args.SelectedItem as Produkt;
-            sender.Text = string.Format("{0}", produkt.name);
-        }*/
         private void ProduktBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             if (args.ChosenSuggestion != null)
@@ -93,11 +74,6 @@ namespace Einkaufslisten_Template10.Views
                 sender.ItemsSource = matchingEinheiten.ToList();
             }
         }
-        /*private void EinheitBox_SuggestionChosen(AutoSuggestBox sender, AutoSuggestBoxSuggestionChosenEventArgs args)
-        {
-            var einheit = args.SelectedItem as Einheit;
-            sender.Text = string.Format("{0}", einheit.name);
-        }*/
         private void EinheitBox_QuerySubmitted(AutoSuggestBox sender, AutoSuggestBoxQuerySubmittedEventArgs args)
         {
             if (args.ChosenSuggestion != null)

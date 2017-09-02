@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Einkaufslisten_Template10.Models.Objects
 {
@@ -11,10 +7,10 @@ namespace Einkaufslisten_Template10.Models.Objects
         public Einheit() : base() //leere Klasse für JSON Deserializer in RefreshEinkaufslisten()
         {
         }                 
-        public Einheit(string name) : base(name)
+        public Einheit(String name) : base(name)
         {
         }
-        public override string ToString()
+        public override String ToString()
         {
             return name;
         }

@@ -4,7 +4,6 @@
     xmlns:local="using:Einkaufslisten_Template10.Styles"
     xmlns:controls="using:Template10.Controls">
 
-
     <Style TargetType="Button" x:Key="ru_btn_style">
         <Setter Property="Background">
             <Setter.Value>

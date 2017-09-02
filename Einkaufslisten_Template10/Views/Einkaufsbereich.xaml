@@ -39,19 +39,9 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <ListView Name="Output" Grid.Row="1" Grid.ColumnSpan="3" ItemsSource="{x:Bind ViewModel.Produkt_Einkaufsliste_Collection}"
-                    ItemClick="{x:Bind ViewModel.ChangeStatusFromItem}"
-                    IsItemClickEnabled="True"
+                        ItemClick="{x:Bind ViewModel.ChangeStatusFromItem}"
+                        IsItemClickEnabled="True"
                           SelectionMode="Single">
-                 
-                    <!---<ListViewHeaderItem>
-                        <TextBlock Grid.Column="0" Text="Name"/>
-                    </ListViewHeaderItem>
-                    <ListViewHeaderItem>
-                        <TextBlock Grid.Column="1" Text="Menge"/>
-                    </ListViewHeaderItem>
-                    <ListViewHeaderItem>
-                        <TextBlock Grid.Column="2" Text="Einheit"/>
-                    </ListViewHeaderItem>-->
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="model:Produkt_Einkaufsliste_View_Einkaufsbereich">
                             <Grid>
@@ -62,9 +52,9 @@
                                     <ColumnDefinition Width="100"/>
                                 </Grid.ColumnDefinitions>
                                 <CheckBox Grid.Column="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" IsChecked="{x:Bind InCard }" IsEnabled="False"/>
-                                <TextBlock Grid.Column="1"  Text="{x:Bind produkt}"/>
-                                <TextBlock Grid.Column="2"  Text="{x:Bind menge}"/>
-                                <TextBlock Grid.Column="3"  Text="{x:Bind einheit}"/>
+                                <TextBlock Grid.Column="1" Text="{x:Bind produkt}"/>
+                                <TextBlock Grid.Column="2" Text="{x:Bind menge}"/>
+                                <TextBlock Grid.Column="3" Text="{x:Bind einheit}"/>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>

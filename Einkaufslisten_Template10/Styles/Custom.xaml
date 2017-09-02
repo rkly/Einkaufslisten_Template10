@@ -46,7 +46,6 @@
             <Style TargetType="controls:HamburgerMenu">
 
                 <!--
-
                 Windows 10 2015 (1511) Einkaufslisten_Template10 Menu Style
                 Simply replace AccentColor with the follow setters.
 
@@ -62,7 +61,6 @@
                 <Setter Property="NavButtonCheckedForeground" Value="White" />
                 <Setter Property="NavButtonCheckedBackground" Value="#FF2A4E6C" />
                 <Setter Property="NavButtonCheckedIndicatorBrush" Value="Transparent" />
-
                 -->
 
                 <Setter Property="AccentColor" Value="{StaticResource CustomColor}" />

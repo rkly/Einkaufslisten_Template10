@@ -18,27 +18,18 @@
         <vm:MainPageViewModel x:Key="viewModel"></vm:MainPageViewModel>
     </Page.Resources>
     <RelativePanel Background="{x:Bind Path=ViewModel.StyleController.RelativePanelSolidColorBrush, Mode=OneWay}">
-
-
-        
-
-        <controls:PageHeader x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
+        <controls:PageHeader x:Uid="Login"
+                             x:Name="pageHeader" RelativePanel.AlignLeftWithPanel="True"
                              RelativePanel.AlignRightWithPanel="True"
-                             RelativePanel.AlignTopWithPanel="True" Text="Login" >
-
+                             RelativePanel.AlignTopWithPanel="True" 
+                             Text="Login" >
             <!--  secondary commands  -->
             <controls:PageHeader.SecondaryCommands>
-                <AppBarButton Click="{x:Bind ViewModel.GotoSettings}" Label="Einstellungen" />
-            </controls:PageHeader.SecondaryCommands> 
-
+                <AppBarButton x:Uid="Einstellungen" Click="{x:Bind ViewModel.GotoSettings}" Label="Einstellungen" />
+            </controls:PageHeader.SecondaryCommands>
         </controls:PageHeader>
-
-        
-        <!--Style="{x:Bind Path=sc.BtnStyle, Mode=OneWay }"-->
-      
-
-
-        <Button Click="{x:Bind ViewModel.Einloggen}" Content="Login"     
+        <Button x:Uid="LoginButton"
+                Click="{x:Bind ViewModel.Einloggen}" Content="Login"     
                 RelativePanel.AlignHorizontalCenterWithPanel="True" 
                 RelativePanel.AlignVerticalCenterWithPanel="True"
                 HorizontalAlignment="Stretch"

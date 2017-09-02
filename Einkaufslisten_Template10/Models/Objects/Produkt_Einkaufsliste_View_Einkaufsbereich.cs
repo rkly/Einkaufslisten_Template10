@@ -1,9 +1,5 @@
 ﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Einkaufslisten_Template10.Models.Objects
 {
@@ -20,9 +16,9 @@ namespace Einkaufslisten_Template10.Models.Objects
             InCard = inCard;
         }
 
-        bool _inCard = false;
+        Boolean _inCard = false;
         [JsonProperty(PropertyName = "incard")]
-        public bool InCard
+        public Boolean InCard
         {
             get => _inCard;
             set => _inCard = value;

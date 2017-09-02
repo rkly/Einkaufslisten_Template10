@@ -30,7 +30,7 @@ namespace Einkaufslisten_Template10.ViewModels
         private String _name_produkt = String.Empty;
         private String _name_einheit = String.Empty;
         public String name = String.Empty;
-        public String erstellen_titel = "Neue Liste erstellen";
+        public String erstellen_titel = new Windows.ApplicationModel.Resources.ResourceLoader().GetString("ListeErstellen");
         public ICommand IDeleteProdukt { get; set; }
         private StyleController styleController = new StyleController();
 
@@ -46,7 +46,7 @@ namespace Einkaufslisten_Template10.ViewModels
             if (parameter != null)
             {
                 Einkaufsliste parameter_casted = parameter as Einkaufsliste;
-                erstellen_titel = "Liste bearbeiten";
+                erstellen_titel = new Windows.ApplicationModel.Resources.ResourceLoader().GetString("ListeBearbeiten");
                 name = parameter_casted.name;
                 _Einkaufsliste.name = name;
                 await ListeBearbeiten(parameter_casted.id);
@@ -73,7 +73,8 @@ namespace Einkaufslisten_Template10.ViewModels
             {
                 exception = e;
             }
-            if (exception != null) await new MessageDialog(exception.Message, "Error loading items").ShowAsync();
+            if (exception != null) await new MessageDialog(exception.Message,
+                new Windows.ApplicationModel.Resources.ResourceLoader().GetString("Fehler")).ShowAsync();
         }
         private async Task ProduktenZiehen()
         {
@@ -89,7 +90,8 @@ namespace Einkaufslisten_Template10.ViewModels
             {
                 exception = e;
             }
-            if (exception != null) await new MessageDialog(exception.Message, "Produkt DB Fehler").ShowAsync();
+            if (exception != null) await new MessageDialog(exception.Message,
+                new Windows.ApplicationModel.Resources.ResourceLoader().GetString("Fehler")).ShowAsync();
         }
         private async Task EinheitenZiehen()
         {
@@ -105,7 +107,8 @@ namespace Einkaufslisten_Template10.ViewModels
             {
                 exception = e;
             }
-            if (exception != null) await new MessageDialog(exception.Message, "Einheit DB Fehler").ShowAsync();
+            if (exception != null) await new MessageDialog(exception.Message,
+                new Windows.ApplicationModel.Resources.ResourceLoader().GetString("Fehler")).ShowAsync();
         }
         public void GetName(object sender, TextChangedEventArgs e)
         {
@@ -141,11 +144,11 @@ namespace Einkaufslisten_Template10.ViewModels
                 String Fehlermeldung = String.Empty;
                 if (exception is OverflowException)
                 {
-                    Fehlermeldung = "Die Menge ist zu groß";
+                    Fehlermeldung = new Windows.ApplicationModel.Resources.ResourceLoader().GetString("MengeGross");
                 }
                 else if(exception is FormatException)
                 {
-                    Fehlermeldung = "Ungültige Zahl";
+                    Fehlermeldung = new Windows.ApplicationModel.Resources.ResourceLoader().GetString("UngueltigeZahl");
                 }
                 await new MessageDialog(exception.Message, Fehlermeldung).ShowAsync();
             }
@@ -160,9 +163,10 @@ namespace Einkaufslisten_Template10.ViewModels
                     var produkt_object = await Task.FromResult(Produkt_Collection.SingleOrDefault(a => a.name == _name_produkt)); //hier kann man nicht direkt id abrufen, Task wird nicht gewartet (?!?!?!)
                     if (produkt_object != null) _id_produkt = produkt_object.id;
                 }
-                catch(ArgumentNullException)
+                catch(ArgumentNullException exc)
                 {
-                    await new MessageDialog("ArgumentNullException", "Fehler").ShowAsync();
+                    await new MessageDialog(exc.Message,
+                        new Windows.ApplicationModel.Resources.ResourceLoader().GetString("Fehler")).ShowAsync();
                 }
                 
             }
@@ -173,9 +177,10 @@ namespace Einkaufslisten_Template10.ViewModels
                     var einheit_object = await Task.FromResult(Einheit_Collection.SingleOrDefault(a => a.name == _name_einheit));
                     if (einheit_object != null) _id_einheit = einheit_object.id;
                 }
-                catch (ArgumentNullException)
+                catch (ArgumentNullException exc)
                 {
-                    await new MessageDialog("ArgumentNullException", "Fehler").ShowAsync();
+                    await new MessageDialog(exc.Message, 
+                        new Windows.ApplicationModel.Resources.ResourceLoader().GetString("Fehler")).ShowAsync();
                 }
             }
             if (String.IsNullOrEmpty(_id_produkt) || String.IsNullOrEmpty(_id_einheit)) await neueElementeEintragen();
@@ -185,7 +190,8 @@ namespace Einkaufslisten_Template10.ViewModels
             }
             else
             {
-                await new MessageDialog("Geben Sie bitte Produkte vollständig an"+_id_produkt + _id_einheit+ _menge.ToString(), "Fehler").ShowAsync();
+                await new MessageDialog(new Windows.ApplicationModel.Resources.ResourceLoader().GetString("vollProdukt") +_id_produkt + _id_einheit+ _menge.ToString(),
+                    new Windows.ApplicationModel.Resources.ResourceLoader().GetString("Fehler")).ShowAsync();
             }
         }
         private async Task neueElementeEintragen()
@@ -252,15 +258,16 @@ namespace Einkaufslisten_Template10.ViewModels
                         await SyncService.Produkt_Einkaufsliste.InsertAsync(item);
                     }
                 }
-                catch (Exception)
+                catch (Exception exc)
                 {
-                    await new MessageDialog("Exception", "Fehler").ShowAsync();
+                    await new MessageDialog(exc.Message, new Windows.ApplicationModel.Resources.ResourceLoader().GetString("Fehler")).ShowAsync();
                 }
                 NavigationService.Navigate(typeof(Einkaufslisten), TargetView.LISTE);
             }
             else
             {
-                await new MessageDialog("Geben Sie bitte mindestens ein Produkt an", "Fehler").ShowAsync();
+                await new MessageDialog(new Windows.ApplicationModel.Resources.ResourceLoader().GetString("einProdukt"),
+                    new Windows.ApplicationModel.Resources.ResourceLoader().GetString("Fehler")).ShowAsync();
             }         
         }
         public IEnumerable<Produkt> GetMatchingProdukte(string query)

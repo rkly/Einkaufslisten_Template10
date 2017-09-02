@@ -3,7 +3,6 @@ using Template10.Common;
 using Template10.Utils;
 using Windows.UI.Xaml;
 using System.Globalization;
-using System.Threading;
 
 namespace Einkaufslisten_Template10.Services.SettingsServices
 {
@@ -15,7 +14,6 @@ namespace Einkaufslisten_Template10.Services.SettingsServices
         {
             _helper = new Template10.Services.SettingsService.SettingsHelper();
         }
-
         public bool UseShellBackButton
         {
             get { return _helper.Read<bool>(nameof(UseShellBackButton), true); }
@@ -29,7 +27,6 @@ namespace Einkaufslisten_Template10.Services.SettingsServices
                 });
             }
         }
-
         public ApplicationTheme AppTheme
         {
             get
@@ -45,7 +42,6 @@ namespace Einkaufslisten_Template10.Services.SettingsServices
                 Views.Shell.HamburgerMenu.RefreshStyles(value, true);
             }
         }
-
         public TimeSpan CacheMaxDuration
         {
             get { return _helper.Read<TimeSpan>(nameof(CacheMaxDuration), TimeSpan.FromDays(2)); }
@@ -55,7 +51,6 @@ namespace Einkaufslisten_Template10.Services.SettingsServices
                 BootStrapper.Current.CacheMaxDuration = value;
             }
         }
-
         public bool ShowHamburgerButton
         {
             get { return _helper.Read<bool>(nameof(ShowHamburgerButton), true); }
@@ -65,7 +60,6 @@ namespace Einkaufslisten_Template10.Services.SettingsServices
                 Views.Shell.HamburgerMenu.HamburgerButtonVisibility = value ? Visibility.Visible : Visibility.Collapsed;
             }
         }
-
         public bool IsFullScreen
         {
             get { return _helper.Read<bool>(nameof(IsFullScreen), false); }
@@ -83,8 +77,8 @@ namespace Einkaufslisten_Template10.Services.SettingsServices
             get { return _helper.Read<String>(nameof(Sprache), CultureInfo.CurrentCulture.ToString()); }
             set
             {
-                _helper.Write(nameof(Sprache), value);             
-                CultureInfo culture  = new CultureInfo(value);
+                _helper.Write(nameof(Sprache), value);
+                CultureInfo culture = new CultureInfo(value);
                 Windows.Globalization.ApplicationLanguages.PrimaryLanguageOverride = culture.Name;
             }
         }

@@ -1,13 +1,11 @@
 ﻿using Template10.Mvvm;
 using System.Collections.Generic;
-using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Template10.Services.NavigationService;
 using Windows.UI.Xaml.Navigation;
-
 using Einkaufslisten_Template10.Services.AzureServices;
-using Windows.UI.Xaml;
+
 using Einkaufslisten_Template10.Models.Objects;
 
 namespace Einkaufslisten_Template10.ViewModels
@@ -20,8 +18,6 @@ namespace Einkaufslisten_Template10.ViewModels
             {
                 Value = "Designtime value";
             }
-            
-            
         }
         private StyleController styleController = new StyleController();
         
@@ -29,10 +25,8 @@ namespace Einkaufslisten_Template10.ViewModels
         {
             get { return styleController; }
         }
-
         string _Value = "";
         public string Value { get { return _Value; } set { Set(ref _Value, value); } }
-
         public override async Task OnNavigatedToAsync(object parameter, NavigationMode mode, IDictionary<string, object> suspensionState)
         {
             if (suspensionState.Any())
@@ -42,7 +36,6 @@ namespace Einkaufslisten_Template10.ViewModels
             this.StyleController.loadStyle();
             await Task.CompletedTask;
         }
-
         public override async Task OnNavigatedFromAsync(IDictionary<string, object> suspensionState, bool suspending)
         {
             if (suspending)
@@ -51,29 +44,21 @@ namespace Einkaufslisten_Template10.ViewModels
             }
             await Task.CompletedTask;
         }
-
         public async Task OnNavigatingToAsync(NavigatingEventArgs args)
         {
             args.Cancel = false;
             await Task.CompletedTask;
         }
-
-
-
         public void GotoSettings() =>
             NavigationService.Navigate(typeof(Views.SettingsPage), 0);
-
         public void GotoPrivacy() =>
             NavigationService.Navigate(typeof(Views.SettingsPage), 1);
-
         public void GotoAbout() =>
             NavigationService.Navigate(typeof(Views.SettingsPage), 2);
-
         public async Task Einloggen()
         {
-            Views.Busy.SetBusy(true, "Bitte warten");
+            Views.Busy.SetBusy(true, new Windows.ApplicationModel.Resources.ResourceLoader().GetString("BitteWarten"));
             await AuthService.AuthenticateAsync();     
         }          
- 
     }
 }
