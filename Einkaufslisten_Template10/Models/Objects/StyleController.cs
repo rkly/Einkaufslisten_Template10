@@ -19,16 +19,7 @@ namespace Einkaufslisten_Template10.Models.Objects
         {
             this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));       
         }
-        private String suffix;
-        public String Suffix
-        {
-            get { return suffix; }
-            set
-            {
-                this.suffix = value;
-                OnPropertyChanged("Suffix");
-            }
-        }
+
         private SolidColorBrush relativePanelSolidColorBrush;
         public SolidColorBrush RelativePanelSolidColorBrush
         {
@@ -61,9 +52,9 @@ namespace Einkaufslisten_Template10.Models.Objects
             {
                 loadPrefix();
             }    
-            this.Suffix = prefix;
-            this.BtnStyle = (Style) Application.Current.Resources[prefix + "_btn_style"];
-            this.RelativePanelSolidColorBrush = (SolidColorBrush) Application.Current.Resources[prefix + "_solidColorBrush_RelativePanel"];
+            var res = Application.Current.Resources;
+            this.BtnStyle = (Style) res[prefix + "_btn_style"];
+            this.RelativePanelSolidColorBrush = (SolidColorBrush) res[prefix + "_solidColorBrush_RelativePanel"];
         }
         private void loadPrefix()
         {

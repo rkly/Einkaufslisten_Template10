@@ -148,10 +148,10 @@
     <value>Produkt</value>
   </data>
   <data name="IsFullScreenToggleSwitch.OffContent" xml:space="preserve">
-    <value>Menu ist eingeblendet</value>
+    <value>Menü ist eingeblendet</value>
   </data>
   <data name="IsFullScreenToggleSwitch.OnContent" xml:space="preserve">
-    <value>Menu ist ausgeblendet</value>
+    <value>Menü ist ausgeblendet</value>
   </data>
   <data name="Login.Text" xml:space="preserve">
     <value>Einloggen</value>
@@ -175,13 +175,13 @@
     <value>Einstellungen</value>
   </data>
   <data name="ShowHamburgerButtonToggleSwitch.Header" xml:space="preserve">
-    <value>Button sichtbarkeit</value>
+    <value>Menü Sichtbarkeit</value>
   </data>
   <data name="ShowHamburgerButtonToggleSwitch.OffContent" xml:space="preserve">
-    <value>Button ist ausgeblendet</value>
+    <value>Menü ist ausgeblendet</value>
   </data>
   <data name="ShowHamburgerButtonToggleSwitch.OnContent" xml:space="preserve">
-    <value>Button ist eingeblendet</value>
+    <value>Menü ist eingeblendet</value>
   </data>
   <data name="Sprache.Content" xml:space="preserve">
     <value>Sprache</value>
@@ -196,13 +196,13 @@
     <value>Ukrainisch</value>
   </data>
   <data name="UseLightThemeToggleSwitch.Header" xml:space="preserve">
-    <value>Angefordertes Anwendung Thema</value>
+    <value>Angeforderte Anwendung Thema</value>
   </data>
   <data name="UseLightThemeToggleSwitch.OffContent" xml:space="preserve">
-    <value>Aktuelles Thema ist dunkel</value>
+    <value>Das aktuelle Thema ist dunkel</value>
   </data>
   <data name="UseLightThemeToggleSwitch.OnContent" xml:space="preserve">
-    <value>Aktuelles Thema ist helles</value>
+    <value>Das aktuelle Thema ist hell</value>
   </data>
   <data name="UseShellDrawnBackButtonToggleSwtich.Header" xml:space="preserve">
     <value>Shell-Zurücktaste</value>
@@ -256,6 +256,6 @@
     <value>Ungültige Zahl</value>
   </data>
   <data name="vollProdukt" xml:space="preserve">
-    <value>Geben Sie bitte Produkte vollständig an</value>
+    <value>Geben Sie bitte die Produkte vollständig an</value>
   </data>
 </root>
